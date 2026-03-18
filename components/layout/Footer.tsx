@@ -103,15 +103,15 @@ export default function Footer() {
               <h4 className="text-white font-semibold mb-4 text-sm sm:text-base">Contact Us</h4>
               <ul className="space-y-3 text-sm">
                 <li>
-                  <a href="tel:+919024408325" className="flex items-start gap-2.5 hover:text-gold transition-colors">
+                  <a href="tel:+917737872585" className="flex items-start gap-2.5 hover:text-gold transition-colors">
                     <Phone className="h-4 w-4 mt-0.5 text-gold shrink-0" />
-                    +91-9024408325
+                    +91-7737872585
                   </a>
                 </li>
                 <li>
-                  <a href="mailto:info@voiceforhelp.org" className="flex items-start gap-2.5 hover:text-gold transition-colors">
+                  <a href="mailto:support@voiceforhelp.com" className="flex items-start gap-2.5 hover:text-gold transition-colors">
                     <Mail className="h-4 w-4 mt-0.5 text-gold shrink-0" />
-                    <span className="break-all">info@voiceforhelp.org</span>
+                    <span className="break-all">support@voiceforhelp.com</span>
                   </a>
                 </li>
                 <li className="flex items-start gap-2.5">

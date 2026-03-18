@@ -21,16 +21,16 @@ export default function ContactPage() {
   };
 
   const contacts = [
-    { icon: Phone, label: "Call Us", value: "+91-9024408325", href: "tel:+919024408325", desc: "Mon–Sat, 9am–6pm" },
-    { icon: Mail, label: "Email", value: "info@voiceforhelp.org", href: "mailto:info@voiceforhelp.org", desc: "We reply within 24 hrs" },
-    { icon: MessageSquare, label: "WhatsApp", value: "+91-9024408325", href: "https://wa.me/919024408325", desc: "Quick response" },
+    { icon: Phone, label: "Call Us", value: "+91-7737872585", href: "tel:+917737872585", desc: "Mon–Sat, 9am–6pm" },
+    { icon: Mail, label: "Email", value: "support@voiceforhelp.com", href: "mailto:support@voiceforhelp.com", desc: "We reply within 24 hrs" },
+    { icon: MessageSquare, label: "WhatsApp", value: "+91-7737872585", href: "https://wa.me/917737872585", desc: "Quick response" },
     { icon: MapPin, label: "Address", value: "Rajasthan, India", href: "#", desc: "Serving across India" },
   ];
 
   return (
     <>
       {/* Page hero */}
-      <section className="bg-gradient-to-b from-amber-50 to-white py-14 sm:py-20 md:py-28 border-b border-gray-100">
+      <section className="bg-linear-to-b from-amber-50 to-white py-14 sm:py-20 md:py-28 border-b border-gray-100">
         <div className="container mx-auto px-4 sm:px-6 text-center">
           <span className="inline-block text-gold text-xs sm:text-sm font-semibold uppercase tracking-widest mb-3">
             Reach Out

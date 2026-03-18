@@ -1,60 +1,56 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { ArrowRight, Shield } from "lucide-react";
+import { ShieldCheck, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DONATION_AMOUNTS } from "@/lib/constants";
 
 export default function CTABanner() {
   return (
-    <section className="py-12 sm:py-14 md:py-20 bg-gray-50 border-t border-gray-100">
-      <div className="container mx-auto px-4 sm:px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          {/* Trust badge */}
-          <div className="inline-flex items-center gap-2 bg-gold/10 border border-gold/20 rounded-full px-4 py-1.5 mb-5">
-            <Shield className="h-3.5 w-3.5 text-gold" />
-            <span className="text-gold-dark text-xs font-semibold uppercase tracking-wide">
-              Video-Verified Impact
-            </span>
-          </div>
+    <section className="py-14 sm:py-16 md:py-20 bg-linear-to-br from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden">
+      {/* Background glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gold/8 rounded-full blur-3xl pointer-events-none" />
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
-            Every Rupee Counts.{" "}
-            <span className="text-gold-gradient italic">Start Today.</span>
-          </h2>
-          <p className="text-sm sm:text-base text-gray-500 mb-7 sm:mb-8 max-w-xl mx-auto leading-relaxed">
-            Join thousands of donors who trust us with transparent, video-verified impact.
-          </p>
+      <div className="container mx-auto px-4 sm:px-6 relative text-center max-w-3xl mx-auto">
+        {/* Trust badge */}
+        <div className="inline-flex items-center gap-2 bg-gold/15 border border-gold/25 rounded-full px-4 py-1.5 mb-6">
+          <ShieldCheck className="h-4 w-4 text-gold" />
+          <span className="text-gold text-xs font-semibold uppercase tracking-wider">
+            Video-Verified · 100% Transparent
+          </span>
+        </div>
 
-          {/* Donation amount buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-            {DONATION_AMOUNTS.map((amt) => (
-              <Link key={amt} href={`/donate?amount=${amt}`}>
-                <Button
-                  size="lg"
-                  className="font-bold text-sm sm:text-base h-11 sm:h-12 px-5 sm:px-6 hover:scale-105 transition-transform"
-                >
-                  ₹{amt.toLocaleString("en-IN")}
-                </Button>
-              </Link>
-            ))}
-            <Link href="/donate">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 leading-tight">
+          Your ₹500 Can Feed a Family.{" "}
+          <span className="text-gold-gradient">Will You Help?</span>
+        </h2>
+
+        <p className="text-gray-400 text-sm sm:text-base mb-8 max-w-xl mx-auto leading-relaxed">
+          Every donation is documented with a real video — you see exactly how your money changes lives. No excuses, no delays, just proof.
+        </p>
+
+        {/* Donation amounts */}
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-6">
+          {DONATION_AMOUNTS.map((amt) => (
+            <Link key={amt} href={`/donate?amount=${amt}`}>
               <Button
                 variant="outline"
-                size="lg"
-                className="font-semibold text-sm sm:text-base h-11 sm:h-12 px-5 sm:px-6 border-gold/40 text-gold-dark hover:bg-gold/10"
+                className="h-11 sm:h-12 px-5 sm:px-6 font-bold text-sm border-white/20 text-white hover:bg-gold hover:border-gold hover:text-black transition-all"
               >
-                Custom <ArrowRight className="ml-1.5 h-4 w-4" />
+                ₹{amt.toLocaleString("en-IN")}
               </Button>
             </Link>
-          </div>
-        </motion.div>
+          ))}
+          <Link href="/donate">
+            <Button className="h-11 sm:h-12 px-5 sm:px-6 font-bold text-sm">
+              Custom Amount <ArrowRight className="ml-1.5 h-4 w-4" />
+            </Button>
+          </Link>
+        </div>
+
+        <p className="text-gray-600 text-xs">
+          Secure payment · UPI / Card / Net Banking · Receipt provided
+        </p>
       </div>
     </section>
   );

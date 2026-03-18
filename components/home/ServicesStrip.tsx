@@ -1,51 +1,80 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Utensils, GraduationCap, HeartPulse } from "lucide-react";
+import { Utensils, GraduationCap, HeartPulse, PawPrint, Milk, Leaf, Siren } from "lucide-react";
 
 const services = [
   {
-    icon: Utensils,
-    title: "Feed the Hungry",
-    desc: "Help provide meals to those in need.",
-    iconColor: "text-amber-500",
-    bg: "bg-amber-400/15",
+    icon: PawPrint,
+    title: "Animal Welfare",
+    desc: "Care and protection for street animals.",
+    iconColor: "text-orange-500",
+    bg: "bg-orange-400/15",
+  },
+  {
+    icon: Milk,
+    title: "Cow Protection",
+    desc: "Shelter, food and care for cows.",
+    iconColor: "text-yellow-600",
+    bg: "bg-yellow-400/15",
   },
   {
     icon: GraduationCap,
-    title: "Support Education",
-    desc: "Empower children with education.",
-    iconColor: "text-red-500",
-    bg: "bg-red-400/15",
+    title: "Child Welfare",
+    desc: "Education and support for underprivileged children.",
+    iconColor: "text-blue-500",
+    bg: "bg-blue-400/15",
   },
   {
     icon: HeartPulse,
     title: "Medical Assistance",
-    desc: "Provide healthcare to the needy.",
+    desc: "Healthcare access for those in need.",
     iconColor: "text-rose-500",
     bg: "bg-rose-400/15",
+  },
+  {
+    icon: Utensils,
+    title: "Food Distribution",
+    desc: "Daily meals for the hungry and homeless.",
+    iconColor: "text-amber-500",
+    bg: "bg-amber-400/15",
+  },
+  {
+    icon: Siren,
+    title: "Emergency Help",
+    desc: "Rapid response in times of crisis.",
+    iconColor: "text-red-500",
+    bg: "bg-red-400/15",
+  },
+  {
+    icon: Leaf,
+    title: "Plantation",
+    desc: "Tree plantation for a greener earth.",
+    iconColor: "text-green-600",
+    bg: "bg-green-400/15",
   },
 ];
 
 export default function ServicesStrip() {
   return (
-    <section className="relative -mt-6 sm:-mt-10 md:-mt-14 z-10 pb-2">
+    <section className="py-8 sm:py-10 bg-white">
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-4xl mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-3 sm:gap-4">
           {services.map((service, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.15 }}
-              className="bg-white rounded-xl p-4 sm:p-5 border border-gray-100 shadow-md hover:shadow-lg hover:border-gold/30 transition-all duration-300 flex items-center gap-3 sm:gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: i * 0.07 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm hover:shadow-md hover:border-gold/30 hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center gap-2.5"
             >
-              <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl ${service.bg} flex items-center justify-center shrink-0 border border-gold/15`}>
-                <service.icon className={`h-6 w-6 sm:h-7 sm:w-7 ${service.iconColor}`} />
+              <div className={`w-12 h-12 rounded-xl ${service.bg} flex items-center justify-center shrink-0`}>
+                <service.icon className={`h-6 w-6 ${service.iconColor}`} />
               </div>
-              <div className="min-w-0">
-                <h3 className="font-bold text-gray-900 text-sm sm:text-base truncate">{service.title}</h3>
-                <p className="text-xs text-gray-500 mt-0.5 line-clamp-2">{service.desc}</p>
+              <div>
+                <h3 className="font-bold text-gray-900 text-xs sm:text-sm leading-tight">{service.title}</h3>
+                <p className="text-[10px] sm:text-xs text-gray-500 mt-1 leading-snug line-clamp-2">{service.desc}</p>
               </div>
             </motion.div>
           ))}

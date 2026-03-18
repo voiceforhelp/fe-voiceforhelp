@@ -10,7 +10,7 @@ const pillars = ["100% Transparent", "Video-Verified Impact", "Community-Driven"
 export default function MissionSection() {
   const [missionImage, setMissionImage] = useState("/mission/OurMission.jpeg");
   const [missionText, setMissionText] = useState(
-    "We are dedicated to helping the underprivileged and bringing positive change to their lives. Join us in our mission to make a difference."
+    "Our mission at Voice For Help Trust is to provide timely support, medical care, and nourishment to the needy, helpless animals, and cows. We are committed to ensuring transparency and honesty in every act of service"
   );
 
   useEffect(() => {
@@ -67,7 +67,7 @@ export default function MissionSection() {
           >
             {/* Decorative backdrop */}
             <div className="absolute -inset-2 sm:-inset-4 bg-gold/10 rounded-2xl sm:rounded-3xl -z-10" />
-            <div className="rounded-xl sm:rounded-2xl overflow-hidden border-2 border-gold/25 shadow-xl shadow-black/10">
+            <div className="relative rounded-xl sm:rounded-2xl overflow-hidden border-2 border-gold/25 shadow-xl shadow-black/10">
               {missionImage ? (
                 <img
                   src={missionImage}
@@ -81,8 +81,8 @@ export default function MissionSection() {
                 </div>
               )}
             </div>
-            {/* Floating badge */}
-            <div className="absolute -bottom-3 -left-3 sm:-bottom-4 sm:-left-4 bg-gold text-black rounded-lg sm:rounded-xl px-3 py-2 sm:px-4 sm:py-3 shadow-lg">
+            {/* Floating badge — inside image, no overflow */}
+            <div className="absolute bottom-3 left-3 bg-gold text-black rounded-lg px-3 py-2 shadow-lg">
               <p className="text-xs sm:text-sm font-extrabold leading-none">100%</p>
               <p className="text-[10px] sm:text-xs font-semibold">Transparent</p>
             </div>

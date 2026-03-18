@@ -2,46 +2,57 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Utensils, Shirt, PawPrint, TreePine } from "lucide-react";
-import SectionHeading from "@/components/common/SectionHeading";
+import { PawPrint, Milk, GraduationCap, HeartPulse, Utensils, Siren, Leaf, ArrowRight } from "lucide-react";
 
-const defaultCategories = [
-  { name: "Food Donation", desc: "Provide food to the hungry", icon: Utensils, color: "text-orange-500", bg: "bg-orange-500/15", border: "hover:border-orange-400/40" },
-  { name: "Cloth Donation", desc: "Donate clothes to help someone warm and covered", icon: Shirt, color: "text-blue-500", bg: "bg-blue-500/15", border: "hover:border-blue-400/40" },
-  { name: "Animal Care", desc: "Help animals in need", icon: PawPrint, color: "text-green-500", bg: "bg-green-500/15", border: "hover:border-green-400/40" },
-  { name: "Plant a Tree", desc: "Save the environment", icon: TreePine, color: "text-emerald-500", bg: "bg-emerald-500/15", border: "hover:border-emerald-400/40" },
+const categories = [
+  { icon: Utensils,      label: "Food Distribution", desc: "Daily meals for the hungry.",              color: "text-amber-600",  bg: "bg-amber-50",  border: "hover:border-amber-300", slug: "food" },
+  { icon: PawPrint,      label: "Animal Welfare",    desc: "Care for injured street animals.",         color: "text-orange-600", bg: "bg-orange-50", border: "hover:border-orange-300", slug: "animal" },
+  { icon: Milk,          label: "Cow Protection",    desc: "Shelter and feed for cows.",               color: "text-yellow-600", bg: "bg-yellow-50", border: "hover:border-yellow-300", slug: "cow" },
+  { icon: GraduationCap, label: "Child Welfare",     desc: "Education for underprivileged children.",  color: "text-blue-600",   bg: "bg-blue-50",   border: "hover:border-blue-300",  slug: "child" },
+  { icon: HeartPulse,    label: "Medical Help",      desc: "Healthcare for those who need it.",        color: "text-rose-600",   bg: "bg-rose-50",   border: "hover:border-rose-300",  slug: "medical" },
+  { icon: Siren,         label: "Emergency Help",    desc: "Rapid relief in times of crisis.",         color: "text-red-600",    bg: "bg-red-50",    border: "hover:border-red-300",   slug: "emergency" },
+  { icon: Leaf,          label: "Plantation",        desc: "Tree planting for a greener India.",       color: "text-green-600",  bg: "bg-green-50",  border: "hover:border-green-300", slug: "plant" },
 ];
 
 export default function DonationCategories() {
   return (
-    <section className="py-10 sm:py-12 md:py-16 bg-gray-50">
+    <section className="py-14 sm:py-16 md:py-20 bg-white border-t border-gray-100">
       <div className="container mx-auto px-4 sm:px-6">
-        <SectionHeading
-          title="Donation Categories"
-          subtitle="Choose a cause close to your heart"
-          light
-        />
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto">
-          {defaultCategories.map((cat, i) => (
+        <div className="text-center mb-10 sm:mb-12">
+          <span className="inline-block text-gold text-xs sm:text-sm font-semibold uppercase tracking-widest mb-3">
+            Choose Your Cause
+          </span>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 mb-3 leading-tight">
+            Donate to What Matters Most to You
+          </h2>
+          <p className="text-gray-500 text-sm sm:text-base max-w-xl mx-auto">
+            Every cause receives 100% of your donation — tracked with daily video proof.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-3 sm:gap-4 max-w-6xl mx-auto">
+          {categories.map((cat, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: i * 0.1 }}
+              transition={{ duration: 0.4, delay: i * 0.07 }}
               viewport={{ once: true }}
             >
-              <Link href={`/donate?category=${cat.name}`}>
-                <div className={`rounded-xl border border-gray-100 ${cat.border} p-4 sm:p-5 md:p-6 text-center hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer bg-white h-full flex flex-col items-center`}>
-                  <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl ${cat.bg} flex items-center justify-center mb-2 sm:mb-3`}>
-                    <cat.icon className={`h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 ${cat.color}`} />
-                  </div>
-                  <h3 className="font-bold text-xs sm:text-sm md:text-base text-gray-900 leading-snug">
-                    {cat.name}
-                  </h3>
-                  <p className="text-[10px] sm:text-xs text-gray-500 mt-1 leading-snug line-clamp-2">
-                    {cat.desc}
-                  </p>
+              <Link
+                href={`/donate?category=${cat.slug}`}
+                className={`flex flex-col items-center text-center gap-3 p-4 sm:p-5 rounded-2xl border border-gray-100 bg-white hover:shadow-md ${cat.border} transition-all duration-300 hover:-translate-y-1 group block`}
+              >
+                <div className={`w-14 h-14 rounded-2xl ${cat.bg} flex items-center justify-center`}>
+                  <cat.icon className={`h-7 w-7 ${cat.color}`} />
                 </div>
+                <div>
+                  <h3 className="font-bold text-gray-900 text-xs sm:text-sm leading-tight mb-1">{cat.label}</h3>
+                  <p className="text-[10px] sm:text-xs text-gray-500 leading-snug line-clamp-2">{cat.desc}</p>
+                </div>
+                <span className={`text-[10px] font-semibold ${cat.color} flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity`}>
+                  Donate <ArrowRight className="h-2.5 w-2.5" />
+                </span>
               </Link>
             </motion.div>
           ))}

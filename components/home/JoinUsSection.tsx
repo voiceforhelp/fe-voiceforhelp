@@ -2,78 +2,119 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, HandHeart, Heart, Share2 } from "lucide-react";
+import { HandHeart, Share2, Heart, ArrowRight, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+const options = [
+  {
+    icon: HandHeart,
+    tag: "Volunteer",
+    title: "Give Your Time, Change Lives",
+    desc: "Join our ground team in Rajasthan. Help distribute food, care for animals, plant trees, and support children — every weekend or whenever you can.",
+    features: ["No prior experience needed", "Field training provided", "Certificate of appreciation", "Orientation within 48 hrs"],
+    cta: "Become a Volunteer",
+    href: "/volunteer",
+    gradient: "from-red-50 to-orange-50",
+    border: "border-red-100 hover:border-red-200",
+    iconBg: "bg-red-100",
+    iconColor: "text-red-600",
+    tagColor: "bg-red-100 text-red-700",
+    ctaVariant: "outline" as const,
+  },
+  {
+    icon: Heart,
+    tag: "Donate",
+    title: "Your Money, Proven Impact",
+    desc: "Even ₹500 feeds a family or rescues an animal. Every donation is matched with a video proof uploaded within 24 hours — so you know exactly where your money went.",
+    features: ["Any amount helps", "Video proof in 24 hrs", "UPI · Card · Net Banking", "Receipt issued"],
+    cta: "Donate Now",
+    href: "/donate",
+    gradient: "from-amber-50 to-yellow-50",
+    border: "border-amber-100 hover:border-gold/40",
+    iconBg: "bg-gold/15",
+    iconColor: "text-gold",
+    tagColor: "bg-gold/15 text-amber-700",
+    ctaVariant: "default" as const,
+  },
+  {
+    icon: Share2,
+    tag: "Spread the Word",
+    title: "Share Our Impact Videos",
+    desc: "Share our real impact videos on social media. Every share reaches new donors and multiplies the impact of every rupee donated.",
+    features: ["Share on WhatsApp", "Post on Instagram", "Tag friends & family", "Every share counts"],
+    cta: "Watch & Share Videos",
+    href: "/videos",
+    gradient: "from-blue-50 to-indigo-50",
+    border: "border-blue-100 hover:border-blue-200",
+    iconBg: "bg-blue-100",
+    iconColor: "text-blue-600",
+    tagColor: "bg-blue-100 text-blue-700",
+    ctaVariant: "outline" as const,
+  },
+];
 
 export default function JoinUsSection() {
   return (
-    <section className="py-10 sm:py-12 md:py-16 bg-white">
+    <section className="py-14 sm:py-16 md:py-20 bg-gray-50 border-t border-gray-100">
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto">
-          {/* Volunteer card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="bg-white border border-red-100 rounded-2xl p-6 sm:p-8 text-center hover:border-red-300 hover:shadow-md transition-all duration-300"
-          >
-            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-red-50 flex items-center justify-center mx-auto mb-4">
-              <HandHeart className="h-6 w-6 sm:h-7 sm:w-7 text-red-500" />
-            </div>
-            <div className="flex items-center justify-center gap-3 mb-3">
-              <div className="h-px flex-1 max-w-10 bg-red-200" />
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 italic">Join Us & Make a Difference</h3>
-              <div className="h-px flex-1 max-w-10 bg-red-200" />
-            </div>
-            <p className="text-xs sm:text-sm text-gray-500 mb-5">
-              Join our field team. Help distribute food, care for animals, and create real change.
-            </p>
-            <Link href="/volunteer">
-              <Button
-                size="lg"
-                className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white border-none h-11 sm:h-12 px-6 font-semibold"
-              >
-                Become a Volunteer <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-          </motion.div>
+        <div className="text-center mb-10 sm:mb-14">
+          <span className="inline-block text-gold text-xs sm:text-sm font-semibold uppercase tracking-widest mb-3">
+            Get Involved
+          </span>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 mb-3 leading-tight">
+            Three Ways to Make a Difference
+          </h2>
+          <p className="text-gray-500 text-sm sm:text-base max-w-xl mx-auto">
+            You don't need to be rich to help. You just need to care.
+          </p>
+        </div>
 
-          {/* Donate card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            viewport={{ once: true }}
-            className="bg-white border border-gold/25 rounded-2xl p-6 sm:p-8 text-center hover:border-gold/50 hover:shadow-md transition-all duration-300"
-          >
-            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gold/15 flex items-center justify-center mx-auto mb-4">
-              <Heart className="h-6 w-6 sm:h-7 sm:w-7 text-gold" />
-            </div>
-            <div className="flex items-center justify-center gap-3 mb-3">
-              <div className="h-px flex-1 max-w-10 bg-gold/30" />
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 italic">Help Us Reach More People</h3>
-              <div className="h-px flex-1 max-w-10 bg-gold/30" />
-            </div>
-            <p className="text-xs sm:text-sm text-gray-500 mb-5">
-              Every rupee makes a visible difference. See your impact through daily video proof.
-            </p>
-            <div className="flex flex-col xs:flex-row items-center justify-center gap-2 sm:gap-3">
-              <Link href="/donate" className="w-full xs:w-auto">
-                <Button size="lg" className="w-full h-11 sm:h-12 px-5 font-semibold">
-                  Donate Now <ArrowRight className="ml-2 h-4 w-4" />
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 max-w-5xl mx-auto">
+          {options.map((opt, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.12 }}
+              viewport={{ once: true }}
+              className={`bg-linear-to-br ${opt.gradient} rounded-2xl border ${opt.border} p-6 sm:p-7 flex flex-col transition-all hover:-translate-y-1 hover:shadow-md`}
+            >
+              {/* Tag + icon */}
+              <div className="flex items-center gap-2 mb-4">
+                <div className={`w-10 h-10 rounded-xl ${opt.iconBg} flex items-center justify-center`}>
+                  <opt.icon className={`h-5 w-5 ${opt.iconColor}`} />
+                </div>
+                <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${opt.tagColor}`}>
+                  {opt.tag}
+                </span>
+              </div>
+
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2">{opt.title}</h3>
+              <p className="text-gray-600 text-sm leading-relaxed mb-5 flex-1">{opt.desc}</p>
+
+              {/* Feature list */}
+              <ul className="space-y-1.5 mb-5">
+                {opt.features.map((f) => (
+                  <li key={f} className="flex items-center gap-2 text-xs text-gray-600">
+                    <div className="w-1.5 h-1.5 rounded-full bg-gray-400 shrink-0" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+
+              <Link href={opt.href}>
+                <Button variant={opt.ctaVariant} className="w-full h-11 font-semibold text-sm gap-1.5">
+                  {opt.cta} <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
-              <Link href="/videos" className="w-full xs:w-auto">
-                <Button
-                  size="lg"
-                  className="w-full h-11 sm:h-12 px-4 bg-blue-600 hover:bg-blue-700 text-white border-none font-semibold"
-                >
-                  <Share2 className="mr-1.5 h-4 w-4" /> Share Videos
-                </Button>
-              </Link>
-            </div>
-          </motion.div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Social proof note */}
+        <div className="flex items-center justify-center gap-2 mt-8 text-gray-500 text-sm">
+          <Users className="h-4 w-4" />
+          <span>Join <strong className="text-gray-700">1,000+ donors</strong> who have already made a real difference</span>
         </div>
       </div>
     </section>

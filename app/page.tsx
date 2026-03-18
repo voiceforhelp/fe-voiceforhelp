@@ -2,12 +2,16 @@
 
 import { useEffect, useState } from "react";
 import HeroSection from "@/components/home/HeroSection";
+import TrustBadges from "@/components/home/TrustBadges";
 import ServicesStrip from "@/components/home/ServicesStrip";
 import MissionSection from "@/components/home/MissionSection";
+import HowItWorks from "@/components/home/HowItWorks";
+import ImpactCounter from "@/components/home/ImpactCounter";
 import DonationSection from "@/components/home/DonationSection";
-import RecentDonors from "@/components/home/RecentDonors";
-import DonationImpactFlow from "@/components/home/DonationImpactFlow";
 import LatestVideos from "@/components/home/LatestVideos";
+import Testimonials from "@/components/home/Testimonials";
+import DonationImpactFlow from "@/components/home/DonationImpactFlow";
+import RecentDonors from "@/components/home/RecentDonors";
 import DonationCategories from "@/components/home/DonationCategories";
 import TopCauses from "@/components/home/TopCauses";
 import JoinUsSection from "@/components/home/JoinUsSection";
@@ -31,15 +35,19 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <TrustBadges />
       <ServicesStrip />
       <MissionSection />
+      <HowItWorks />
+      <ImpactCounter />
       <DonationSection />
       <LatestVideos videos={videos} />
-      <JoinUsSection />
+      <Testimonials />
       <DonationImpactFlow />
       <RecentDonors donors={donors} />
       <DonationCategories />
       <TopCauses categories={categories} />
+      <JoinUsSection />
       <CTABanner />
     </>
   );

@@ -1,4 +1,4 @@
-export const UPI_ID = "9024408325@ptaxis";
+export const UPI_ID = "7737872585@ptaxis";
 export const SITE_NAME = "VoiceForHelp";
 export const SITE_TAGLINE = "Be The Voice, Be The Change";
 export const SITE_DESCRIPTION =
@@ -39,5 +39,5 @@ export const SOCIAL_LINKS = {
   instagram: "https://instagram.com/voiceforhelp",
   facebook: "https://facebook.com/voiceforhelp",
   youtube: "https://youtube.com/@voiceforhelp",
-  whatsapp: "https://wa.me/919024408325",
+  whatsapp: "https://wa.me/917737872585",
 };

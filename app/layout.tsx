@@ -11,24 +11,25 @@ const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700
 
 export const metadata: Metadata = {
   title: {
-    default: "VoiceForHelp - Transparent Donation Platform",
-    template: "%s | VoiceForHelp",
+    default: "Voice For Help Trust — Care With Compassion",
+    template: "%s | Voice For Help Trust",
   },
-  description: "VoiceForHelp - Transparent donation platform. Donate for cow feeding, animal care, and social welfare. See your donation impact through daily video proof.",
-  keywords: ["donate for cows", "animal donation India", "cow feeding donation", "NGO donation India", "transparent donation", "voiceforhelp"],
-  authors: [{ name: "VoiceForHelp" }],
+  description: "Voice For Help Trust — A registered NGO from Rajasthan, India. Donate for food distribution, animal welfare, cow protection, child welfare, medical assistance & more. Every donation is proven through daily video proof.",
+  keywords: ["Voice For Help Trust", "NGO Rajasthan", "donate India", "cow protection", "animal welfare", "food distribution", "transparent NGO", "video proof donation"],
+  authors: [{ name: "Voice For Help Trust" }],
+  icons: { icon: "/VoiceForHelpLogo.ico", apple: "/VoiceForHelpLogo.jpeg" },
   openGraph: {
     type: "website",
     locale: "en_IN",
-    siteName: "VoiceForHelp",
-    title: "VoiceForHelp - Transparent Donation Platform",
-    description: "Donate and see your impact through daily video proof. Be The Voice, Be The Change.",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+    siteName: "Voice For Help Trust",
+    title: "Voice For Help Trust — Care With Compassion",
+    description: "Every rupee you donate is documented through daily video proof. Registered NGO, Rajasthan.",
+    images: [{ url: "/VoiceForHelpLogo.jpeg", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "VoiceForHelp - Transparent Donation Platform",
-    description: "Donate and see your impact through daily video proof.",
+    title: "Voice For Help Trust — Care With Compassion",
+    description: "Every rupee you donate is documented through daily video proof.",
   },
   robots: { index: true, follow: true },
 };
@@ -54,14 +55,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               ],
               contactPoint: {
                 "@type": "ContactPoint",
-                telephone: "+91-9024408325",
+                telephone: "+91-7737872585",
                 contactType: "customer service",
               },
             }),
           }}
         />
       </head>
-      <body className={`${inter.className} antialiased bg-[#1a1a1a] text-gray-100`}>
+      <body className={`${inter.className} antialiased bg-white text-gray-900`}>
         <AuthProvider>
           <Toaster position="top-right" toastOptions={{ duration: 3000, style: { borderRadius: "12px", padding: "12px 16px" } }} />
           <Header />

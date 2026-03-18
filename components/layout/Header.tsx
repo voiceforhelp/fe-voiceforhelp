@@ -31,11 +31,11 @@ export default function Header() {
       <div className="bg-gray-900 text-gray-400 text-xs py-1.5 hidden md:block">
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <a href="tel:+919024408325" className="flex items-center gap-1.5 hover:text-gold transition-colors">
-              <Phone className="h-3 w-3" /> +91-9024408325
+            <a href="tel:+917737872585" className="flex items-center gap-1.5 hover:text-gold transition-colors">
+              <Phone className="h-3 w-3" /> +91-7737872585
             </a>
-            <a href="mailto:info@voiceforhelp.org" className="flex items-center gap-1.5 hover:text-gold transition-colors">
-              <Mail className="h-3 w-3" /> info@voiceforhelp.org
+            <a href="mailto:support@voiceforhelp.com" className="flex items-center gap-1.5 hover:text-gold transition-colors">
+              <Mail className="h-3 w-3" /> support@voiceforhelp.com
             </a>
           </div>
           <div className="flex items-center gap-3">
@@ -149,11 +149,11 @@ export default function Header() {
               <div className="container mx-auto px-4 py-3 max-h-[75vh] overflow-y-auto">
                 {/* Mobile contact info */}
                 <div className="flex flex-wrap gap-x-4 gap-y-1 px-2 py-2.5 text-xs text-gray-500 border-b border-gray-100 mb-2">
-                  <a href="tel:+919024408325" className="flex items-center gap-1.5 hover:text-gold">
-                    <Phone className="h-3 w-3" /> +91-9024408325
+                  <a href="tel:+917737872585" className="flex items-center gap-1.5 hover:text-gold">
+                    <Phone className="h-3 w-3" /> +91-7737872585
                   </a>
-                  <a href="mailto:info@voiceforhelp.org" className="flex items-center gap-1.5 hover:text-gold">
-                    <Mail className="h-3 w-3" /> info@voiceforhelp.org
+                  <a href="mailto:support@voiceforhelp.com" className="flex items-center gap-1.5 hover:text-gold">
+                    <Mail className="h-3 w-3" /> support@voiceforhelp.com
                   </a>
                 </div>
 
