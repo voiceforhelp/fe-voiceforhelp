@@ -46,7 +46,7 @@ export default function LatestVideos({ videos }: LatestVideosProps) {
   ] as any[];
 
   return (
-    <section className="py-10 sm:py-12 md:py-16 bg-[#faf7f2]">
+    <section className="py-10 sm:py-12 md:py-16 bg-gray-50">
       <div className="container mx-auto px-4 sm:px-6">
         {/* Section header */}
         <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center mb-6 sm:mb-8">
@@ -77,7 +77,7 @@ export default function LatestVideos({ videos }: LatestVideosProps) {
 
           {/* Featured video preview */}
           <div className="hidden md:block">
-            <div className="relative rounded-xl overflow-hidden border border-gray-200 shadow-md aspect-video bg-linear-to-br from-[#2c2820] to-[#1e1c18]">
+            <div className="relative rounded-xl overflow-hidden border border-gray-200 shadow-md aspect-video bg-gray-100">
               {displayVideos[0]?.thumbnailUrl ? (
                 <img
                   src={displayVideos[0].thumbnailUrl}
@@ -119,9 +119,9 @@ export default function LatestVideos({ videos }: LatestVideosProps) {
               viewport={{ once: true }}
               className="shrink-0 snap-center w-64 sm:w-72 md:w-80"
             >
-              <div className="rounded-xl overflow-hidden border border-gray-200 hover:border-gold/50 transition-all duration-300 hover:-translate-y-1 group shadow-sm bg-white">
+              <div className="rounded-xl overflow-hidden border border-gray-100 hover:border-gold/50 transition-all duration-300 hover:-translate-y-1 group shadow-sm bg-white">
                 {/* Thumbnail */}
-                <div className="relative aspect-video bg-linear-to-br from-dark-lighter to-[#222]">
+                <div className="relative aspect-video bg-gray-100">
                   {video.thumbnailUrl ? (
                     <img
                       src={video.thumbnailUrl}
@@ -131,7 +131,7 @@ export default function LatestVideos({ videos }: LatestVideosProps) {
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
-                      <div className="text-center text-gray-500 p-4">
+                      <div className="text-center text-gray-400 p-4">
                         <Play className="h-10 w-10 sm:h-12 sm:w-12 mx-auto mb-1.5 opacity-40" />
                         <p className="text-xs sm:text-sm font-medium">Impact Video</p>
                       </div>
@@ -145,7 +145,7 @@ export default function LatestVideos({ videos }: LatestVideosProps) {
                   </div>
                   {/* Date badge */}
                   <div className="absolute top-2 left-2 bg-black/60 backdrop-blur-sm rounded-md px-2 py-0.5">
-                    <span className="text-[10px] text-gray-300">{formatDate(video.createdAt)}</span>
+                    <span className="text-[10px] text-gray-200">{formatDate(video.createdAt)}</span>
                   </div>
                 </div>
                 {/* Golden footer bar */}

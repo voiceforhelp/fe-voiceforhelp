@@ -8,7 +8,7 @@ import { DONATION_AMOUNTS } from "@/lib/constants";
 
 export default function CTABanner() {
   return (
-    <section className="py-12 sm:py-14 md:py-20 bg-[#faf7f2] border-t border-gold/10">
+    <section className="py-12 sm:py-14 md:py-20 bg-gray-50 border-t border-gray-100">
       <div className="container mx-auto px-4 sm:px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -44,7 +44,7 @@ const steps = [
 
 export default function DonationImpactFlow() {
   return (
-    <section className="py-10 sm:py-12 md:py-20 bg-[#faf7f2]">
+    <section className="py-10 sm:py-12 md:py-20 bg-gray-50">
       <div className="container mx-auto px-4 sm:px-6">
         <SectionHeading
           title="How Your Donation Makes an Impact"

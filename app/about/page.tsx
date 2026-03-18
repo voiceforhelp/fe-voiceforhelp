@@ -24,40 +24,40 @@ export default function AboutPage() {
   return (
     <>
       {/* Page hero */}
-      <section className="bg-texture py-14 sm:py-20 md:py-28 border-b border-gray-800/50">
+      <section className="bg-gradient-to-b from-amber-50 via-orange-50/30 to-white py-14 sm:py-20 md:py-28 border-b border-gray-100">
         <div className="container mx-auto px-4 sm:px-6 text-center">
-          <span className="inline-block text-gold text-xs sm:text-sm font-semibold uppercase tracking-widest mb-3">
+          <span className="inline-block text-gold font-semibold uppercase tracking-widest text-xs sm:text-sm mb-3">
             Our Story
           </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
             About VoiceForHelp
           </h1>
-          <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-gray-500 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
             Be The Voice, Be The Change — We believe in complete transparency in charitable giving.
           </p>
         </div>
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-12 sm:py-16 md:py-20 bg-texture-light">
+      <section className="py-12 sm:py-16 md:py-20 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6">
           <SectionHeading title="Our Purpose" />
           <div className="grid sm:grid-cols-2 gap-5 sm:gap-6 max-w-4xl mx-auto">
-            <div className="bg-dark-light rounded-2xl p-6 sm:p-8 border border-gray-700/50 hover:border-gold/30 transition-colors">
+            <div className="bg-white rounded-2xl p-6 sm:p-8 border border-gray-100 shadow-sm hover:border-gold/30 hover:shadow-md transition-all">
               <div className="w-12 h-12 rounded-xl bg-gold/15 text-gold flex items-center justify-center mb-4">
                 <Target className="h-6 w-6" />
               </div>
-              <h2 className="text-xl sm:text-2xl font-bold text-white mb-3">Our Mission</h2>
-              <p className="text-gray-400 leading-relaxed text-sm sm:text-base">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3">Our Mission</h2>
+              <p className="text-gray-500 leading-relaxed text-sm sm:text-base">
                 To create a fully transparent donation ecosystem where every contributor can see exactly how their money creates real-world impact through daily video documentation of field activities.
               </p>
             </div>
-            <div className="bg-dark-light rounded-2xl p-6 sm:p-8 border border-gray-700/50 hover:border-orange-500/30 transition-colors">
-              <div className="w-12 h-12 rounded-xl bg-orange-500/15 text-orange-400 flex items-center justify-center mb-4">
+            <div className="bg-white rounded-2xl p-6 sm:p-8 border border-gray-100 shadow-sm hover:border-orange-300 hover:shadow-md transition-all">
+              <div className="w-12 h-12 rounded-xl bg-orange-500/15 text-orange-500 flex items-center justify-center mb-4">
                 <Eye className="h-6 w-6" />
               </div>
-              <h2 className="text-xl sm:text-2xl font-bold text-white mb-3">Our Vision</h2>
-              <p className="text-gray-400 leading-relaxed text-sm sm:text-base">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3">Our Vision</h2>
+              <p className="text-gray-500 leading-relaxed text-sm sm:text-base">
                 A world where every act of charity is visible, accountable, and creates a ripple effect of kindness. We envision becoming India&apos;s most trusted transparent donation platform.
               </p>
             </div>
@@ -66,19 +66,19 @@ export default function AboutPage() {
       </section>
 
       {/* Core values */}
-      <section className="py-12 sm:py-16 bg-texture">
+      <section className="py-12 sm:py-16 bg-white">
         <div className="container mx-auto px-4 sm:px-6">
           <SectionHeading title="Our Core Values" />
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-4xl mx-auto">
             {values.map((v, i) => (
               <div
                 key={i}
-                className="text-center bg-[#2c2820]/60 rounded-2xl p-5 sm:p-6 border border-gray-800/40 hover:border-gold/20 transition-colors"
+                className="text-center bg-gray-50 rounded-2xl p-5 sm:p-6 border border-gray-100 hover:border-gold/20 hover:shadow-sm transition-all"
               >
                 <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gold/15 text-gold flex items-center justify-center mx-auto mb-3">
                   <v.icon className="h-5 w-5 sm:h-6 sm:w-6" />
                 </div>
-                <h3 className="font-bold text-white mb-1 text-sm sm:text-base">{v.title}</h3>
+                <h3 className="font-bold text-gray-900 mb-1 text-sm sm:text-base">{v.title}</h3>
                 <p className="text-xs sm:text-sm text-gray-500 leading-snug">{v.desc}</p>
               </div>
             ))}
@@ -87,7 +87,7 @@ export default function AboutPage() {
       </section>
 
       {/* Stats */}
-      <section className="py-12 sm:py-16 bg-texture-light">
+      <section className="py-12 sm:py-16 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6">
           <SectionHeading title="Our Numbers" subtitle="Impact through transparency and dedication" />
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto">
@@ -100,7 +100,7 @@ export default function AboutPage() {
       </section>
 
       {/* Timeline */}
-      <section className="py-12 sm:py-16 bg-texture">
+      <section className="py-12 sm:py-16 bg-white">
         <div className="container mx-auto px-4 sm:px-6">
           <SectionHeading title="Our Journey" />
           <div className="max-w-2xl mx-auto">
@@ -118,7 +118,7 @@ export default function AboutPage() {
                     </div>
                     <div className="pb-7 sm:pb-8 pt-1.5 flex-1">
                       <p className="text-xs font-semibold text-gold mb-1">{m.year}</p>
-                      <p className="text-sm sm:text-base text-gray-400 leading-relaxed">{m.event}</p>
+                      <p className="text-sm sm:text-base text-gray-600 leading-relaxed">{m.event}</p>
                     </div>
                   </div>
                 ))}

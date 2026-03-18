@@ -32,10 +32,10 @@ export default function UPIPaymentModal({ open, onClose, paymentData }: UPIPayme
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-[calc(100vw-2rem)] sm:max-w-md mx-auto bg-dark-light border-gray-700/50">
+      <DialogContent className="max-w-[calc(100vw-2rem)] sm:max-w-md mx-auto bg-white border-gray-100">
         <DialogHeader>
           <DialogTitle className="text-center text-white">Complete Your Donation</DialogTitle>
-          <DialogDescription className="text-center text-gray-400">
+          <DialogDescription className="text-center text-gray-500">
             Scan QR code or use UPI ID to pay {formatCurrency(paymentData.amount)}
           </DialogDescription>
         </DialogHeader>
@@ -59,7 +59,7 @@ export default function UPIPaymentModal({ open, onClose, paymentData }: UPIPayme
           </div>
 
           {/* UPI ID */}
-          <div className="flex items-center gap-2 bg-[#1a1a1a] rounded-lg px-4 py-2.5 w-full border border-gray-700/50">
+          <div className="flex items-center gap-2 bg-[#1a1a1a] rounded-lg px-4 py-2.5 w-full border border-gray-100">
             <div className="flex-1">
               <p className="text-xs text-gray-500">UPI ID</p>
               <p className="font-mono font-semibold text-white">{UPI_ID}</p>

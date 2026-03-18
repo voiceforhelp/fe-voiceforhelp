@@ -6,15 +6,15 @@ import { Utensils, Shirt, PawPrint, TreePine } from "lucide-react";
 import SectionHeading from "@/components/common/SectionHeading";
 
 const defaultCategories = [
-  { name: "Food Donation", desc: "Provide food to the hungry", icon: Utensils, color: "text-orange-400", bg: "bg-orange-500/15", border: "hover:border-orange-400/40" },
-  { name: "Cloth Donation", desc: "Donate clothes to help someone warm and covered", icon: Shirt, color: "text-blue-400", bg: "bg-blue-500/15", border: "hover:border-blue-400/40" },
-  { name: "Animal Care", desc: "Help animals in need", icon: PawPrint, color: "text-green-400", bg: "bg-green-500/15", border: "hover:border-green-400/40" },
-  { name: "Plant a Tree", desc: "Save the environment", icon: TreePine, color: "text-emerald-400", bg: "bg-emerald-500/15", border: "hover:border-emerald-400/40" },
+  { name: "Food Donation", desc: "Provide food to the hungry", icon: Utensils, color: "text-orange-500", bg: "bg-orange-500/15", border: "hover:border-orange-400/40" },
+  { name: "Cloth Donation", desc: "Donate clothes to help someone warm and covered", icon: Shirt, color: "text-blue-500", bg: "bg-blue-500/15", border: "hover:border-blue-400/40" },
+  { name: "Animal Care", desc: "Help animals in need", icon: PawPrint, color: "text-green-500", bg: "bg-green-500/15", border: "hover:border-green-400/40" },
+  { name: "Plant a Tree", desc: "Save the environment", icon: TreePine, color: "text-emerald-500", bg: "bg-emerald-500/15", border: "hover:border-emerald-400/40" },
 ];
 
 export default function DonationCategories() {
   return (
-    <section className="py-10 sm:py-12 md:py-16 bg-[#faf7f2]">
+    <section className="py-10 sm:py-12 md:py-16 bg-gray-50">
       <div className="container mx-auto px-4 sm:px-6">
         <SectionHeading
           title="Donation Categories"
@@ -31,7 +31,7 @@ export default function DonationCategories() {
               viewport={{ once: true }}
             >
               <Link href={`/donate?category=${cat.name}`}>
-                <div className={`rounded-xl border border-gray-200 ${cat.border} p-4 sm:p-5 md:p-6 text-center hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer bg-white h-full flex flex-col items-center`}>
+                <div className={`rounded-xl border border-gray-100 ${cat.border} p-4 sm:p-5 md:p-6 text-center hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer bg-white h-full flex flex-col items-center`}>
                   <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl ${cat.bg} flex items-center justify-center mb-2 sm:mb-3`}>
                     <cat.icon className={`h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 ${cat.color}`} />
                   </div>

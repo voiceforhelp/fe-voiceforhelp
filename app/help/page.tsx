@@ -63,34 +63,34 @@ export default function HelpPage() {
   return (
     <>
       {/* Page hero */}
-      <section className="bg-texture py-14 sm:py-20 md:py-28 border-b border-gray-800/50">
+      <section className="bg-gradient-to-b from-amber-50 to-white py-14 sm:py-20 md:py-28 border-b border-gray-100">
         <div className="container mx-auto px-4 sm:px-6 text-center">
           <span className="inline-block text-gold text-xs sm:text-sm font-semibold uppercase tracking-widest mb-3">
             Get Involved
           </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
             How You Can Help
           </h1>
-          <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-gray-500 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
             There are many ways to make a difference. Choose what works for you.
           </p>
         </div>
       </section>
 
       {/* Ways to help */}
-      <section className="py-12 sm:py-16 md:py-20 bg-texture-light">
+      <section className="py-12 sm:py-16 md:py-20 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="grid sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6 max-w-4xl mx-auto">
             {ways.map((w, i) => (
               <div
                 key={i}
-                className={`bg-dark-light rounded-2xl p-6 sm:p-7 md:p-8 border border-gray-700/50 ${w.borderHover} hover:-translate-y-1 transition-all duration-300 flex flex-col`}
+                className={`bg-white rounded-2xl p-6 sm:p-7 md:p-8 border border-gray-100 ${w.borderHover} hover:-translate-y-1 transition-all duration-300 flex flex-col`}
               >
                 <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-2xl ${w.color} flex items-center justify-center mb-4 shrink-0`}>
                   <w.icon className="h-6 w-6 sm:h-7 sm:w-7" />
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-white mb-2">{w.title}</h3>
-                <p className="text-gray-400 text-sm sm:text-base mb-5 flex-1 leading-relaxed">{w.desc}</p>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">{w.title}</h3>
+                <p className="text-gray-500 text-sm sm:text-base mb-5 flex-1 leading-relaxed">{w.desc}</p>
                 <Link href={w.link}>
                   <Button variant={w.variant} size="sm" className="h-10 sm:h-11 text-sm font-semibold w-full sm:w-auto">
                     {w.cta}
@@ -105,7 +105,7 @@ export default function HelpPage() {
       {/* FAQ */}
       <section className="py-12 sm:py-16 bg-texture">
         <div className="container mx-auto px-4 sm:px-6 max-w-3xl">
-          <h2 className="text-2xl sm:text-3xl font-bold text-center text-white mb-3">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 mb-3">
             Frequently Asked Questions
           </h2>
           <p className="text-center text-gray-500 text-sm mb-8 sm:mb-10">Everything you need to know about donating with us</p>
@@ -113,20 +113,20 @@ export default function HelpPage() {
             {faqs.map((faq, i) => (
               <div
                 key={i}
-                className="bg-dark-light rounded-xl border border-gray-700/50 hover:border-gold/20 transition-colors overflow-hidden"
+                className="bg-white rounded-xl border border-gray-100 hover:border-gold/20 shadow-sm transition-colors overflow-hidden"
               >
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   className="w-full flex items-center justify-between p-4 sm:p-5 text-left min-h-14"
                   aria-expanded={openFaq === i}
                 >
-                  <span className="font-semibold text-white text-sm sm:text-base pr-4">{faq.q}</span>
+                  <span className="font-semibold text-gray-900 text-sm sm:text-base pr-4">{faq.q}</span>
                   <ChevronDown
-                    className={`h-4 w-4 sm:h-5 sm:w-5 text-gray-400 shrink-0 transition-transform duration-200 ${openFaq === i ? "rotate-180 text-gold" : ""}`}
+                    className={`h-4 w-4 sm:h-5 sm:w-5 text-gray-500 shrink-0 transition-transform duration-200 ${openFaq === i ? "rotate-180 text-gold" : ""}`}
                   />
                 </button>
                 {openFaq === i && (
-                  <div className="px-4 sm:px-5 pb-4 sm:pb-5 text-sm sm:text-base text-gray-400 leading-relaxed border-t border-gray-700/30 pt-3">
+                  <div className="px-4 sm:px-5 pb-4 sm:pb-5 text-sm sm:text-base text-gray-500 leading-relaxed border-t border-gray-100 pt-3">
                     {faq.a}
                   </div>
                 )}

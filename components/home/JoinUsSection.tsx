@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 
 export default function JoinUsSection() {
   return (
-    <section className="py-10 sm:py-12 md:py-16 bg-texture">
+    <section className="py-10 sm:py-12 md:py-16 bg-white">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto">
           {/* Volunteer card */}
@@ -16,17 +16,17 @@ export default function JoinUsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="bg-linear-to-br from-red-900/30 to-red-800/20 border border-red-700/30 rounded-2xl p-6 sm:p-8 text-center hover:border-red-500/40 transition-all duration-300"
+            className="bg-white border border-red-100 rounded-2xl p-6 sm:p-8 text-center hover:border-red-300 hover:shadow-md transition-all duration-300"
           >
-            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-red-500/20 flex items-center justify-center mx-auto mb-4">
-              <HandHeart className="h-6 w-6 sm:h-7 sm:w-7 text-red-400" />
+            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-red-50 flex items-center justify-center mx-auto mb-4">
+              <HandHeart className="h-6 w-6 sm:h-7 sm:w-7 text-red-500" />
             </div>
             <div className="flex items-center justify-center gap-3 mb-3">
-              <div className="h-px flex-1 max-w-10 bg-red-700/40" />
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-white italic">Join Us & Make a Difference</h3>
-              <div className="h-px flex-1 max-w-10 bg-red-700/40" />
+              <div className="h-px flex-1 max-w-10 bg-red-200" />
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 italic">Join Us & Make a Difference</h3>
+              <div className="h-px flex-1 max-w-10 bg-red-200" />
             </div>
-            <p className="text-xs sm:text-sm text-gray-400 mb-5">
+            <p className="text-xs sm:text-sm text-gray-500 mb-5">
               Join our field team. Help distribute food, care for animals, and create real change.
             </p>
             <Link href="/volunteer">
@@ -45,17 +45,17 @@ export default function JoinUsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.15 }}
             viewport={{ once: true }}
-            className="bg-linear-to-br from-gold/15 to-gold-dark/10 border border-gold/25 rounded-2xl p-6 sm:p-8 text-center hover:border-gold/50 transition-all duration-300"
+            className="bg-white border border-gold/25 rounded-2xl p-6 sm:p-8 text-center hover:border-gold/50 hover:shadow-md transition-all duration-300"
           >
-            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gold/20 flex items-center justify-center mx-auto mb-4">
+            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gold/15 flex items-center justify-center mx-auto mb-4">
               <Heart className="h-6 w-6 sm:h-7 sm:w-7 text-gold" />
             </div>
             <div className="flex items-center justify-center gap-3 mb-3">
               <div className="h-px flex-1 max-w-10 bg-gold/30" />
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-white italic">Help Us Reach More People</h3>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 italic">Help Us Reach More People</h3>
               <div className="h-px flex-1 max-w-10 bg-gold/30" />
             </div>
-            <p className="text-xs sm:text-sm text-gray-400 mb-5">
+            <p className="text-xs sm:text-sm text-gray-500 mb-5">
               Every rupee makes a visible difference. See your impact through daily video proof.
             </p>
             <div className="flex flex-col xs:flex-row items-center justify-center gap-2 sm:gap-3">

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Phone, Mail, MapPin, Instagram, Facebook, Youtube, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Instagram, Facebook, Youtube, Send, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DONATION_AMOUNTS, SOCIAL_LINKS } from "@/lib/constants";
 import Logo from "@/components/common/Logo";
@@ -25,7 +25,7 @@ export default function Footer() {
         <div className="container mx-auto px-4 sm:px-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <h3 className="text-base sm:text-xl md:text-2xl font-bold text-black text-center sm:text-left">
-              Make a Difference, Donate Today!
+              Make a Difference — Donate Today!
             </h3>
             <div className="flex flex-wrap items-center justify-center gap-2">
               {DONATION_AMOUNTS.map((amt) => (
@@ -33,7 +33,7 @@ export default function Footer() {
                   <Button
                     variant="dark"
                     size="sm"
-                    className="font-bold text-xs sm:text-sm bg-[#1e1c18] text-white hover:bg-[#2a2820] border-none h-9 sm:h-10 px-3 sm:px-4"
+                    className="font-bold text-xs sm:text-sm bg-black/20 text-white hover:bg-black/30 border-white/20 h-9 sm:h-10 px-3 sm:px-4"
                   >
                     ₹{amt.toLocaleString("en-IN")}
                   </Button>
@@ -44,8 +44,8 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Main footer */}
-      <div className="bg-[#141210] text-gray-400">
+      {/* Main footer — keep dark for contrast */}
+      <div className="bg-gray-900 text-gray-400">
         <div className="container mx-auto px-4 sm:px-6 py-10 sm:py-12 md:py-14">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
             {/* Brand */}
@@ -90,10 +90,7 @@ export default function Footer() {
                   { label: "Contact", href: "/contact" },
                 ].map((link) => (
                   <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="hover:text-gold transition-colors hover:translate-x-0.5 inline-block"
-                    >
+                    <Link href={link.href} className="hover:text-gold transition-colors hover:translate-x-0.5 inline-block">
                       {link.label}
                     </Link>
                   </li>
@@ -106,7 +103,7 @@ export default function Footer() {
               <h4 className="text-white font-semibold mb-4 text-sm sm:text-base">Contact Us</h4>
               <ul className="space-y-3 text-sm">
                 <li>
-                  <a href="tel:+919024408325" className="flex items-start gap-2.5 hover:text-gold transition-colors group">
+                  <a href="tel:+919024408325" className="flex items-start gap-2.5 hover:text-gold transition-colors">
                     <Phone className="h-4 w-4 mt-0.5 text-gold shrink-0" />
                     +91-9024408325
                   </a>
@@ -148,9 +145,11 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-gray-800/60 py-4 sm:py-5">
+        <div className="border-t border-white/5 py-4 sm:py-5">
           <div className="container mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-gray-600">
-            <p>&copy; {new Date().getFullYear()} VoiceForHelp. All Rights Reserved.</p>
+            <p className="flex items-center gap-1">
+              &copy; {new Date().getFullYear()} VoiceForHelp. Made with <Heart className="h-3 w-3 text-gold" fill="currentColor" /> for India.
+            </p>
             <div className="flex items-center gap-3 sm:gap-4">
               <Link href="/videos" className="hover:text-gray-400 transition-colors">Impact Videos</Link>
               <Link href="/contact" className="hover:text-gray-400 transition-colors">Contact</Link>

@@ -22,7 +22,7 @@ export default function SectionHeading({
       <h2
         className={cn(
           "text-2xl sm:text-3xl md:text-4xl font-bold leading-tight",
-          light ? "text-gray-900" : "text-white"
+          "text-gray-900"
         )}
       >
         {title}
@@ -35,7 +35,7 @@ export default function SectionHeading({
           className={cn(
             "mt-2 sm:mt-3 text-sm sm:text-base max-w-2xl leading-relaxed",
             align === "center" && "mx-auto",
-            light ? "text-gray-500" : "text-gray-400"
+            "text-gray-500"
           )}
         >
           {subtitle}

@@ -16,7 +16,7 @@ interface VideoPlayerModalProps {
 export default function VideoPlayerModal({ video, open, onClose }: VideoPlayerModalProps) {
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-3xl p-0 overflow-hidden bg-dark-light border-gray-700/50">
+      <DialogContent className="max-w-3xl p-0 overflow-hidden bg-white border-gray-100">
         <div className="aspect-video bg-black">
           <video
             src={video.videoUrl}
@@ -37,8 +37,8 @@ export default function VideoPlayerModal({ video, open, onClose }: VideoPlayerMo
             </div>
             <DialogTitle className="text-white">{video.title}</DialogTitle>
           </DialogHeader>
-          {video.description && <p className="text-sm text-gray-400 mt-2">{video.description}</p>}
-          <div className="mt-4 pt-4 border-t border-gray-700/50">
+          {video.description && <p className="text-sm text-gray-500 mt-2">{video.description}</p>}
+          <div className="mt-4 pt-4 border-t border-gray-100">
             <ShareButtons url={`${typeof window !== "undefined" ? window.location.origin : ""}/videos/${video._id}`} title={video.title} />
           </div>
         </div>

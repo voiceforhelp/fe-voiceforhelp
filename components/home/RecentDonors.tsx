@@ -33,7 +33,7 @@ export default function RecentDonors({ donors }: RecentDonorsProps) {
   ] as any[];
 
   return (
-    <section className="py-10 sm:py-12 md:py-16 bg-texture">
+    <section className="py-10 sm:py-12 md:py-16 bg-gradient-to-b from-amber-50 to-white">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex items-end justify-between mb-6 sm:mb-8">
           <SectionHeading
@@ -46,14 +46,14 @@ export default function RecentDonors({ donors }: RecentDonorsProps) {
           <div className="flex gap-2 shrink-0 ml-4">
             <button
               onClick={() => scroll("left")}
-              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#2c2820] border border-gray-700 flex items-center justify-center text-gray-400 hover:border-gold/50 hover:text-gold transition-colors"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:border-gold/50 hover:text-gold transition-colors shadow-sm"
               aria-label="Scroll left"
             >
               <ChevronLeft className="h-4 w-4" />
             </button>
             <button
               onClick={() => scroll("right")}
-              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#2c2820] border border-gray-700 flex items-center justify-center text-gray-400 hover:border-gold/50 hover:text-gold transition-colors"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:border-gold/50 hover:text-gold transition-colors shadow-sm"
               aria-label="Scroll right"
             >
               <ChevronRight className="h-4 w-4" />
@@ -74,13 +74,13 @@ export default function RecentDonors({ donors }: RecentDonorsProps) {
               viewport={{ once: true }}
               className="shrink-0 snap-center w-32 sm:w-36 md:w-40"
             >
-              <div className="flex flex-col items-center bg-[#2c2820] rounded-xl p-3 sm:p-4 border border-gray-700/50 hover:border-gold/40 hover:-translate-y-1 transition-all duration-300 card-hover h-full">
-                <Avatar className="h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16 mb-2 sm:mb-3 ring-2 ring-gold/30 ring-offset-2 ring-offset-[#2c2820]">
+              <div className="flex flex-col items-center bg-white rounded-xl p-3 sm:p-4 border border-gray-100 shadow-sm hover:border-gold/40 hover:-translate-y-1 transition-all duration-300 h-full">
+                <Avatar className="h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16 mb-2 sm:mb-3 ring-2 ring-gold/30 ring-offset-2 ring-offset-white">
                   <AvatarFallback className="text-sm sm:text-base md:text-lg bg-linear-to-br from-gold to-gold-dark text-black font-bold">
                     {getInitials(donor.name)}
                   </AvatarFallback>
                 </Avatar>
-                <p className="text-xs sm:text-sm font-semibold text-white text-center truncate w-full px-1">
+                <p className="text-xs sm:text-sm font-semibold text-gray-900 text-center truncate w-full px-1">
                   {donor.name}
                 </p>
                 <Badge variant="default" className="mt-1 text-[9px] sm:text-[10px] px-1.5 py-0">

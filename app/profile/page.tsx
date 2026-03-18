@@ -18,20 +18,20 @@ export default function ProfilePage() {
     if (!loading && !isAuthenticated) router.push("/login");
   }, [loading, isAuthenticated, router]);
 
-  if (loading || !user) return <div className="py-20 text-center text-gray-400">Loading...</div>;
+  if (loading || !user) return <div className="py-20 text-center text-gray-500">Loading...</div>;
 
   return (
     <section className="py-12 md:py-20 bg-texture">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Profile Header */}
-        <div className="bg-dark-light border border-gray-700/50 rounded-2xl p-6 md:p-8 text-white mb-8">
+        <div className="bg-white border border-gray-100 rounded-2xl p-6 md:p-8 text-gray-900 mb-8">
           <div className="flex items-center gap-4">
             <Avatar className="h-16 w-16 ring-4 ring-gold/20">
-              <AvatarFallback className="bg-gold text-white text-xl font-bold">{getInitials(user.name)}</AvatarFallback>
+              <AvatarFallback className="bg-gold text-gray-900 text-xl font-bold">{getInitials(user.name)}</AvatarFallback>
             </Avatar>
             <div>
               <h1 className="text-2xl font-bold">{user.name}</h1>
-              <p className="text-gray-400 text-sm">{user.email}</p>
+              <p className="text-gray-500 text-sm">{user.email}</p>
             </div>
           </div>
         </div>

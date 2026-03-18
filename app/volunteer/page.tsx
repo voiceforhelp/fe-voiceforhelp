@@ -48,37 +48,37 @@ export default function VolunteerPage() {
   return (
     <>
       {/* Page hero */}
-      <section className="bg-texture py-14 sm:py-20 md:py-28 border-b border-gray-800/50">
+      <section className="bg-gradient-to-b from-amber-50 to-white py-14 sm:py-20 md:py-28 border-b border-gray-100">
         <div className="container mx-auto px-4 sm:px-6 text-center">
           <span className="inline-block text-gold text-xs sm:text-sm font-semibold uppercase tracking-widest mb-3">
             Join Our Team
           </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
             Become a Volunteer
           </h1>
-          <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-gray-500 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
             Join our team and make a direct impact in the community
           </p>
         </div>
       </section>
 
-      <section className="py-12 sm:py-16 md:py-20 bg-texture-light">
+      <section className="py-12 sm:py-16 md:py-20 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 max-w-5xl mx-auto">
             {/* Benefits side */}
             <div>
-              <h2 className="text-xl sm:text-2xl font-bold text-white mb-5 sm:mb-6">Why Volunteer With Us?</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-5 sm:mb-6">Why Volunteer With Us?</h2>
               <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
                 {benefits.map((b, i) => (
                   <div
                     key={i}
-                    className="flex gap-3 sm:gap-4 p-4 sm:p-5 bg-gold/10 border border-gold/15 rounded-xl hover:border-gold/30 transition-colors"
+                    className="flex gap-3 sm:gap-4 p-4 sm:p-5 bg-amber-50 border border-amber-100 rounded-xl hover:border-gold/40 transition-colors"
                   >
                     <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gold/20 text-gold flex items-center justify-center shrink-0">
                       <b.icon className="h-5 w-5" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-white text-sm sm:text-base">{b.title}</h3>
+                      <h3 className="font-semibold text-gray-900 text-sm sm:text-base">{b.title}</h3>
                       <p className="text-xs sm:text-sm text-gray-500 mt-0.5 leading-snug">{b.desc}</p>
                     </div>
                   </div>
@@ -86,8 +86,8 @@ export default function VolunteerPage() {
               </div>
 
               {/* Extra trust block */}
-              <div className="bg-dark-light rounded-2xl p-5 border border-gray-700/40">
-                <h3 className="text-sm font-bold text-white mb-3">What to expect</h3>
+              <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
+                <h3 className="text-sm font-bold text-gray-900 mb-3">What to expect</h3>
                 <ul className="space-y-2">
                   {[
                     "Orientation call within 48 hours",
@@ -95,7 +95,7 @@ export default function VolunteerPage() {
                     "Certificate of appreciation",
                     "Join a community of changemakers",
                   ].map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-xs sm:text-sm text-gray-400">
+                    <li key={item} className="flex items-start gap-2 text-xs sm:text-sm text-gray-500">
                       <CheckCircle2 className="h-4 w-4 text-gold shrink-0 mt-0.5" />
                       {item}
                     </li>
@@ -105,8 +105,8 @@ export default function VolunteerPage() {
             </div>
 
             {/* Form side */}
-            <div className="bg-dark-light rounded-2xl p-5 sm:p-6 md:p-8 border border-gray-700/50">
-              <h2 className="text-xl sm:text-2xl font-bold text-white mb-5 sm:mb-6">Volunteer Application</h2>
+            <div className="bg-white rounded-2xl p-5 sm:p-6 md:p-8 border border-gray-100">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-5 sm:mb-6">Volunteer Application</h2>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <Input
                   label="Full Name *"
@@ -137,7 +137,7 @@ export default function VolunteerPage() {
                   <select
                     value={form.availabilityType}
                     onChange={(e) => update("availabilityType", e.target.value)}
-                    className="flex h-11 sm:h-12 w-full rounded-lg border border-gray-700 bg-[#1a1a1a] px-3 sm:px-4 py-2 text-sm text-white focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20 transition-colors"
+                    className="flex h-11 sm:h-12 w-full rounded-lg border border-gray-200 bg-white px-3 sm:px-4 py-2 text-sm text-gray-900 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20 transition-colors"
                     required
                   >
                     <option value="">Select availability</option>

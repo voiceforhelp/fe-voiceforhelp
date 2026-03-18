@@ -10,7 +10,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ className, label, error, ...props }, ref) => {
     return (
       <div className="w-full">
-        {label && <label className="block text-sm font-medium text-gray-300 mb-1.5">{label}</label>}
+        {label && <label className="block text-sm font-medium text-gray-700 mb-1.5">{label}</label>}
         <textarea
           className={cn(
             "flex min-h-25 w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all disabled:cursor-not-allowed disabled:opacity-50",

@@ -132,10 +132,10 @@ export default function RegisterForm() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
           </div>
-          <h3 className="text-lg font-bold text-white mb-1">Verify Your Email</h3>
+          <h3 className="text-lg font-bold text-gray-900 mb-1">Verify Your Email</h3>
           <p className="text-sm text-gray-500">
             We&apos;ve sent a 6-digit OTP to<br />
-            <span className="font-semibold text-gray-300">{form.email}</span>
+            <span className="font-semibold text-gray-600">{form.email}</span>
           </p>
         </div>
 
@@ -150,7 +150,7 @@ export default function RegisterForm() {
               value={digit}
               onChange={(e) => handleOtpChange(i, e.target.value)}
               onKeyDown={(e) => handleOtpKeyDown(i, e)}
-              className="w-10 h-12 sm:w-12 sm:h-14 text-center text-xl font-bold border-2 border-gray-700 bg-[#1a1a1a] text-white rounded-lg focus:border-gold focus:ring-2 focus:ring-gold/20 outline-none transition-all"
+              className="w-10 h-12 sm:w-12 sm:h-14 text-center text-xl font-bold border-2 border-gray-200 bg-white text-white rounded-lg focus:border-gold focus:ring-2 focus:ring-gold/20 outline-none transition-all"
             />
           ))}
         </div>

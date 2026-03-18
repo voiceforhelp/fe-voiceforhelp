@@ -27,16 +27,16 @@ export default function VideoGrid({ videos }: VideoGridProps) {
             className="group cursor-pointer"
             onClick={() => setSelectedVideo(video)}
           >
-            <div className="relative aspect-square rounded-xl overflow-hidden bg-[#1a1a1a]">
+            <div className="relative aspect-square rounded-xl overflow-hidden bg-gray-100 border border-gray-100 shadow-sm hover:shadow-md transition-all">
               {video.thumbnailUrl ? (
                 <img src={video.thumbnailUrl} alt={video.title} className="w-full h-full object-cover" />
               ) : (
                 <div className="w-full h-full flex items-center justify-center">
-                  <Play className="h-10 w-10 text-white/40" />
+                  <Play className="h-10 w-10 text-gray-400" />
                 </div>
               )}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all flex items-center justify-center">
-                <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all">
+                <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all shadow-lg">
                   <Play className="h-5 w-5 text-gold ml-0.5" />
                 </div>
               </div>

@@ -22,7 +22,7 @@ export default function MissionSection() {
   }, []);
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 bg-[#faf7f2]">
+    <section className="py-12 sm:py-16 md:py-20 bg-gray-50">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center max-w-5xl mx-auto">
           {/* Text */}
@@ -33,7 +33,7 @@ export default function MissionSection() {
             viewport={{ once: true }}
             className="order-2 md:order-1"
           >
-            <span className="inline-block text-gold-dark text-sm font-semibold uppercase tracking-widest mb-3">
+            <span className="inline-block text-gold font-semibold uppercase tracking-widest text-sm mb-3">
               Who We Are
             </span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 leading-tight">

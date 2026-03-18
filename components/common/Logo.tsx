@@ -14,8 +14,8 @@ export default function Logo({ className, size = "md", variant = "dark" }: LogoP
   };
 
   const s = sizes[size];
-  const textColor = variant === "dark" ? "text-white" : "text-white";
-  const subColor = variant === "dark" ? "text-gray-400" : "text-gray-300";
+  const textColor = variant === "light" ? "text-white" : "text-gray-900";
+  const subColor = variant === "light" ? "text-gray-400" : "text-gray-500";
 
   return (
     <div className={cn("flex items-center gap-2", className)}>

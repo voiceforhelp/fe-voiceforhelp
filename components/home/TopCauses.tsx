@@ -28,7 +28,7 @@ export default function TopCauses({ categories }: TopCausesProps) {
   ] as any[];
 
   return (
-    <section className="py-10 sm:py-12 md:py-16 bg-texture">
+    <section className="py-10 sm:py-12 md:py-16 bg-white">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex items-end justify-between mb-6 sm:mb-8">
           <SectionHeading title="Top Causes" className="mb-0 text-left" align="left" />
@@ -52,7 +52,7 @@ export default function TopCauses({ categories }: TopCausesProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-[#2c2820] rounded-xl border border-gray-700/50 overflow-hidden hover:border-gold/40 hover:-translate-y-1 transition-all duration-300 shadow-md hover:shadow-gold/10 flex flex-col"
+                className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden hover:border-gold/40 hover:-translate-y-1 hover:shadow-md transition-all duration-300 flex flex-col"
               >
                 {/* Category header */}
                 <div className={`h-32 sm:h-36 md:h-40 bg-linear-to-br ${fallbackGradients[i % 4]} flex items-center justify-center relative overflow-hidden`}>
@@ -63,7 +63,7 @@ export default function TopCauses({ categories }: TopCausesProps) {
                 </div>
 
                 <div className="p-4 flex flex-col flex-1">
-                  <h3 className="font-bold text-white text-sm sm:text-base mb-1 line-clamp-1">
+                  <h3 className="font-bold text-gray-900 text-sm sm:text-base mb-1 line-clamp-1">
                     {cat.name}
                   </h3>
                   <p className="text-xs text-gray-500 mb-3 line-clamp-2 flex-1">{cat.description}</p>
@@ -74,7 +74,7 @@ export default function TopCauses({ categories }: TopCausesProps) {
                       <span className="text-gold font-semibold">{formatCurrency(cat.raisedAmount)}</span>
                       <span className="text-gray-500">of {formatCurrency(cat.targetAmount)}</span>
                     </div>
-                    <div className="h-1.5 bg-gray-700/60 rounded-full overflow-hidden">
+                    <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: `${progress}%` }}
@@ -83,7 +83,7 @@ export default function TopCauses({ categories }: TopCausesProps) {
                         className="h-full bg-linear-to-r from-gold to-gold-light rounded-full"
                       />
                     </div>
-                    <p className="text-[10px] text-gray-600 mt-1 text-right">{Math.round(progress)}% funded</p>
+                    <p className="text-[10px] text-gray-400 mt-1 text-right">{Math.round(progress)}% funded</p>
                   </div>
 
                   <Link href={`/donate?category=${cat.name}`}>

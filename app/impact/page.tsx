@@ -26,21 +26,21 @@ export default function ImpactPage() {
   return (
     <>
       {/* Page hero */}
-      <section className="bg-texture py-14 sm:py-20 md:py-28 border-b border-gray-800/50">
+      <section className="bg-gradient-to-b from-amber-50 to-white py-14 sm:py-20 md:py-28 border-b border-gray-100">
         <div className="container mx-auto px-4 sm:px-6 text-center">
           <span className="inline-block text-gold text-xs sm:text-sm font-semibold uppercase tracking-widest mb-3">
             Real Results
           </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
             Our Impact
           </h1>
-          <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-gray-500 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
             See the real-world change your donations create every single day
           </p>
         </div>
       </section>
 
-      <section className="py-10 sm:py-12 md:py-16 bg-texture-light">
+      <section className="py-10 sm:py-12 md:py-16 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6">
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-10 sm:mb-14 max-w-4xl mx-auto">
@@ -58,11 +58,11 @@ export default function ImpactPage() {
           {loading ? (
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
               {[...Array(8)].map((_, i) => (
-                <div key={i} className="rounded-xl bg-dark-light animate-pulse">
-                  <div className="aspect-video bg-gray-800 rounded-t-xl" />
+                <div key={i} className="rounded-xl bg-white animate-pulse">
+                  <div className="aspect-video bg-gray-200 rounded-t-xl" />
                   <div className="p-3 space-y-2">
-                    <div className="h-3 bg-gray-700 rounded w-3/4" />
-                    <div className="h-2 bg-gray-800 rounded w-1/2" />
+                    <div className="h-3 bg-gray-200 rounded w-3/4" />
+                    <div className="h-2 bg-gray-200 rounded w-1/2" />
                   </div>
                 </div>
               ))}

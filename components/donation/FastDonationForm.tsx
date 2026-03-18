@@ -50,7 +50,7 @@ export default function FastDonationForm() {
         />
 
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-1.5">Amount (₹) *</label>
+          <label className="block text-sm font-medium text-gray-600 mb-1.5">Amount (₹) *</label>
           <div className="flex flex-wrap gap-2 mb-3">
             {DONATION_AMOUNTS.map((amt) => (
               <button
@@ -60,7 +60,7 @@ export default function FastDonationForm() {
                 className={`px-4 py-2 rounded-lg text-sm font-bold border-2 transition-all ${
                   amount === amt
                     ? "border-gold bg-gold/15 text-gold"
-                    : "border-gray-700 text-gray-400 hover:border-gold/30"
+                    : "border-gray-200 text-gray-500 hover:border-gold/30"
                 }`}
               >
                 ₹{amt.toLocaleString("en-IN")}

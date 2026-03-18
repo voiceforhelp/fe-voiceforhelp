@@ -125,7 +125,7 @@ export default function ForgotPasswordPage() {
     <section className="py-12 md:py-20 bg-texture">
       <div className="container mx-auto px-4">
         <div className="max-w-md mx-auto">
-          <div className="bg-dark-light rounded-2xl p-6 sm:p-8 border border-gray-700/50">
+          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-gray-100">
 
             {/* ─── Step 1: Email ─── */}
             {step === "email" && (
@@ -134,7 +134,7 @@ export default function ForgotPasswordPage() {
                   <div className="w-16 h-16 bg-gold/15 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Mail className="h-8 w-8 text-gold" />
                   </div>
-                  <h1 className="text-xl sm:text-2xl font-bold text-white mb-2">Forgot Password?</h1>
+                  <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Forgot Password?</h1>
                   <p className="text-sm text-gray-500">Enter your email to receive a verification code.</p>
                 </div>
                 <form onSubmit={handleSendOTP} className="space-y-4">
@@ -161,9 +161,9 @@ export default function ForgotPasswordPage() {
                   <div className="w-16 h-16 bg-gold/15 rounded-full flex items-center justify-center mx-auto mb-4">
                     <KeyRound className="h-8 w-8 text-gold" />
                   </div>
-                  <h2 className="text-xl font-bold text-white mb-1">Enter OTP</h2>
+                  <h2 className="text-xl font-bold text-gray-900 mb-1">Enter OTP</h2>
                   <p className="text-sm text-gray-500">
-                    Code sent to <span className="font-semibold text-gray-300">{email}</span>
+                    Code sent to <span className="font-semibold text-gray-600">{email}</span>
                   </p>
                 </div>
 
@@ -178,7 +178,7 @@ export default function ForgotPasswordPage() {
                       value={digit}
                       onChange={(e) => handleOtpChange(i, e.target.value)}
                       onKeyDown={(e) => handleOtpKeyDown(i, e)}
-                      className="w-10 h-12 sm:w-12 sm:h-14 text-center text-xl font-bold border-2 border-gray-700 bg-[#1a1a1a] text-white rounded-lg focus:border-gold focus:ring-2 focus:ring-gold/20 outline-none transition-all"
+                      className="w-10 h-12 sm:w-12 sm:h-14 text-center text-xl font-bold border-2 border-gray-200 bg-white text-white rounded-lg focus:border-gold focus:ring-2 focus:ring-gold/20 outline-none transition-all"
                     />
                   ))}
                 </div>
@@ -206,7 +206,7 @@ export default function ForgotPasswordPage() {
                   <div className="w-16 h-16 bg-gold/15 rounded-full flex items-center justify-center mx-auto mb-4">
                     <KeyRound className="h-8 w-8 text-gold" />
                   </div>
-                  <h2 className="text-xl font-bold text-white mb-1">Set New Password</h2>
+                  <h2 className="text-xl font-bold text-gray-900 mb-1">Set New Password</h2>
                   <p className="text-sm text-gray-500">Create a strong password for your account.</p>
                 </div>
                 <form onSubmit={handleResetPassword} className="space-y-4">

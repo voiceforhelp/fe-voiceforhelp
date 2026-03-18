@@ -25,30 +25,30 @@ export default function VideosPage() {
   return (
     <>
       {/* Page hero */}
-      <section className="bg-texture py-14 sm:py-20 md:py-28 border-b border-gray-800/50">
+      <section className="bg-gradient-to-b from-amber-50 to-white py-14 sm:py-20 md:py-28 border-b border-gray-100">
         <div className="container mx-auto px-4 sm:px-6 text-center">
           <span className="inline-block text-gold text-xs sm:text-sm font-semibold uppercase tracking-widest mb-3">
             Proof of Impact
           </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
             Impact Videos
           </h1>
-          <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-gray-500 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
             Watch how your donations create real change, updated daily
           </p>
         </div>
       </section>
 
-      <section className="py-10 sm:py-12 md:py-16 bg-texture-light">
+      <section className="py-10 sm:py-12 md:py-16 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6">
           {loading ? (
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
               {[...Array(8)].map((_, i) => (
-                <div key={i} className="rounded-xl bg-dark-light animate-pulse">
-                  <div className="aspect-video bg-gray-800 rounded-t-xl" />
+                <div key={i} className="rounded-xl bg-white animate-pulse">
+                  <div className="aspect-video bg-gray-200 rounded-t-xl" />
                   <div className="p-3 space-y-2">
-                    <div className="h-3 bg-gray-700 rounded w-3/4" />
-                    <div className="h-2 bg-gray-800 rounded w-1/2" />
+                    <div className="h-3 bg-gray-200 rounded w-3/4" />
+                    <div className="h-2 bg-gray-200 rounded w-1/2" />
                   </div>
                 </div>
               ))}
@@ -87,7 +87,7 @@ export default function VideosPage() {
           ) : (
             <div className="text-center py-16 sm:py-20">
               <Video className="h-12 w-12 sm:h-16 sm:w-16 text-gray-700 mx-auto mb-3 sm:mb-4" />
-              <h3 className="text-base sm:text-lg font-semibold text-gray-400 mb-2">No Videos Yet</h3>
+              <h3 className="text-base sm:text-lg font-semibold text-gray-500 mb-2">No Videos Yet</h3>
               <p className="text-sm sm:text-base text-gray-500">Impact videos are uploaded daily. Check back soon!</p>
             </div>
           )}

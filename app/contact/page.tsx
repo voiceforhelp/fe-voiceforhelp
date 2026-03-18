@@ -30,40 +30,40 @@ export default function ContactPage() {
   return (
     <>
       {/* Page hero */}
-      <section className="bg-texture py-14 sm:py-20 md:py-28 border-b border-gray-800/50">
+      <section className="bg-gradient-to-b from-amber-50 to-white py-14 sm:py-20 md:py-28 border-b border-gray-100">
         <div className="container mx-auto px-4 sm:px-6 text-center">
           <span className="inline-block text-gold text-xs sm:text-sm font-semibold uppercase tracking-widest mb-3">
             Reach Out
           </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
             Contact Us
           </h1>
-          <p className="text-gray-400 text-base sm:text-lg max-w-xl mx-auto">
+          <p className="text-gray-500 text-base sm:text-lg max-w-xl mx-auto">
             We&apos;d love to hear from you — questions, partnerships, or just to say hello.
           </p>
         </div>
       </section>
 
       {/* Contact content */}
-      <section className="py-12 sm:py-16 md:py-20 bg-texture-light">
+      <section className="py-12 sm:py-16 md:py-20 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
             {/* Contact info */}
             <div>
-              <h2 className="text-xl sm:text-2xl font-bold text-white mb-5 sm:mb-6">Get in Touch</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-5 sm:mb-6">Get in Touch</h2>
               <div className="space-y-3 sm:space-y-4">
                 {contacts.map((c, i) => (
                   <a
                     key={i}
                     href={c.href}
-                    className="flex items-center gap-3 sm:gap-4 p-4 sm:p-5 bg-dark-light rounded-xl border border-gray-700/50 hover:border-gold/40 hover:bg-dark-light/80 transition-all duration-200 group min-h-18"
+                    className="flex items-center gap-3 sm:gap-4 p-4 sm:p-5 bg-white rounded-xl border border-gray-100 hover:border-gold/40 hover:bg-white/80 transition-all duration-200 group min-h-18"
                   >
                     <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gold/15 text-gold flex items-center justify-center shrink-0 group-hover:bg-gold/25 transition-colors">
                       <c.icon className="h-4 w-4 sm:h-5 sm:w-5" />
                     </div>
                     <div className="min-w-0">
                       <p className="text-[10px] sm:text-xs text-gray-500 font-medium">{c.label}</p>
-                      <p className="font-semibold text-white text-sm sm:text-base truncate">{c.value}</p>
+                      <p className="font-semibold text-gray-900 text-sm sm:text-base truncate">{c.value}</p>
                       <p className="text-[10px] sm:text-xs text-gray-600">{c.desc}</p>
                     </div>
                   </a>
@@ -72,15 +72,15 @@ export default function ContactPage() {
             </div>
 
             {/* Contact form */}
-            <div className="bg-dark-light rounded-2xl p-5 sm:p-6 md:p-8 border border-gray-700/50">
-              <h2 className="text-xl sm:text-2xl font-bold text-white mb-5 sm:mb-6">Send a Message</h2>
+            <div className="bg-white rounded-2xl p-5 sm:p-6 md:p-8 border border-gray-100">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-5 sm:mb-6">Send a Message</h2>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <Input
                   label="Full Name"
                   value={form.name}
                   onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
                   required
-                  className="bg-[#1a1a1a] border-gray-700 text-white placeholder:text-gray-600 focus:border-gold h-11 sm:h-12"
+                  className="bg-white border-gray-200 text-gray-900 placeholder:text-gray-400 focus:border-gold h-11 sm:h-12"
                 />
                 <Input
                   label="Email Address"
@@ -88,14 +88,14 @@ export default function ContactPage() {
                   value={form.email}
                   onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
                   required
-                  className="bg-[#1a1a1a] border-gray-700 text-white placeholder:text-gray-600 focus:border-gold h-11 sm:h-12"
+                  className="bg-white border-gray-200 text-gray-900 placeholder:text-gray-400 focus:border-gold h-11 sm:h-12"
                 />
                 <Input
                   label="Subject"
                   value={form.subject}
                   onChange={(e) => setForm((f) => ({ ...f, subject: e.target.value }))}
                   required
-                  className="bg-[#1a1a1a] border-gray-700 text-white placeholder:text-gray-600 focus:border-gold h-11 sm:h-12"
+                  className="bg-white border-gray-200 text-gray-900 placeholder:text-gray-400 focus:border-gold h-11 sm:h-12"
                 />
                 <Textarea
                   label="Your Message"
@@ -103,7 +103,7 @@ export default function ContactPage() {
                   value={form.message}
                   onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
                   required
-                  className="bg-[#1a1a1a] border-gray-700 text-white placeholder:text-gray-600 focus:border-gold resize-none"
+                  className="bg-white border-gray-200 text-gray-900 placeholder:text-gray-400 focus:border-gold resize-none"
                 />
                 <Button type="submit" size="lg" className="w-full h-12 sm:h-13 font-semibold" disabled={loading}>
                   {loading ? (

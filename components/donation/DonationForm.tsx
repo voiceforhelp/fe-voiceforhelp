@@ -104,7 +104,7 @@ export default function DonationForm({ defaultAmount, defaultCategory }: Donatio
           <select
             value={form.category}
             onChange={(e) => update("category", e.target.value)}
-            className="flex h-11 w-full rounded-lg border border-gray-700 bg-[#1a1a1a] px-4 py-2 text-sm text-white focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20 transition-all"
+            className="flex h-11 w-full rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm text-white focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20 transition-all"
           >
             <option value="">Select a category</option>
             {categories.map((cat) => (
@@ -125,7 +125,7 @@ export default function DonationForm({ defaultAmount, defaultCategory }: Donatio
                 className={`px-4 py-2 rounded-lg text-sm font-bold border-2 transition-all ${
                   form.amount === amt
                     ? "border-gold bg-gold/15 text-gold"
-                    : "border-gray-700 text-gray-400 hover:border-gold/30"
+                    : "border-gray-200 text-gray-500 hover:border-gold/30"
                 }`}
               >
                 ₹{amt.toLocaleString("en-IN")}
@@ -145,7 +145,7 @@ export default function DonationForm({ defaultAmount, defaultCategory }: Donatio
         <div className="bg-gold/10 rounded-xl p-4 border border-gold/20">
           <div className="flex items-center justify-between">
             <div>
-              <h4 className="font-semibold text-white text-sm">Want to volunteer with us?</h4>
+              <h4 className="font-semibold text-gray-900 text-sm">Want to volunteer with us?</h4>
               <p className="text-xs text-gray-500">Join our field team and make a direct impact</p>
             </div>
             <div className="flex gap-2">
@@ -153,7 +153,7 @@ export default function DonationForm({ defaultAmount, defaultCategory }: Donatio
                 type="button"
                 onClick={() => update("isVolunteer", true)}
                 className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                  form.isVolunteer ? "bg-gold text-white" : "bg-[#1a1a1a] border border-gray-700 text-gray-400"
+                  form.isVolunteer ? "bg-gold text-white" : "bg-white border border-gray-200 text-gray-500"
                 }`}
               >
                 Yes
@@ -162,7 +162,7 @@ export default function DonationForm({ defaultAmount, defaultCategory }: Donatio
                 type="button"
                 onClick={() => update("isVolunteer", false)}
                 className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                  !form.isVolunteer ? "bg-gold text-white" : "bg-[#1a1a1a] border border-gray-700 text-gray-400"
+                  !form.isVolunteer ? "bg-gold text-white" : "bg-white border border-gray-200 text-gray-500"
                 }`}
               >
                 No
@@ -185,7 +185,7 @@ export default function DonationForm({ defaultAmount, defaultCategory }: Donatio
                     <select
                       value={form.volunteerAvailability}
                       onChange={(e) => update("volunteerAvailability", e.target.value)}
-                      className="flex h-11 w-full rounded-lg border border-gray-700 bg-[#1a1a1a] px-4 py-2 text-sm text-white focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20"
+                      className="flex h-11 w-full rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm text-white focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20"
                     >
                       <option value="">Select availability</option>
                       {AVAILABILITY_TYPES.map((t) => (
