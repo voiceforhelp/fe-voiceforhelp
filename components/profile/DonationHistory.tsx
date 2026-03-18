@@ -33,7 +33,7 @@ export default function DonationHistory() {
   return (
     <div className="space-y-3">
       {donations.map((d) => (
-        <div key={d._id} className="flex items-center justify-between p-4 bg-[#2a2a2a] rounded-xl border border-gray-700/50 hover:border-[#d4a843]/30 transition-all">
+        <div key={d._id} className="flex items-center justify-between p-4 bg-dark-light rounded-xl border border-gray-700/50 hover:border-gold/30 transition-all">
           <div>
             <p className="font-semibold text-white">{formatCurrency(d.amount)}</p>
             <p className="text-xs text-gray-500">{d.category?.name || "General"} &middot; {formatDate(d.donationDate)}</p>

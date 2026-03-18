@@ -16,7 +16,7 @@ interface VideoPlayerModalProps {
 export default function VideoPlayerModal({ video, open, onClose }: VideoPlayerModalProps) {
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-3xl p-0 overflow-hidden bg-[#2a2a2a] border-gray-700/50">
+      <DialogContent className="max-w-3xl p-0 overflow-hidden bg-dark-light border-gray-700/50">
         <div className="aspect-video bg-black">
           <video
             src={video.videoUrl}

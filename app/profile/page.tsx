@@ -24,10 +24,10 @@ export default function ProfilePage() {
     <section className="py-12 md:py-20 bg-texture">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Profile Header */}
-        <div className="bg-[#2a2a2a] border border-gray-700/50 rounded-2xl p-6 md:p-8 text-white mb-8">
+        <div className="bg-dark-light border border-gray-700/50 rounded-2xl p-6 md:p-8 text-white mb-8">
           <div className="flex items-center gap-4">
-            <Avatar className="h-16 w-16 ring-4 ring-[#d4a843]/20">
-              <AvatarFallback className="bg-[#d4a843] text-white text-xl font-bold">{getInitials(user.name)}</AvatarFallback>
+            <Avatar className="h-16 w-16 ring-4 ring-gold/20">
+              <AvatarFallback className="bg-gold text-white text-xl font-bold">{getInitials(user.name)}</AvatarFallback>
             </Avatar>
             <div>
               <h1 className="text-2xl font-bold">{user.name}</h1>

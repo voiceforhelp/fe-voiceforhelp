@@ -20,7 +20,7 @@ export default function Logo({ className, size = "md", variant = "dark" }: LogoP
   return (
     <div className={cn("flex items-center gap-2", className)}>
       {/* Brand Icon - Megaphone + Heart */}
-      <svg viewBox="0 0 48 48" className={cn(s.icon, "flex-shrink-0")} fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 48 48" className={cn(s.icon, "shrink-0")} fill="none" xmlns="http://www.w3.org/2000/svg">
         {/* Background circle */}
         <circle cx="24" cy="24" r="24" fill="#d4a843" />
         {/* Megaphone body */}
@@ -33,7 +33,7 @@ export default function Logo({ className, size = "md", variant = "dark" }: LogoP
       </svg>
       <div>
         <span className={cn("font-extrabold leading-tight block tracking-tight uppercase", s.text, textColor)}>
-          Voice <span className="text-[#d4a843]">For</span> Help
+          Voice <span className="text-gold">For</span> Help
         </span>
         <span className={cn("leading-tight block italic", s.sub, subColor)}>Giving Hope, Changing Lives</span>
       </div>

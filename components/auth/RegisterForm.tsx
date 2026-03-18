@@ -127,8 +127,8 @@ export default function RegisterForm() {
         </button>
 
         <div className="text-center">
-          <div className="w-16 h-16 bg-[#d4a843]/15 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg className="h-8 w-8 text-[#d4a843]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="w-16 h-16 bg-gold/15 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg className="h-8 w-8 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
           </div>
@@ -150,7 +150,7 @@ export default function RegisterForm() {
               value={digit}
               onChange={(e) => handleOtpChange(i, e.target.value)}
               onKeyDown={(e) => handleOtpKeyDown(i, e)}
-              className="w-10 h-12 sm:w-12 sm:h-14 text-center text-xl font-bold border-2 border-gray-700 bg-[#1a1a1a] text-white rounded-lg focus:border-[#d4a843] focus:ring-2 focus:ring-[#d4a843]/20 outline-none transition-all"
+              className="w-10 h-12 sm:w-12 sm:h-14 text-center text-xl font-bold border-2 border-gray-700 bg-[#1a1a1a] text-white rounded-lg focus:border-gold focus:ring-2 focus:ring-gold/20 outline-none transition-all"
             />
           ))}
         </div>
@@ -163,7 +163,7 @@ export default function RegisterForm() {
           {resendTimer > 0 ? (
             <p className="text-sm text-gray-500">Resend OTP in {resendTimer}s</p>
           ) : (
-            <button onClick={handleResendOTP} className="text-sm text-[#d4a843] font-semibold hover:underline flex items-center gap-1 mx-auto">
+            <button onClick={handleResendOTP} className="text-sm text-gold font-semibold hover:underline flex items-center gap-1 mx-auto">
               <RefreshCw className="h-3.5 w-3.5" /> Resend OTP
             </button>
           )}
@@ -184,7 +184,7 @@ export default function RegisterForm() {
       </Button>
       <p className="text-center text-sm text-gray-500">
         Already have an account?{" "}
-        <Link href="/login" className="text-[#d4a843] font-semibold hover:underline">Login</Link>
+        <Link href="/login" className="text-gold font-semibold hover:underline">Login</Link>
       </p>
     </form>
   );

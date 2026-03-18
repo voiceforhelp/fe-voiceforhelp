@@ -95,10 +95,10 @@ export default function VerifyEmailPage() {
     <section className="py-12 md:py-20 bg-texture">
       <div className="container mx-auto px-4">
         <div className="max-w-md mx-auto">
-          <div className="bg-[#2a2a2a] rounded-2xl p-6 sm:p-8 border border-gray-700/50">
+          <div className="bg-dark-light rounded-2xl p-6 sm:p-8 border border-gray-700/50">
             <div className="text-center mb-6">
-              <div className="w-16 h-16 bg-[#d4a843]/15 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CheckCircle2 className="h-8 w-8 text-[#d4a843]" />
+              <div className="w-16 h-16 bg-gold/15 rounded-full flex items-center justify-center mx-auto mb-4">
+                <CheckCircle2 className="h-8 w-8 text-gold" />
               </div>
               <h1 className="text-xl sm:text-2xl font-bold text-white mb-2">Verify Your Email</h1>
               <p className="text-sm text-gray-500">
@@ -118,7 +118,7 @@ export default function VerifyEmailPage() {
                   value={digit}
                   onChange={(e) => handleOtpChange(i, e.target.value)}
                   onKeyDown={(e) => handleOtpKeyDown(i, e)}
-                  className="w-10 h-12 sm:w-12 sm:h-14 text-center text-xl font-bold border-2 border-gray-700 bg-[#1a1a1a] text-white rounded-lg focus:border-[#d4a843] focus:ring-2 focus:ring-[#d4a843]/20 outline-none transition-all"
+                  className="w-10 h-12 sm:w-12 sm:h-14 text-center text-xl font-bold border-2 border-gray-700 bg-[#1a1a1a] text-white rounded-lg focus:border-gold focus:ring-2 focus:ring-gold/20 outline-none transition-all"
                 />
               ))}
             </div>
@@ -131,7 +131,7 @@ export default function VerifyEmailPage() {
               {resendTimer > 0 ? (
                 <p className="text-sm text-gray-500">Resend OTP in {resendTimer}s</p>
               ) : (
-                <button onClick={handleResend} className="text-sm text-[#d4a843] font-semibold hover:underline flex items-center gap-1 mx-auto">
+                <button onClick={handleResend} className="text-sm text-gold font-semibold hover:underline flex items-center gap-1 mx-auto">
                   <RefreshCw className="h-3.5 w-3.5" /> Resend OTP
                 </button>
               )}

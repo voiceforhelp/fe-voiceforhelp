@@ -23,7 +23,7 @@ export default function RegisterPage() {
             <h1 className="text-2xl font-bold text-white">Create Account</h1>
             <p className="text-gray-500 text-sm">Join VoiceForHelp and start making a difference</p>
           </div>
-          <div className="bg-[#2a2a2a] rounded-2xl p-6 md:p-8 border border-gray-700/50">
+          <div className="bg-dark-light rounded-2xl p-6 md:p-8 border border-gray-700/50">
             <RegisterForm />
           </div>
         </div>

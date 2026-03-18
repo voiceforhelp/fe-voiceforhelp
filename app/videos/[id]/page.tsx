@@ -31,7 +31,7 @@ export default function VideoDetailPage() {
   return (
     <section className="py-8 md:py-12 bg-texture">
       <div className="container mx-auto px-4 max-w-4xl">
-        <Link href="/videos" className="inline-flex items-center text-sm text-[#d4a843] hover:text-[#d4a843]/80 mb-6">
+        <Link href="/videos" className="inline-flex items-center text-sm text-gold hover:text-gold/80 mb-6">
           <ArrowLeft className="mr-1 h-4 w-4" /> Back to Videos
         </Link>
 
@@ -53,7 +53,7 @@ export default function VideoDetailPage() {
         </div>
 
         {/* Info */}
-        <div className="bg-[#2a2a2a] rounded-2xl p-6 border border-gray-700/50">
+        <div className="bg-dark-light rounded-2xl p-6 border border-gray-700/50">
           <div className="flex flex-wrap items-center gap-2 mb-3">
             {video.category && <Badge>{video.category.name}</Badge>}
             <span className="flex items-center text-sm text-gray-400">
@@ -79,8 +79,8 @@ export default function VideoDetailPage() {
         </div>
 
         {/* Donor group info */}
-        <div className="mt-6 bg-[#d4a843]/15 rounded-xl p-4 border border-[#d4a843]/20">
-          <p className="text-sm text-[#d4a843]">
+        <div className="mt-6 bg-gold/15 rounded-xl p-4 border border-gold/20">
+          <p className="text-sm text-gold">
             <strong>Donation Group Date:</strong> {video.donorGroupDate} — This video shows the impact of all donations received on {formatDate(video.donorGroupDate)}.
           </p>
         </div>

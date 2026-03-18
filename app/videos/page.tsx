@@ -24,33 +24,71 @@ export default function VideosPage() {
 
   return (
     <>
-      <section className="bg-texture py-16 md:py-20 border-b border-gray-800/50">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-4">Impact Videos</h1>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">Watch how your donations create real change, updated daily</p>
+      {/* Page hero */}
+      <section className="bg-texture py-14 sm:py-20 md:py-28 border-b border-gray-800/50">
+        <div className="container mx-auto px-4 sm:px-6 text-center">
+          <span className="inline-block text-gold text-xs sm:text-sm font-semibold uppercase tracking-widest mb-3">
+            Proof of Impact
+          </span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
+            Impact Videos
+          </h1>
+          <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+            Watch how your donations create real change, updated daily
+          </p>
         </div>
       </section>
 
-      <section className="py-12 bg-texture-light">
-        <div className="container mx-auto px-4">
+      <section className="py-10 sm:py-12 md:py-16 bg-texture-light">
+        <div className="container mx-auto px-4 sm:px-6">
           {loading ? (
-            <div className="text-center py-20 text-gray-500">Loading videos...</div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+              {[...Array(8)].map((_, i) => (
+                <div key={i} className="rounded-xl bg-dark-light animate-pulse">
+                  <div className="aspect-video bg-gray-800 rounded-t-xl" />
+                  <div className="p-3 space-y-2">
+                    <div className="h-3 bg-gray-700 rounded w-3/4" />
+                    <div className="h-2 bg-gray-800 rounded w-1/2" />
+                  </div>
+                </div>
+              ))}
+            </div>
           ) : videos.length > 0 ? (
             <>
+              <SectionHeading
+                title="All Impact Videos"
+                subtitle={`${videos.length} video${videos.length !== 1 ? "s" : ""} showing your donations at work`}
+              />
               <VideoGrid videos={videos} />
               {totalPages > 1 && (
-                <div className="flex justify-center gap-2 mt-8">
-                  <Button variant="outline" onClick={() => setPage((p) => Math.max(1, p - 1))} disabled={page === 1}>Previous</Button>
-                  <span className="flex items-center px-4 text-sm text-gray-500">Page {page} of {totalPages}</span>
-                  <Button variant="outline" onClick={() => setPage((p) => Math.min(totalPages, p + 1))} disabled={page === totalPages}>Next</Button>
+                <div className="flex items-center justify-center gap-2 sm:gap-3 mt-8 sm:mt-10">
+                  <Button
+                    variant="outline"
+                    onClick={() => setPage((p) => Math.max(1, p - 1))}
+                    disabled={page === 1}
+                    className="h-10 sm:h-11 px-4 sm:px-5 text-sm"
+                  >
+                    Previous
+                  </Button>
+                  <span className="flex items-center px-3 text-sm text-gray-500 whitespace-nowrap">
+                    Page {page} of {totalPages}
+                  </span>
+                  <Button
+                    variant="outline"
+                    onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                    disabled={page === totalPages}
+                    className="h-10 sm:h-11 px-4 sm:px-5 text-sm"
+                  >
+                    Next
+                  </Button>
                 </div>
               )}
             </>
           ) : (
-            <div className="text-center py-20">
-              <Video className="h-16 w-16 text-gray-600 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold text-gray-400 mb-2">No Videos Yet</h3>
-              <p className="text-gray-500">Impact videos are uploaded daily. Check back soon!</p>
+            <div className="text-center py-16 sm:py-20">
+              <Video className="h-12 w-12 sm:h-16 sm:w-16 text-gray-700 mx-auto mb-3 sm:mb-4" />
+              <h3 className="text-base sm:text-lg font-semibold text-gray-400 mb-2">No Videos Yet</h3>
+              <p className="text-sm sm:text-base text-gray-500">Impact videos are uploaded daily. Check back soon!</p>
             </div>
           )}
         </div>

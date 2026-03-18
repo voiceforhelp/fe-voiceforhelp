@@ -104,7 +104,7 @@ export default function DonationForm({ defaultAmount, defaultCategory }: Donatio
           <select
             value={form.category}
             onChange={(e) => update("category", e.target.value)}
-            className="flex h-11 w-full rounded-lg border border-gray-700 bg-[#1a1a1a] px-4 py-2 text-sm text-white focus:border-[#d4a843] focus:outline-none focus:ring-2 focus:ring-[#d4a843]/20 transition-all"
+            className="flex h-11 w-full rounded-lg border border-gray-700 bg-[#1a1a1a] px-4 py-2 text-sm text-white focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20 transition-all"
           >
             <option value="">Select a category</option>
             {categories.map((cat) => (
@@ -124,8 +124,8 @@ export default function DonationForm({ defaultAmount, defaultCategory }: Donatio
                 onClick={() => update("amount", amt)}
                 className={`px-4 py-2 rounded-lg text-sm font-bold border-2 transition-all ${
                   form.amount === amt
-                    ? "border-[#d4a843] bg-[#d4a843]/15 text-[#d4a843]"
-                    : "border-gray-700 text-gray-400 hover:border-[#d4a843]/30"
+                    ? "border-gold bg-gold/15 text-gold"
+                    : "border-gray-700 text-gray-400 hover:border-gold/30"
                 }`}
               >
                 ₹{amt.toLocaleString("en-IN")}
@@ -142,7 +142,7 @@ export default function DonationForm({ defaultAmount, defaultCategory }: Donatio
         </div>
 
         {/* Volunteer toggle */}
-        <div className="bg-[#d4a843]/10 rounded-xl p-4 border border-[#d4a843]/20">
+        <div className="bg-gold/10 rounded-xl p-4 border border-gold/20">
           <div className="flex items-center justify-between">
             <div>
               <h4 className="font-semibold text-white text-sm">Want to volunteer with us?</h4>
@@ -153,7 +153,7 @@ export default function DonationForm({ defaultAmount, defaultCategory }: Donatio
                 type="button"
                 onClick={() => update("isVolunteer", true)}
                 className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                  form.isVolunteer ? "bg-[#d4a843] text-white" : "bg-[#1a1a1a] border border-gray-700 text-gray-400"
+                  form.isVolunteer ? "bg-gold text-white" : "bg-[#1a1a1a] border border-gray-700 text-gray-400"
                 }`}
               >
                 Yes
@@ -162,7 +162,7 @@ export default function DonationForm({ defaultAmount, defaultCategory }: Donatio
                 type="button"
                 onClick={() => update("isVolunteer", false)}
                 className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                  !form.isVolunteer ? "bg-[#d4a843] text-white" : "bg-[#1a1a1a] border border-gray-700 text-gray-400"
+                  !form.isVolunteer ? "bg-gold text-white" : "bg-[#1a1a1a] border border-gray-700 text-gray-400"
                 }`}
               >
                 No
@@ -179,13 +179,13 @@ export default function DonationForm({ defaultAmount, defaultCategory }: Donatio
                 transition={{ duration: 0.3 }}
                 className="overflow-hidden"
               >
-                <div className="mt-4 pt-4 border-t border-[#d4a843]/20 space-y-4">
+                <div className="mt-4 pt-4 border-t border-gold/20 space-y-4">
                   <div>
                     <Label className="mb-1.5 block">Availability Type</Label>
                     <select
                       value={form.volunteerAvailability}
                       onChange={(e) => update("volunteerAvailability", e.target.value)}
-                      className="flex h-11 w-full rounded-lg border border-gray-700 bg-[#1a1a1a] px-4 py-2 text-sm text-white focus:border-[#d4a843] focus:outline-none focus:ring-2 focus:ring-[#d4a843]/20"
+                      className="flex h-11 w-full rounded-lg border border-gray-700 bg-[#1a1a1a] px-4 py-2 text-sm text-white focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20"
                     >
                       <option value="">Select availability</option>
                       {AVAILABILITY_TYPES.map((t) => (

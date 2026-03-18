@@ -38,7 +38,7 @@ export default function MyVideos() {
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {videos.map((v) => (
-          <div key={v._id} className="bg-[#2a2a2a] rounded-xl border border-gray-700/50 overflow-hidden group cursor-pointer hover:border-[#d4a843]/30 transition-all" onClick={() => setSelected(v)}>
+          <div key={v._id} className="bg-dark-light rounded-xl border border-gray-700/50 overflow-hidden group cursor-pointer hover:border-gold/30 transition-all" onClick={() => setSelected(v)}>
             <div className="relative aspect-video bg-[#1a1a1a] flex items-center justify-center">
               {v.thumbnailUrl ? (
                 <img src={v.thumbnailUrl} alt={v.title} className="w-full h-full object-cover" />

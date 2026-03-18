@@ -44,7 +44,7 @@ export default function LoginForm() {
       <Input label="Email" type="email" placeholder="your@email.com" value={email} onChange={(e) => setEmail(e.target.value)} required />
       <Input label="Password" type="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required />
       <div className="flex justify-end">
-        <Link href="/forgot-password" className="text-sm text-[#d4a843] hover:underline">
+        <Link href="/forgot-password" className="text-sm text-gold hover:underline">
           Forgot Password?
         </Link>
       </div>
@@ -53,7 +53,7 @@ export default function LoginForm() {
       </Button>
       <p className="text-center text-sm text-gray-500">
         Don&apos;t have an account?{" "}
-        <Link href="/register" className="text-[#d4a843] font-semibold hover:underline">Register</Link>
+        <Link href="/register" className="text-gold font-semibold hover:underline">Register</Link>
       </p>
     </form>
   );

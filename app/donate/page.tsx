@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
-import { Shield, Clock, Video } from "lucide-react";
+import { Shield, Clock, Video, CheckCircle2 } from "lucide-react";
 import DonationForm from "@/components/donation/DonationForm";
 
 function DonateContent() {
@@ -10,55 +10,83 @@ function DonateContent() {
   const amount = params.get("amount") ? Number(params.get("amount")) : undefined;
   const category = params.get("category") || undefined;
 
+  const benefits = [
+    { icon: Shield, title: "100% Transparent", desc: "Every donation tracked with video proof" },
+    { icon: Video, title: "Daily Video Updates", desc: "See your impact the very next day" },
+    { icon: Clock, title: "Quick & Easy", desc: "Donate via UPI in under 2 minutes" },
+  ];
+
   return (
-    <section className="py-12 md:py-20 bg-texture">
-      <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+    <section className="py-10 sm:py-14 md:py-20 bg-texture min-h-screen">
+      <div className="container mx-auto px-4 sm:px-6">
+        {/* Page title (mobile) */}
+        <div className="mb-6 sm:mb-8 lg:hidden text-center">
+          <h1 className="text-2xl sm:text-3xl font-bold text-white mb-1">Make a Donation</h1>
+          <p className="text-sm text-gray-400">Your contribution creates real, visible impact.</p>
+        </div>
+
+        <div className="grid lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
           {/* Form */}
           <div className="lg:col-span-2">
-            <div className="bg-[#2a2a2a] rounded-2xl p-6 md:p-8 border border-gray-700/50">
-              <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">Make a Donation</h1>
-              <p className="text-gray-400 mb-6">Your contribution creates real, visible impact.</p>
+            <div className="bg-dark-light rounded-2xl p-5 sm:p-6 md:p-8 border border-gray-700/50">
+              <div className="hidden lg:block mb-6">
+                <h1 className="text-2xl md:text-3xl font-bold text-white mb-1">Make a Donation</h1>
+                <p className="text-gray-400 text-sm sm:text-base">Your contribution creates real, visible impact.</p>
+              </div>
               <DonationForm defaultAmount={amount} defaultCategory={category} />
             </div>
           </div>
 
           {/* Sidebar */}
-          <div className="space-y-6">
-            <div className="bg-[#2a2a2a] rounded-2xl p-6 border border-[#d4a843]/20">
-              <h3 className="font-bold text-[#d4a843] mb-4">Why Donate With Us?</h3>
+          <div className="space-y-4 sm:space-y-5">
+            {/* Why donate */}
+            <div className="bg-dark-light rounded-2xl p-5 sm:p-6 border border-gold/20">
+              <h3 className="font-bold text-gold mb-4 text-sm sm:text-base">Why Donate With Us?</h3>
               <div className="space-y-4">
-                <div className="flex gap-3">
-                  <Shield className="h-5 w-5 text-[#d4a843] mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="text-sm font-semibold text-white">100% Transparent</p>
-                    <p className="text-xs text-gray-500">Every donation tracked with video proof</p>
+                {benefits.map((b, i) => (
+                  <div key={i} className="flex gap-3">
+                    <div className="w-9 h-9 rounded-lg bg-gold/15 flex items-center justify-center shrink-0">
+                      <b.icon className="h-4 w-4 text-gold" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-white">{b.title}</p>
+                      <p className="text-xs text-gray-500 mt-0.5">{b.desc}</p>
+                    </div>
                   </div>
-                </div>
-                <div className="flex gap-3">
-                  <Video className="h-5 w-5 text-[#d4a843] mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="text-sm font-semibold text-white">Daily Video Updates</p>
-                    <p className="text-xs text-gray-500">See your impact the very next day</p>
-                  </div>
-                </div>
-                <div className="flex gap-3">
-                  <Clock className="h-5 w-5 text-[#d4a843] mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="text-sm font-semibold text-white">Quick & Easy</p>
-                    <p className="text-xs text-gray-500">Donate via UPI in under 2 minutes</p>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
 
-            <div className="bg-[#2a2a2a] rounded-2xl p-6 border border-orange-500/20">
-              <h3 className="font-bold text-orange-400 mb-2">How It Works</h3>
-              <ol className="space-y-2 text-sm text-gray-400">
-                <li className="flex gap-2"><span className="w-5 h-5 rounded-full bg-[#d4a843] text-black flex items-center justify-center text-xs font-bold flex-shrink-0">1</span>Fill in your details & amount</li>
-                <li className="flex gap-2"><span className="w-5 h-5 rounded-full bg-[#d4a843] text-black flex items-center justify-center text-xs font-bold flex-shrink-0">2</span>Pay via UPI QR code</li>
-                <li className="flex gap-2"><span className="w-5 h-5 rounded-full bg-[#d4a843] text-black flex items-center justify-center text-xs font-bold flex-shrink-0">3</span>Receive video proof next day</li>
+            {/* How it works */}
+            <div className="bg-dark-light rounded-2xl p-5 sm:p-6 border border-orange-500/20">
+              <h3 className="font-bold text-orange-400 mb-4 text-sm sm:text-base">How It Works</h3>
+              <ol className="space-y-3">
+                {[
+                  "Fill in your details & amount",
+                  "Pay via UPI QR code",
+                  "Receive video proof next day",
+                ].map((step, i) => (
+                  <li key={i} className="flex items-start gap-2.5">
+                    <span className="w-6 h-6 rounded-full bg-gold text-black flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">
+                      {i + 1}
+                    </span>
+                    <span className="text-sm text-gray-400 leading-snug">{step}</span>
+                  </li>
+                ))}
               </ol>
+            </div>
+
+            {/* Trust signals */}
+            <div className="bg-dark-light rounded-2xl p-5 sm:p-6 border border-green-500/15">
+              <h3 className="font-bold text-green-400 mb-3 text-sm">Trusted by Donors</h3>
+              <div className="space-y-2">
+                {["Video-verified impact", "No hidden fees", "Direct field work"].map((t) => (
+                  <div key={t} className="flex items-center gap-2 text-xs text-gray-400">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-green-400 shrink-0" />
+                    {t}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -69,7 +97,14 @@ function DonateContent() {
 
 export default function DonatePage() {
   return (
-    <Suspense fallback={<div className="py-20 text-center text-gray-400">Loading...</div>}>
+    <Suspense fallback={
+      <div className="min-h-screen bg-texture flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-10 h-10 border-2 border-gold border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+          <p className="text-gray-400 text-sm">Loading donation form...</p>
+        </div>
+      </div>
+    }>
       <DonateContent />
     </Suspense>
   );

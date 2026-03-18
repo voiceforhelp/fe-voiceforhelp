@@ -59,8 +59,8 @@ export default function FastDonationForm() {
                 onClick={() => setAmount(amt)}
                 className={`px-4 py-2 rounded-lg text-sm font-bold border-2 transition-all ${
                   amount === amt
-                    ? "border-[#d4a843] bg-[#d4a843]/15 text-[#d4a843]"
-                    : "border-gray-700 text-gray-400 hover:border-[#d4a843]/30"
+                    ? "border-gold bg-gold/15 text-gold"
+                    : "border-gray-700 text-gray-400 hover:border-gold/30"
                 }`}
               >
                 ₹{amt.toLocaleString("en-IN")}
