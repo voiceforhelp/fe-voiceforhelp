@@ -58,8 +58,42 @@ const services = [
 export default function ServicesStrip() {
   return (
     <section className="py-8 sm:py-10 bg-white">
-      <div className="container mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-3 sm:gap-4">
+
+      {/* Mobile: infinite auto-scroll marquee */}
+      <div className="sm:hidden overflow-hidden">
+        <style>{`
+          @keyframes marquee-scroll {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .marquee-track {
+            animation: marquee-scroll 22s linear infinite;
+          }
+          .marquee-track:hover {
+            animation-play-state: paused;
+          }
+        `}</style>
+        <div className="marquee-track flex gap-3 w-max px-3">
+          {[...services, ...services].map((service, i) => (
+            <div
+              key={i}
+              className="w-[138px] shrink-0 bg-white rounded-xl p-4 border border-gray-100 shadow-sm flex flex-col items-center text-center gap-2.5"
+            >
+              <div className={`w-12 h-12 rounded-xl ${service.bg} flex items-center justify-center shrink-0`}>
+                <service.icon className={`h-6 w-6 ${service.iconColor}`} />
+              </div>
+              <div>
+                <h3 className="font-bold text-gray-900 text-xs leading-tight">{service.title}</h3>
+                <p className="text-[10px] text-gray-500 mt-1 leading-snug line-clamp-2">{service.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Desktop: grid */}
+      <div className="hidden sm:block container mx-auto px-4 sm:px-6">
+        <div className="grid sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-3 sm:gap-4">
           {services.map((service, i) => (
             <motion.div
               key={i}
@@ -80,6 +114,7 @@ export default function ServicesStrip() {
           ))}
         </div>
       </div>
+
     </section>
   );
 }

@@ -80,11 +80,11 @@ export default function MissionSection() {
                   <span className="text-gray-400 text-lg">Mission Image</span>
                 </div>
               )}
-            </div>
-            {/* Floating badge — inside image, no overflow */}
-            <div className="absolute bottom-3 left-3 bg-gold text-black rounded-lg px-3 py-2 shadow-lg">
-              <p className="text-xs sm:text-sm font-extrabold leading-none">100%</p>
-              <p className="text-[10px] sm:text-xs font-semibold">Transparent</p>
+              {/* Floating badge — inside image container, clipped by overflow-hidden */}
+              <div className="absolute bottom-3 left-3 bg-gold text-black rounded-lg px-3 py-2 shadow-lg z-10">
+                <p className="text-xs sm:text-sm font-extrabold leading-none">100%</p>
+                <p className="text-[10px] sm:text-xs font-semibold">Transparent</p>
+              </div>
             </div>
           </motion.div>
         </div>
