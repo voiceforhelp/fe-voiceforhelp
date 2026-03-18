@@ -1,36 +1,115 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# VoiceForHelp - Frontend
+
+Modern, SEO-optimized Next.js donation platform with transparent impact tracking.
+
+## Tech Stack
+
+- **Framework:** Next.js 15 (App Router)
+- **Language:** TypeScript
+- **Styling:** TailwindCSS
+- **UI Components:** Shadcn UI (Radix primitives)
+- **Animations:** Framer Motion
+- **Charts:** Recharts (admin dashboard)
+- **State Management:** React Context
+- **HTTP Client:** Axios
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+- Node.js 18+
+- npm
 
+### Installation
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd frontend
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Environment Variables
+Create `.env.local`:
+```
+NEXT_PUBLIC_API_URL=http://localhost:5000/api
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Development
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Build
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+frontend/
+├── app/                    # Next.js App Router pages
+│   ├── layout.tsx          # Root layout with providers
+│   ├── page.tsx            # Homepage
+│   ├── about/              # About Us
+│   ├── impact/             # Our Impact
+│   ├── help/               # How You Can Help
+│   ├── donate/             # Donation page
+│   ├── fast-donate/        # Quick anonymous donation
+│   ├── volunteer/          # Volunteer signup
+│   ├── videos/             # Impact videos gallery
+│   ├── profile/            # User dashboard
+│   ├── login/              # Login
+│   ├── register/           # Register
+│   ├── contact/            # Contact page
+│   └── admin/              # Admin panel (dashboard, donors, videos, categories, volunteers)
+├── components/
+│   ├── ui/                 # Base UI components
+│   ├── layout/             # Header, Footer
+│   ├── home/               # Homepage sections
+│   ├── donation/           # Donation form, UPI modal
+│   ├── videos/             # Video grid, player
+│   ├── profile/            # Donation history, my videos
+│   ├── auth/               # Login, register forms
+│   └── common/             # Shared components (Logo, StatsCard, etc.)
+├── lib/                    # Utilities (api client, constants, helpers)
+├── hooks/                  # Custom React hooks
+├── services/               # API service functions
+├── types/                  # TypeScript interfaces
+└── context/                # Auth context provider
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Pages
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Route | Description |
+|-------|-------------|
+| `/` | Homepage with hero, donors, videos, categories |
+| `/about` | About the foundation |
+| `/impact` | Impact gallery with stats |
+| `/help` | Ways to contribute |
+| `/donate` | Full donation form with UPI QR payment |
+| `/fast-donate` | Quick anonymous donation |
+| `/volunteer` | Volunteer signup |
+| `/videos` | Impact video gallery |
+| `/profile` | User dashboard |
+| `/admin` | Admin dashboard with analytics charts |
+| `/admin/donors` | Donor list with group date filtering |
+| `/admin/videos` | Video upload and management |
+| `/admin/categories` | Category CRUD |
+| `/admin/volunteers` | Volunteer applications |
 
-## Deploy on Vercel
+## Deployment to Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Push code to GitHub
+2. Go to [vercel.com](https://vercel.com) → New Project
+3. Import your repository, select `frontend` as root directory
+4. Set environment variable: `NEXT_PUBLIC_API_URL`
+5. Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## SEO
+
+- Dynamic metadata per page
+- OpenGraph & Twitter cards
+- JSON-LD structured data (NGO schema)
+- Dynamic sitemap.xml & robots.txt
+- Semantic HTML headings
+- Keywords: "donate for cows", "animal donation India", "cow feeding donation"
