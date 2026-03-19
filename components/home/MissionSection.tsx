@@ -12,11 +12,12 @@ export default function MissionSection() {
   const [missionText, setMissionText] = useState(
     "Our mission at Voice For Help Trust is to provide timely support, medical care, and nourishment to the needy, helpless animals, and cows. We are committed to ensuring transparency and honesty in every act of service"
   );
+  const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
     api.get("/settings/public").then((res) => {
       const s = res.data.settings;
-      if (s?.missionImage) setMissionImage(s.missionImage);
+      if (s?.missionImage) { setMissionImage(s.missionImage); setImgError(false); }
       if (s?.missionText) setMissionText(s.missionText);
     }).catch(() => {});
   }, []);
@@ -68,19 +69,23 @@ export default function MissionSection() {
             {/* Decorative backdrop */}
             <div className="absolute -inset-2 sm:-inset-4 bg-gold/10 rounded-2xl sm:rounded-3xl -z-10" />
             <div className="relative rounded-xl sm:rounded-2xl overflow-hidden border-2 border-gold/25 shadow-xl shadow-black/10">
-              {missionImage ? (
+              {missionImage && !imgError ? (
                 <img
                   src={missionImage}
                   alt="Our Mission"
-                  className="w-full h-56 sm:h-72 md:h-80 lg:h-96 object-cover"
+                  className="w-full h-56 sm:h-72 md:h-80 lg:h-96 object-cover block"
                   loading="lazy"
+                  onError={() => setImgError(true)}
                 />
               ) : (
-                <div className="w-full h-56 sm:h-72 md:h-80 bg-linear-to-br from-gold/20 to-gold-dark/10 flex items-center justify-center">
-                  <span className="text-gray-400 text-lg">Mission Image</span>
+                <div className="w-full h-56 sm:h-72 md:h-80 lg:h-96 bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 flex flex-col items-center justify-center gap-3">
+                  <div className="w-16 h-16 rounded-full bg-gold/20 flex items-center justify-center">
+                    <CheckCircle2 className="h-8 w-8 text-gold" />
+                  </div>
+                  <span className="text-gold font-semibold text-sm">Voice For Help Trust</span>
                 </div>
               )}
-              {/* Floating badge — inside image container, clipped by overflow-hidden */}
+              {/* Floating badge — inside image container, always visible */}
               <div className="absolute bottom-3 left-3 bg-gold text-black rounded-lg px-3 py-2 shadow-lg z-10">
                 <p className="text-xs sm:text-sm font-extrabold leading-none">100%</p>
                 <p className="text-[10px] sm:text-xs font-semibold">Transparent</p>
