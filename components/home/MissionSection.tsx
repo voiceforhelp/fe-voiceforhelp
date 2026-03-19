@@ -8,7 +8,7 @@ import api from "@/lib/api";
 const pillars = ["100% Transparent", "Video-Verified Impact", "Community-Driven"];
 
 export default function MissionSection() {
-  const [missionImage, setMissionImage] = useState("/mission/OurMission.jpeg");
+  const [missionImage, setMissionImage] = useState("/Mission/OurMission.jpeg");
   const [missionText, setMissionText] = useState(
     "Our mission at Voice For Help Trust is to provide timely support, medical care, and nourishment to the needy, helpless animals, and cows. We are committed to ensuring transparency and honesty in every act of service"
   );
