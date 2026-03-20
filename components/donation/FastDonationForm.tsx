@@ -27,9 +27,15 @@ export default function FastDonationForm() {
     setLoading(true);
     try {
       const res = await donationService.createFastDonation({ phone, amount });
-      setPaymentData(res.payment);
-      setShowPayment(true);
-      toast.success("Scan QR to complete payment");
+
+      if (res.paymentMethod === "phonepe" && res.paymentUrl) {
+        toast.success("Redirecting to PhonePe...");
+        window.location.href = res.paymentUrl;
+      } else {
+        setPaymentData(res.payment || null);
+        setShowPayment(true);
+        toast.success("Scan QR to complete payment");
+      }
     } catch (err: any) {
       toast.error(err.response?.data?.message || "Failed to process");
     } finally {
@@ -77,7 +83,9 @@ export default function FastDonationForm() {
         </div>
 
         <Button type="submit" variant="secondary" size="lg" className="w-full text-base" disabled={loading}>
-          {loading ? "Processing..." : (
+          {loading ? (
+            "Processing..."
+          ) : (
             <>
               <Zap className="mr-2 h-5 w-5" /> Pay Now {amount > 0 && `₹${amount.toLocaleString("en-IN")}`}
             </>

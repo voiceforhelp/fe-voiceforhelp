@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, ChevronDown } from "lucide-react";
+import { Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -21,6 +21,7 @@ interface DonationFormProps {
 
 export default function DonationForm({ defaultAmount, defaultCategory }: DonationFormProps) {
   const [categories, setCategories] = useState<Category[]>([]);
+  const [categoriesLoading, setCategoriesLoading] = useState(true);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -39,13 +40,25 @@ export default function DonationForm({ defaultAmount, defaultCategory }: Donatio
   const [showPayment, setShowPayment] = useState(false);
 
   useEffect(() => {
-    categoryService.getCategories().then((res) => {
-      setCategories(res.categories);
-      if (defaultCategory) {
-        const match = res.categories.find((c: Category) => c.name.toLowerCase().includes(defaultCategory.toLowerCase()));
-        if (match) setForm((f) => ({ ...f, category: match._id }));
-      }
-    }).catch(() => {});
+    setCategoriesLoading(true);
+    categoryService
+      .getCategories()
+      .then((res) => {
+        if (res.categories && res.categories.length > 0) {
+          setCategories(res.categories);
+          if (defaultCategory) {
+            const match = res.categories.find((c: Category) =>
+              c.name.toLowerCase().includes(defaultCategory.toLowerCase())
+            );
+            if (match) setForm((f) => ({ ...f, category: match._id }));
+          }
+        }
+      })
+      .catch((err) => {
+        console.error("Failed to load categories:", err);
+        toast.error("Failed to load categories");
+      })
+      .finally(() => setCategoriesLoading(false));
   }, [defaultCategory]);
 
   useEffect(() => {
@@ -73,9 +86,17 @@ export default function DonationForm({ defaultAmount, defaultCategory }: Donatio
         category: form.category,
         isVolunteer: form.isVolunteer,
       });
-      setPaymentData(res.payment);
-      setShowPayment(true);
-      toast.success("Donation created! Complete payment via UPI.");
+
+      if (res.paymentMethod === "phonepe" && res.paymentUrl) {
+        // Redirect to PhonePe payment page
+        toast.success("Redirecting to PhonePe...");
+        window.location.href = res.paymentUrl;
+      } else {
+        // Fallback: Show UPI QR modal
+        setPaymentData(res.payment || null);
+        setShowPayment(true);
+        toast.success("Donation created! Complete payment via UPI.");
+      }
     } catch (err: any) {
       toast.error(err.response?.data?.message || "Failed to create donation");
     } finally {
@@ -90,7 +111,7 @@ export default function DonationForm({ defaultAmount, defaultCategory }: Donatio
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Personal Info */}
         <div className="space-y-4">
-          <h3 className="text-lg font-bold text-white">Personal Information</h3>
+          <h3 className="text-lg font-bold text-gray-900">Personal Information</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Input label="Full Name *" placeholder="Enter your name" value={form.name} onChange={(e) => update("name", e.target.value)} required />
             <Input label="Email" type="email" placeholder="your@email.com" value={form.email} onChange={(e) => update("email", e.target.value)} />
@@ -104,13 +125,20 @@ export default function DonationForm({ defaultAmount, defaultCategory }: Donatio
           <select
             value={form.category}
             onChange={(e) => update("category", e.target.value)}
-            className="flex h-11 w-full rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm text-white focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20 transition-all"
+            className="flex h-11 w-full rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm text-gray-900 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20 transition-all"
           >
-            <option value="">Select a category</option>
+            <option value="">
+              {categoriesLoading ? "Loading categories..." : "Select a category"}
+            </option>
             {categories.map((cat) => (
-              <option key={cat._id} value={cat._id}>{cat.name}</option>
+              <option key={cat._id} value={cat._id}>
+                {cat.name}
+              </option>
             ))}
           </select>
+          {!categoriesLoading && categories.length === 0 && (
+            <p className="text-xs text-gray-400 mt-1">No categories available</p>
+          )}
         </div>
 
         {/* Amount */}
@@ -185,11 +213,13 @@ export default function DonationForm({ defaultAmount, defaultCategory }: Donatio
                     <select
                       value={form.volunteerAvailability}
                       onChange={(e) => update("volunteerAvailability", e.target.value)}
-                      className="flex h-11 w-full rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm text-white focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20"
+                      className="flex h-11 w-full rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm text-gray-900 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20"
                     >
                       <option value="">Select availability</option>
                       {AVAILABILITY_TYPES.map((t) => (
-                        <option key={t.value} value={t.value}>{t.label}</option>
+                        <option key={t.value} value={t.value}>
+                          {t.label}
+                        </option>
                       ))}
                     </select>
                   </div>
@@ -206,7 +236,9 @@ export default function DonationForm({ defaultAmount, defaultCategory }: Donatio
         </div>
 
         <Button type="submit" size="lg" className="w-full text-base" disabled={loading}>
-          {loading ? "Processing..." : (
+          {loading ? (
+            "Processing..."
+          ) : (
             <>
               <Heart className="mr-2 h-5 w-5" /> Proceed to Pay {form.amount > 0 && `₹${form.amount.toLocaleString("en-IN")}`}
             </>
