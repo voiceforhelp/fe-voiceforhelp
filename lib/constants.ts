@@ -1,5 +1,6 @@
 export const UPI_ID = "7340539497@kotak811";
-export const SITE_NAME = "VoiceForHelp";
+// export const SITE_NAME = "VoiceForHelp";
+export const SITE_NAME = "Vageesh Sharma";
 export const SITE_TAGLINE = "Be The Voice, Be The Change";
 export const SITE_DESCRIPTION =
   "VoiceForHelp - Transparent donation platform. Donate for cow feeding, animal care, and social welfare. See your donation impact through daily video proof.";

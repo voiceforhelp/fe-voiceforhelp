@@ -61,11 +61,12 @@ export default function FastDonationForm() {
         />
 
         <Input
-          label="Email (optional)"
+          label="Email *"
           type="email"
           placeholder="your@email.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
 
         <div>
