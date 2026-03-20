@@ -111,6 +111,7 @@ export interface DonationForm {
 export interface FastDonationForm {
   phone: string;
   amount: number;
+  email?: string;
 }
 
 export interface VolunteerForm {

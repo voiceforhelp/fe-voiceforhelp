@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { QRCode } from "react-qrcode-logo";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -16,6 +17,8 @@ interface UPIPaymentModalProps {
 }
 
 export default function UPIPaymentModal({ open, onClose, paymentData }: UPIPaymentModalProps) {
+  const router = useRouter();
+
   const copyUPI = () => {
     navigator.clipboard.writeText(UPI_ID);
     toast.success("UPI ID copied!");
@@ -26,15 +29,16 @@ export default function UPIPaymentModal({ open, onClose, paymentData }: UPIPayme
   };
 
   const confirmPayment = () => {
-    toast.success("Thank you! Your donation will be verified shortly.");
     onClose();
+    // Redirect to status page with the donation/transaction ID
+    router.push(`/donate/status?txnId=${paymentData.transactionRef}`);
   };
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-[calc(100vw-2rem)] sm:max-w-md mx-auto bg-white border-gray-100">
         <DialogHeader>
-          <DialogTitle className="text-center text-white">Complete Your Donation</DialogTitle>
+          <DialogTitle className="text-center text-gray-900">Complete Your Donation</DialogTitle>
           <DialogDescription className="text-center text-gray-500">
             Scan QR code or use UPI ID to pay {formatCurrency(paymentData.amount)}
           </DialogDescription>
@@ -74,13 +78,13 @@ export default function UPIPaymentModal({ open, onClose, paymentData }: UPIPayme
             <ExternalLink className="mr-2 h-4 w-4" /> Open in UPI App
           </Button>
 
-          {/* Confirm payment */}
+          {/* Confirm payment - goes to status page */}
           <Button variant="default" className="w-full" onClick={confirmPayment}>
             <CheckCircle2 className="mr-2 h-4 w-4" /> I&apos;ve Completed the Payment
           </Button>
 
           <p className="text-xs text-gray-500 text-center">
-            Payment verification may take a few minutes. You&apos;ll receive confirmation on your registered phone.
+            After clicking above, we&apos;ll verify your payment status.
           </p>
         </div>
       </DialogContent>

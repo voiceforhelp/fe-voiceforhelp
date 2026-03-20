@@ -12,6 +12,7 @@ import toast from "react-hot-toast";
 
 export default function FastDonationForm() {
   const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [amount, setAmount] = useState(0);
   const [loading, setLoading] = useState(false);
   const [paymentData, setPaymentData] = useState<UPIPaymentData | null>(null);
@@ -26,7 +27,11 @@ export default function FastDonationForm() {
 
     setLoading(true);
     try {
-      const res = await donationService.createFastDonation({ phone, amount });
+      const res = await donationService.createFastDonation({
+        phone,
+        amount,
+        email: email || undefined,
+      });
 
       if (res.paymentMethod === "phonepe" && res.paymentUrl) {
         toast.success("Redirecting to PhonePe...");
@@ -53,6 +58,14 @@ export default function FastDonationForm() {
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
           required
+        />
+
+        <Input
+          label="Email (optional)"
+          type="email"
+          placeholder="your@email.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
 
         <div>

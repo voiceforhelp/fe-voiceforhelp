@@ -1,14 +1,16 @@
 "use client";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import RegisterForm from "@/components/auth/RegisterForm";
 import Logo from "@/components/common/Logo";
 import { useAuth } from "@/context/AuthContext";
 
-export default function RegisterPage() {
+function RegisterContent() {
   const { isAuthenticated } = useAuth();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const prefillEmail = searchParams.get("email") || undefined;
 
   useEffect(() => {
     if (isAuthenticated) router.push("/profile");
@@ -24,10 +26,22 @@ export default function RegisterPage() {
             <p className="text-gray-500 text-sm">Join VoiceForHelp and start making a difference</p>
           </div>
           <div className="bg-white rounded-2xl p-6 md:p-8 border border-gray-100">
-            <RegisterForm />
+            <RegisterForm defaultEmail={prefillEmail} />
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+export default function RegisterPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="w-10 h-10 border-2 border-gold border-t-transparent rounded-full animate-spin" />
+      </div>
+    }>
+      <RegisterContent />
+    </Suspense>
   );
 }

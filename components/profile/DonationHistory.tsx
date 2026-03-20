@@ -35,7 +35,7 @@ export default function DonationHistory() {
       {donations.map((d) => (
         <div key={d._id} className="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-100 hover:border-gold/30 transition-all">
           <div>
-            <p className="font-semibold text-white">{formatCurrency(d.amount)}</p>
+            <p className="font-semibold text-gray-900">{formatCurrency(d.amount)}</p>
             <p className="text-xs text-gray-500">{d.category?.name || "General"} &middot; {formatDate(d.donationDate)}</p>
           </div>
           <Badge

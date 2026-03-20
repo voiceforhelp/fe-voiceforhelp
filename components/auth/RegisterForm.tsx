@@ -10,8 +10,12 @@ import { useAuth } from "@/context/AuthContext";
 import { authService } from "@/services/authService";
 import toast from "react-hot-toast";
 
-export default function RegisterForm() {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", password: "", confirmPassword: "" });
+interface RegisterFormProps {
+  defaultEmail?: string;
+}
+
+export default function RegisterForm({ defaultEmail }: RegisterFormProps) {
+  const [form, setForm] = useState({ name: "", email: defaultEmail || "", phone: "", password: "", confirmPassword: "" });
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useState<"form" | "otp">("form");
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);

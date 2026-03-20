@@ -205,7 +205,7 @@ export default function AboutPage() {
                 <Phone className="h-4 w-4" /> Call Us
               </Button>
             </a>
-            <a href="mailto:info@voiceforhelp.org">
+            <a href="mailto:info@voiceforhelp.com">
               <Button variant="outline" className="border-gray-200 h-11 px-5 text-sm gap-2">
                 <Mail className="h-4 w-4" /> Email Us
               </Button>

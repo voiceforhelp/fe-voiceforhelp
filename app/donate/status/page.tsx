@@ -1,27 +1,32 @@
 "use client";
 
 import { useEffect, useState, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
-import { CheckCircle2, XCircle, Clock, ArrowLeft, Home, RefreshCw } from "lucide-react";
+import { useSearchParams, useRouter } from "next/navigation";
+import { CheckCircle2, XCircle, Clock, ArrowLeft, Home, RefreshCw, UserPlus, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { donationService } from "@/services/donationService";
 import { formatCurrency } from "@/lib/utils";
+import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
 
 interface DonationStatus {
   _id: string;
   name: string;
+  email?: string;
   amount: number;
   paymentStatus: "pending" | "completed" | "failed";
   transactionId?: string;
   category?: { _id: string; name: string };
   donationDate: string;
   paymentMethod: string;
+  userId?: string;
 }
 
 function StatusContent() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const txnId = searchParams.get("txnId");
+  const { user, isAuthenticated, loading: authLoading } = useAuth();
 
   const [donation, setDonation] = useState<DonationStatus | null>(null);
   const [loading, setLoading] = useState(true);
@@ -39,8 +44,8 @@ function StatusContent() {
       const res = await donationService.checkPaymentStatus(txnId);
       setDonation(res.donation);
 
-      // If still pending, auto-retry up to 3 times with delay
-      if (res.donation.paymentStatus === "pending" && retryCount < 3) {
+      // If still pending, auto-retry up to 5 times with delay
+      if (res.donation.paymentStatus === "pending" && retryCount < 5) {
         setTimeout(() => {
           setRetryCount((c) => c + 1);
         }, 3000);
@@ -62,6 +67,7 @@ function StatusContent() {
     setRetryCount((c) => c + 1);
   };
 
+  // Loading
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
@@ -74,10 +80,11 @@ function StatusContent() {
     );
   }
 
+  // Error
   if (error || !donation) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
-        <div className="bg-white rounded-2xl p-8 max-w-md w-full text-center border border-gray-100 shadow-sm">
+        <div className="bg-white rounded-2xl p-6 sm:p-8 max-w-md w-full text-center border border-gray-100 shadow-sm">
           <div className="w-16 h-16 rounded-full bg-red-50 flex items-center justify-center mx-auto mb-4">
             <XCircle className="h-8 w-8 text-red-500" />
           </div>
@@ -100,8 +107,10 @@ function StatusContent() {
     );
   }
 
-  // Success
+  // ─── SUCCESS ───
   if (donation.paymentStatus === "completed") {
+    const isLoggedIn = !authLoading && isAuthenticated;
+
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-10">
         <div className="bg-white rounded-2xl p-6 sm:p-8 max-w-md w-full text-center border border-green-100 shadow-sm">
@@ -109,8 +118,11 @@ function StatusContent() {
             <CheckCircle2 className="h-10 w-10 text-green-500" />
           </div>
           <h2 className="text-2xl font-bold text-gray-900 mb-1">Payment Successful!</h2>
-          <p className="text-gray-500 text-sm mb-6">Thank you for your generous donation, {donation.name}!</p>
+          <p className="text-gray-500 text-sm mb-6">
+            Thank you for your generous donation{donation.name && donation.name !== "Anonymous" ? `, ${donation.name}` : ""}!
+          </p>
 
+          {/* Donation details */}
           <div className="bg-green-50 rounded-xl p-4 mb-6 text-left space-y-3">
             <div className="flex justify-between">
               <span className="text-sm text-gray-500">Amount</span>
@@ -123,9 +135,9 @@ function StatusContent() {
               </div>
             )}
             {donation.transactionId && (
-              <div className="flex justify-between">
+              <div className="flex justify-between items-center">
                 <span className="text-sm text-gray-500">Transaction ID</span>
-                <span className="text-xs font-mono text-gray-600">{donation.transactionId}</span>
+                <span className="text-xs font-mono text-gray-600 break-all ml-2">{donation.transactionId}</span>
               </div>
             )}
             <div className="flex justify-between">
@@ -138,28 +150,65 @@ function StatusContent() {
                 })}
               </span>
             </div>
+            <div className="flex justify-between">
+              <span className="text-sm text-gray-500">Payment</span>
+              <span className="text-sm text-gray-700 capitalize">{donation.paymentMethod}</span>
+            </div>
           </div>
 
           <p className="text-xs text-gray-400 mb-6">
             You will receive a video showing the impact of your donation within 24 hours.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3">
-            <Link href="/videos" className="flex-1">
-              <Button variant="default" className="w-full">View Impact Videos</Button>
-            </Link>
-            <Link href="/" className="flex-1">
-              <Button variant="ghost" className="w-full">
-                <Home className="mr-2 h-4 w-4" /> Go Home
-              </Button>
-            </Link>
-          </div>
+          {/* Logged in user → Go to Profile */}
+          {isLoggedIn ? (
+            <div className="flex flex-col gap-3">
+              <Link href="/profile">
+                <Button variant="default" className="w-full">
+                  <User className="mr-2 h-4 w-4" /> View My Donations
+                </Button>
+              </Link>
+              <Link href="/videos">
+                <Button variant="ghost" className="w-full">View Impact Videos</Button>
+              </Link>
+            </div>
+          ) : (
+            /* Not logged in → Register prompt */
+            <div className="space-y-4">
+              <div className="bg-gold/10 rounded-xl p-4 border border-gold/20">
+                <p className="text-sm font-semibold text-gray-900 mb-1">Create an account to track your donations</p>
+                <p className="text-xs text-gray-500">
+                  Register with <strong>{donation.email || "your email"}</strong> to see all your donations, get video proof updates, and track your impact.
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link
+                  href={`/register${donation.email ? `?email=${encodeURIComponent(donation.email)}` : ""}`}
+                  className="flex-1"
+                >
+                  <Button variant="default" className="w-full">
+                    <UserPlus className="mr-2 h-4 w-4" /> Create Account
+                  </Button>
+                </Link>
+                <Link href="/login" className="flex-1">
+                  <Button variant="secondary" className="w-full">
+                    Already have account? Login
+                  </Button>
+                </Link>
+              </div>
+              <Link href="/">
+                <Button variant="ghost" className="w-full">
+                  <Home className="mr-2 h-4 w-4" /> Go Home
+                </Button>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     );
   }
 
-  // Failed
+  // ─── FAILED ───
   if (donation.paymentStatus === "failed") {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-10">
@@ -193,7 +242,9 @@ function StatusContent() {
     );
   }
 
-  // Pending
+  // ─── PENDING (UPI payments wait for admin, PhonePe auto-checks) ───
+  const isUPI = donation.paymentMethod === "upi";
+
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-10">
       <div className="bg-white rounded-2xl p-6 sm:p-8 max-w-md w-full text-center border border-yellow-100 shadow-sm">
@@ -202,13 +253,33 @@ function StatusContent() {
         </div>
         <h2 className="text-2xl font-bold text-gray-900 mb-1">Payment Pending</h2>
         <p className="text-gray-500 text-sm mb-6">
-          Your payment of {formatCurrency(donation.amount)} is being verified. This usually takes a few moments.
+          Your donation of {formatCurrency(donation.amount)} is being verified.
         </p>
 
         <div className="bg-yellow-50 rounded-xl p-4 mb-6">
           <p className="text-sm text-yellow-700">
-            If you completed the payment, please wait a moment. The status will update automatically.
+            {isUPI
+              ? "Your UPI payment will be manually verified by our team. You'll receive an email once confirmed."
+              : "If you completed the payment, it will be verified automatically in a few moments."}
           </p>
+        </div>
+
+        {/* Donation details */}
+        <div className="bg-gray-50 rounded-xl p-4 mb-6 text-left space-y-2">
+          <div className="flex justify-between">
+            <span className="text-sm text-gray-500">Amount</span>
+            <span className="text-sm font-bold text-gray-700">{formatCurrency(donation.amount)}</span>
+          </div>
+          {donation.category && (
+            <div className="flex justify-between">
+              <span className="text-sm text-gray-500">Category</span>
+              <span className="text-sm text-gray-700">{donation.category.name}</span>
+            </div>
+          )}
+          <div className="flex justify-between">
+            <span className="text-sm text-gray-500">Payment via</span>
+            <span className="text-sm text-gray-700 capitalize">{donation.paymentMethod}</span>
+          </div>
         </div>
 
         <div className="flex flex-col sm:flex-row gap-3">

@@ -1,9 +1,9 @@
-export const UPI_ID = "7737872585@ptaxis";
+export const UPI_ID = "7340539497@kotak811";
 export const SITE_NAME = "VoiceForHelp";
 export const SITE_TAGLINE = "Be The Voice, Be The Change";
 export const SITE_DESCRIPTION =
   "VoiceForHelp - Transparent donation platform. Donate for cow feeding, animal care, and social welfare. See your donation impact through daily video proof.";
-export const SITE_URL = "https://voiceforhelp.org";
+export const SITE_URL = "https://www.voiceforhelp.com";
 export const SITE_KEYWORDS = [
   "donate for cows",
   "animal donation India",
