@@ -1,20 +1,55 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { PawPrint, Milk, GraduationCap, HeartPulse, Utensils, Siren, Leaf, ArrowRight } from "lucide-react";
+import {
+  PawPrint, Milk, GraduationCap, HeartPulse, Utensils, Siren, Leaf,
+  ArrowRight, type LucideIcon, Loader2,
+} from "lucide-react";
+import { categoryService } from "@/services/categoryService";
+import type { Category } from "@/types";
 
-const categories = [
-  { icon: Utensils,      label: "Food Distribution", desc: "Daily meals for the hungry.",              color: "text-amber-600",  bg: "bg-amber-50",  border: "hover:border-amber-300", slug: "food" },
-  { icon: PawPrint,      label: "Animal Welfare",    desc: "Care for injured street animals.",         color: "text-orange-600", bg: "bg-orange-50", border: "hover:border-orange-300", slug: "animal" },
-  { icon: Milk,          label: "Cow Protection",    desc: "Shelter and feed for cows.",               color: "text-yellow-600", bg: "bg-yellow-50", border: "hover:border-yellow-300", slug: "cow" },
-  { icon: GraduationCap, label: "Child Welfare",     desc: "Education for underprivileged children.",  color: "text-blue-600",   bg: "bg-blue-50",   border: "hover:border-blue-300",  slug: "child" },
-  { icon: HeartPulse,    label: "Medical Help",      desc: "Healthcare for those who need it.",        color: "text-rose-600",   bg: "bg-rose-50",   border: "hover:border-rose-300",  slug: "medical" },
-  { icon: Siren,         label: "Emergency Help",    desc: "Rapid relief in times of crisis.",         color: "text-red-600",    bg: "bg-red-50",    border: "hover:border-red-300",   slug: "emergency" },
-  { icon: Leaf,          label: "Plantation",        desc: "Tree planting for a greener India.",       color: "text-green-600",  bg: "bg-green-50",  border: "hover:border-green-300", slug: "plant" },
-];
+const iconMap: Record<string, LucideIcon> = {
+  Utensils, PawPrint, Milk, GraduationCap, HeartPulse, Siren, Leaf,
+};
+
+const colorMap: Record<string, { text: string; bg: string; border: string }> = {
+  amber:  { text: "text-amber-600",  bg: "bg-amber-50",  border: "hover:border-amber-300" },
+  orange: { text: "text-orange-600", bg: "bg-orange-50", border: "hover:border-orange-300" },
+  yellow: { text: "text-yellow-600", bg: "bg-yellow-50", border: "hover:border-yellow-300" },
+  blue:   { text: "text-blue-600",   bg: "bg-blue-50",   border: "hover:border-blue-300" },
+  rose:   { text: "text-rose-600",   bg: "bg-rose-50",   border: "hover:border-rose-300" },
+  red:    { text: "text-red-600",    bg: "bg-red-50",    border: "hover:border-red-300" },
+  green:  { text: "text-green-600",  bg: "bg-green-50",  border: "hover:border-green-300" },
+};
+
+const defaultColor = { text: "text-gray-600", bg: "bg-gray-50", border: "hover:border-gray-300" };
 
 export default function DonationCategories() {
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    categoryService
+      .getCategories()
+      .then((res) => setCategories(res.categories))
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="py-14 sm:py-16 md:py-20 bg-white border-t border-gray-100">
+        <div className="flex justify-center items-center py-20">
+          <Loader2 className="h-8 w-8 animate-spin text-gold" />
+        </div>
+      </section>
+    );
+  }
+
+  if (categories.length === 0) return null;
+
   return (
     <section className="py-14 sm:py-16 md:py-20 bg-white border-t border-gray-100">
       <div className="container mx-auto px-4 sm:px-6">
@@ -31,31 +66,36 @@ export default function DonationCategories() {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-3 sm:gap-4 max-w-6xl mx-auto">
-          {categories.map((cat, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: i * 0.07 }}
-              viewport={{ once: true }}
-            >
-              <Link
-                href={`/donate?category=${cat.slug}`}
-                className={`flex flex-col items-center text-center gap-3 p-4 sm:p-5 rounded-2xl border border-gray-100 bg-white hover:shadow-md ${cat.border} transition-all duration-300 hover:-translate-y-1 group block`}
+          {categories.map((cat, i) => {
+            const Icon = iconMap[cat.icon || ""] || Utensils;
+            const colors = colorMap[cat.color || ""] || defaultColor;
+
+            return (
+              <motion.div
+                key={cat._id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: i * 0.07 }}
+                viewport={{ once: true }}
               >
-                <div className={`w-14 h-14 rounded-2xl ${cat.bg} flex items-center justify-center`}>
-                  <cat.icon className={`h-7 w-7 ${cat.color}`} />
-                </div>
-                <div>
-                  <h3 className="font-bold text-gray-900 text-xs sm:text-sm leading-tight mb-1">{cat.label}</h3>
-                  <p className="text-[10px] sm:text-xs text-gray-500 leading-snug line-clamp-2">{cat.desc}</p>
-                </div>
-                <span className={`text-[10px] font-semibold ${cat.color} flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity`}>
-                  Donate <ArrowRight className="h-2.5 w-2.5" />
-                </span>
-              </Link>
-            </motion.div>
-          ))}
+                <Link
+                  href={`/donate?category=${cat.slug}`}
+                  className={`flex flex-col items-center text-center gap-3 p-4 sm:p-5 rounded-2xl border border-gray-100 bg-white hover:shadow-md ${colors.border} transition-all duration-300 hover:-translate-y-1 group block`}
+                >
+                  <div className={`w-14 h-14 rounded-2xl ${colors.bg} flex items-center justify-center`}>
+                    <Icon className={`h-7 w-7 ${colors.text}`} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-gray-900 text-xs sm:text-sm leading-tight mb-1">{cat.name}</h3>
+                    <p className="text-[10px] sm:text-xs text-gray-500 leading-snug line-clamp-2">{cat.description}</p>
+                  </div>
+                  <span className={`text-[10px] font-semibold ${colors.text} flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity`}>
+                    Donate <ArrowRight className="h-2.5 w-2.5" />
+                  </span>
+                </Link>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

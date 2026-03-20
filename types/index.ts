@@ -49,9 +49,12 @@ export interface VideoImpact {
 export interface Category {
   _id: string;
   name: string;
+  slug: string;
   description: string;
   icon?: string;
   image?: string;
+  color?: string;
+  bgColor?: string;
   status: "active" | "inactive";
   targetAmount: number;
   raisedAmount: number;
