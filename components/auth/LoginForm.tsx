@@ -24,14 +24,9 @@ export default function LoginForm() {
     }
     setLoading(true);
     try {
-      const result = await login({ email, password });
-      if (result.requiresOTP) {
-        toast("Email not verified. Please check your email for OTP.", { icon: "📧" });
-        router.push(`/verify-email?email=${encodeURIComponent(result.email || email)}`);
-      } else {
-        toast.success("Welcome back!");
-        router.push("/profile");
-      }
+      await login({ email, password });
+      toast.success("Welcome back!");
+      router.push("/profile");
     } catch (err: any) {
       toast.error(err.response?.data?.message || "Login failed");
     } finally {
