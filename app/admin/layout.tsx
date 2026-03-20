@@ -3,13 +3,14 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LayoutDashboard, Users, Video, FolderOpen, HandHeart, Settings, LogOut, Menu, X, ChevronLeft } from "lucide-react";
+import { LayoutDashboard, Users, UserCog, Video, FolderOpen, HandHeart, Settings, LogOut, Menu, X, ChevronLeft } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import Logo from "@/components/common/Logo";
 import { cn } from "@/lib/utils";
 
 const sidebarLinks = [
   { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
+  { label: "Users", href: "/admin/users", icon: UserCog },
   { label: "Donors", href: "/admin/donors", icon: Users },
   { label: "Videos", href: "/admin/videos", icon: Video },
   { label: "Categories", href: "/admin/categories", icon: FolderOpen },

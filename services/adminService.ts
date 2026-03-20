@@ -1,5 +1,5 @@
 import api from "@/lib/api";
-import type { DashboardStats, Donation, VideoImpact, Category, Volunteer } from "@/types";
+import type { DashboardStats, Donation, VideoImpact, Category, Volunteer, User } from "@/types";
 
 export const adminService = {
   getDashboardStats: async () => {
@@ -90,6 +90,34 @@ export const adminService = {
 
   updateVolunteerStatus: async (id: string, status: string) => {
     const res = await api.put(`/volunteers/${id}/status`, { status });
+    return res.data;
+  },
+
+  // Users
+  getUsers: async (page = 1, search = "") => {
+    const res = await api.get<{ success: boolean; users: User[]; total: number; page: number; pages: number }>(
+      `/users?page=${page}&search=${encodeURIComponent(search)}`
+    );
+    return res.data;
+  },
+
+  getUserById: async (id: string) => {
+    const res = await api.get<{ success: boolean; user: User }>(`/users/${id}`);
+    return res.data;
+  },
+
+  createUser: async (data: { name: string; email: string; phone: string; password: string; role: string }) => {
+    const res = await api.post<{ success: boolean; user: User }>("/users", data);
+    return res.data;
+  },
+
+  updateUser: async (id: string, data: Partial<User>) => {
+    const res = await api.put<{ success: boolean; user: User }>(`/users/${id}`, data);
+    return res.data;
+  },
+
+  deleteUser: async (id: string) => {
+    const res = await api.delete(`/users/${id}`);
     return res.data;
   },
 
