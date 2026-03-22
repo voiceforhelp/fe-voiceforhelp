@@ -4,7 +4,7 @@ import { ShieldCheck, Video, BadgeCheck, MapPin, Users } from "lucide-react";
 
 const badges = [
   { icon: BadgeCheck, text: "Registered NGO", sub: "Govt. of Rajasthan" },
-  { icon: ShieldCheck, text: "100% Transparent", sub: "Every Rupee Tracked" },
+  { icon: ShieldCheck, text: "100% Transparency", sub: "Every Rupee Tracked" },
   { icon: Video,       text: "Video Proof Daily", sub: "Impact Documented" },
   { icon: Users,       text: "1,000+ Donors",    sub: "Trusted by Many" },
   { icon: MapPin,      text: "Rajasthan, India",  sub: "Serving Across India" },

@@ -40,7 +40,7 @@ export default function VolunteerPage() {
 
   const benefits = [
     { icon: HandHeart, title: "Make Direct Impact", desc: "Work in the field and see the change firsthand" },
-    { icon: Calendar, title: "Flexible Schedule", desc: "Choose weekends, festivals, or specific dates" },
+    { icon: Calendar, title: "Flexible Schedule", desc: "Choose weekends, festivals or specific dates" },
     { icon: MapPin, title: "Local Community", desc: "Serve in your own city and neighborhood" },
     { icon: Clock, title: "Any Time Works", desc: "Even a few hours can make a big difference" },
   ];

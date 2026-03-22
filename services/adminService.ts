@@ -1,5 +1,5 @@
 import api from "@/lib/api";
-import type { DashboardStats, Donation, VideoImpact, Category, Volunteer, User } from "@/types";
+import type { DashboardStats, Donation, VideoImpact, Category, Volunteer, User, Blog, AIGeneratedContent, AIVideoContent, DonorListItem } from "@/types";
 
 export const adminService = {
   getDashboardStats: async () => {
@@ -41,11 +41,18 @@ export const adminService = {
     return res.data;
   },
 
+  getDonorsList: async (days = 7, search = "") => {
+    const params = new URLSearchParams({ days: String(days) });
+    if (search) params.append("search", search);
+    const res = await api.get<{ success: boolean; donors: DonorListItem[] }>(
+      `/donations/donors-list?${params.toString()}`
+    );
+    return res.data;
+  },
+
   // Videos
-  uploadVideo: async (formData: FormData) => {
-    const res = await api.post<{ success: boolean; video: VideoImpact }>("/videos", formData, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
+  uploadVideo: async (data: Record<string, unknown>) => {
+    const res = await api.post<{ success: boolean; video: VideoImpact }>("/videos", data);
     return res.data;
   },
 
@@ -118,6 +125,53 @@ export const adminService = {
 
   deleteUser: async (id: string) => {
     const res = await api.delete(`/users/${id}`);
+    return res.data;
+  },
+
+  // AI Content Generation
+  generateAIContent: async (title: string) => {
+    const res = await api.post<{ success: boolean; data: AIGeneratedContent; cached: boolean }>("/ai/generate-content", { title });
+    return res.data;
+  },
+
+  regenerateAIContent: async (title: string) => {
+    const res = await api.post<{ success: boolean; data: AIGeneratedContent; cached: boolean }>("/ai/regenerate-content", { title });
+    return res.data;
+  },
+
+  generateAIVideoContent: async (title: string) => {
+    const res = await api.post<{ success: boolean; data: AIVideoContent; cached: boolean }>("/ai/generate-video-content", { title });
+    return res.data;
+  },
+
+  // Blogs
+  getAdminBlogs: async (page = 1, search = "", status = "") => {
+    const params = new URLSearchParams({ page: String(page) });
+    if (search) params.append("search", search);
+    if (status) params.append("status", status);
+    const res = await api.get<{ success: boolean; blogs: Blog[]; total: number; page: number; pages: number }>(
+      `/blogs/admin/all?${params.toString()}`
+    );
+    return res.data;
+  },
+
+  getAdminBlogById: async (id: string) => {
+    const res = await api.get<{ success: boolean; blog: Blog }>(`/blogs/admin/${id}`);
+    return res.data;
+  },
+
+  createBlog: async (data: Partial<Blog>) => {
+    const res = await api.post<{ success: boolean; blog: Blog }>("/blogs", data);
+    return res.data;
+  },
+
+  updateBlog: async (id: string, data: Partial<Blog>) => {
+    const res = await api.put<{ success: boolean; blog: Blog }>(`/blogs/${id}`, data);
+    return res.data;
+  },
+
+  deleteBlog: async (id: string) => {
+    const res = await api.delete(`/blogs/${id}`);
     return res.data;
   },
 

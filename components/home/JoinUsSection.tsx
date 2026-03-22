@@ -10,7 +10,7 @@ const options = [
     icon: HandHeart,
     tag: "Volunteer",
     title: "Give Your Time, Change Lives",
-    desc: "Join our ground team in Rajasthan. Help distribute food, care for animals, plant trees, and support children — every weekend or whenever you can.",
+    desc: "Join our ground team in Rajasthan. Help distribute food, care for animals, plant trees and support children — every weekend or whenever you can.",
     features: ["No prior experience needed", "Field training provided", "Certificate of appreciation", "Orientation within 48 hrs"],
     cta: "Become a Volunteer",
     href: "/volunteer",

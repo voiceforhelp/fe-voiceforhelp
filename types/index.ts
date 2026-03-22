@@ -28,6 +28,12 @@ export interface Donation {
   createdAt: string;
 }
 
+export interface SocialLink {
+  url: string;
+  title?: string;
+  thumbnail?: string;
+}
+
 export interface VideoImpact {
   _id: string;
   title: string;
@@ -36,14 +42,37 @@ export interface VideoImpact {
   thumbnailUrl?: string;
   category?: Category;
   donorGroupDate: string;
+  linkedDonors?: LinkedDonor[];
+  tags?: string[];
   socialLinks: {
-    instagram?: string;
-    facebook?: string;
-    youtube?: string;
+    instagram?: SocialLink[];
+    youtube?: SocialLink[];
+    facebook?: SocialLink[];
   };
   status: "processing" | "published" | "failed";
   views: number;
   createdAt: string;
+}
+
+export interface LinkedDonor {
+  _id: string;
+  name: string;
+  email?: string;
+  amount: number;
+  category?: Category;
+  donationDate?: string;
+  isAnonymous?: boolean;
+}
+
+export interface DonorListItem {
+  _id: string;
+  name: string;
+  email?: string;
+  phone?: string;
+  amount: number;
+  category?: Category;
+  donationDate: string;
+  donationGroupDate: string;
 }
 
 export interface Category {
@@ -159,4 +188,36 @@ export interface ResetPasswordForm {
   email: string;
   resetToken: string;
   newPassword: string;
+}
+
+export interface Blog {
+  _id: string;
+  title: string;
+  slug: string;
+  content: string;
+  shortDescription: string;
+  image: string;
+  author: { _id: string; name: string; avatar?: string };
+  status: "draft" | "published";
+  socialContent?: {
+    youtube?: { title: string; description: string; tags: string[] };
+    instagram?: { caption: string; hashtags: string[] };
+    facebook?: string;
+  };
+  views: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface AIGeneratedContent {
+  blogContent: string;
+  shortDescription: string;
+  youtube: { title: string; description: string; tags: string[] };
+  instagram: { caption: string; hashtags: string[] };
+  facebook: string;
+}
+
+export interface AIVideoContent {
+  description: string;
+  tags: string[];
 }

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: "%s | Voice For Help Trust",
   },
   description: "Voice For Help Trust — A registered NGO from Rajasthan, India. Donate for food distribution, animal welfare, cow protection, child welfare, medical assistance & more. Every donation is proven through daily video proof.",
-  keywords: ["Voice For Help Trust", "NGO Rajasthan", "donate India", "cow protection", "animal welfare", "food distribution", "transparent NGO", "video proof donation", "charity India", "help needy"],
+  keywords: ["Voice For Help Trust", "NGO Rajasthan", "donate India", "cow protection", "animal welfare", "food distribution", "transparency NGO", "video proof donation", "charity India", "help needy"],
   authors: [{ name: "Voice For Help Trust" }],
   icons: { icon: "/VoiceForHelpLogo.ico", apple: "/VoiceForHelpLogo.jpeg" },
   alternates: {
@@ -52,7 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@type": "NGO",
               name: "Voice For Help Trust",
               alternateName: "VoiceForHelp",
-              description: "A registered NGO from Rajasthan, India providing food distribution, animal welfare, cow protection, child welfare and medical assistance. 100% transparent with video-verified impact.",
+              description: "A registered NGO from Rajasthan, India providing food distribution, animal welfare, cow protection, child welfare and medical assistance. 100% transparency with video-verified impact.",
               url: "https://www.voiceforhelp.com",
               logo: {
                 "@type": "ImageObject",

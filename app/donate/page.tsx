@@ -11,7 +11,7 @@ function DonateContent() {
   const category = params.get("category") || undefined;
 
   const benefits = [
-    { icon: Shield, title: "100% Transparent", desc: "Every donation tracked with video proof" },
+    { icon: Shield, title: "100% Transparency", desc: "Every donation tracked with video proof" },
     { icon: Video, title: "Daily Video Updates", desc: "See your impact the very next day" },
     { icon: Clock, title: "Quick & Easy", desc: "Donate via UPI in under 2 minutes" },
   ];
@@ -100,7 +100,7 @@ export default function DonatePage() {
     <Suspense fallback={
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="w-10 h-10 border-2 border-gold border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+          <div className="w-10 h-10 border-2 border-gold border-t-transparency rounded-full animate-spin mx-auto mb-3" />
           <p className="text-gray-500 text-sm">Loading donation form...</p>
         </div>
       </div>

@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import api from "@/lib/api";
 
 export default function HeroSection() {
-  const [heroTitle, setHeroTitle] = useState("One help , one new beginning.");
+  const [heroTitle, setHeroTitle] = useState("One help , One new beginning.");
   const [heroSubtitle, setHeroSubtitle] = useState("Your Support Can Make a Difference");
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function HeroSection() {
         />
         {/* Gradient overlays for text readability */}
         <div className="absolute inset-0 bg-linear-to-r from-black/50 via-black/20 to-black/65" />
-        <div className="absolute inset-0 bg-linear-to-t from-black/55 via-transparent to-black/15" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/55 via-transparency to-black/15" />
 
         {/* Content overlay */}
         <div className="absolute inset-0 flex items-center">
@@ -65,7 +65,7 @@ export default function HeroSection() {
                 >
                   <Heart className="h-3 w-3 text-gold" fill="currentColor" />
                   <span className="text-gold text-xs font-semibold uppercase tracking-wider">
-                    100% Transparent NGO
+                    100% Transparency NGO
                   </span>
                 </motion.div>
 
@@ -114,7 +114,7 @@ export default function HeroSection() {
                 >
                   {[
                     { value: "1000+", label: "Donors" },
-                    { value: "100%", label: "Transparent" },
+                    { value: "100%", label: "Transparency" },
                     { value: "Daily", label: "Video Proof" },
                   ].map((stat) => (
                     <div key={stat.label} className="text-center">

@@ -3,14 +3,14 @@ export const UPI_ID = "7340539497@kotak811";
 export const SITE_NAME = "Vageesh Sharma";
 export const SITE_TAGLINE = "Be The Voice, Be The Change";
 export const SITE_DESCRIPTION =
-  "VoiceForHelp - Transparent donation platform. Donate for cow feeding, animal care, and social welfare. See your donation impact through daily video proof.";
+  "VoiceForHelp - Transparency donation platform. Donate for cow feeding, animal care and social welfare. See your donation impact through daily video proof.";
 export const SITE_URL = "https://www.voiceforhelp.com";
 export const SITE_KEYWORDS = [
   "donate for cows",
   "animal donation India",
   "cow feeding donation",
   "NGO donation India",
-  "transparent donation",
+  "transparency donation",
   "animal care donation",
   "feed the poor India",
   "plant a tree donation",
@@ -25,6 +25,7 @@ export const NAV_LINKS = [
   { label: "How You Can Help", href: "/help" },
   { label: "Donate Now", href: "/donate" },
   { label: "Videos", href: "/videos" },
+  { label: "Blog", href: "/blogs" },
   { label: "About Us", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];

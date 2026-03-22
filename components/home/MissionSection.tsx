@@ -5,12 +5,12 @@ import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import api from "@/lib/api";
 
-const pillars = ["100% Transparent", "Video-Verified Impact", "Community-Driven"];
+const pillars = ["100% Transparency", "Video-Verified Impact", "Community-Driven"];
 
 export default function MissionSection() {
   const [missionImage, setMissionImage] = useState("/Mission/OurMission.jpeg");
   const [missionText, setMissionText] = useState(
-    "Our mission at Voice For Help Trust is to provide timely support, medical care, and nourishment to the needy, helpless animals, and cows. We are committed to ensuring transparency and honesty in every act of service"
+    "Our mission at Voice For Help Trust is to provide timely support, medical care and nourishment to the needy, helpless animals and cows. We are committed to ensuring transparency and honesty in every act of service"
   );
   const [imgError, setImgError] = useState(false);
 
@@ -88,7 +88,7 @@ export default function MissionSection() {
               {/* Floating badge — inside image container, always visible */}
               <div className="absolute bottom-3 left-3 bg-gold text-black rounded-lg px-3 py-2 shadow-lg z-10">
                 <p className="text-xs sm:text-sm font-extrabold leading-none">100%</p>
-                <p className="text-[10px] sm:text-xs font-semibold">Transparent</p>
+                <p className="text-[10px] sm:text-xs font-semibold">Transparency</p>
               </div>
             </div>
           </motion.div>

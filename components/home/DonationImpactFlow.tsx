@@ -82,7 +82,7 @@ export default function DonationImpactFlow() {
         {/* Mobile: vertical flow with connecting line */}
         <div className="md:hidden relative max-w-sm mx-auto">
           {/* Vertical line */}
-          <div className="absolute left-7 top-0 bottom-0 w-0.5 bg-linear-to-b from-gold/30 via-gold/20 to-transparent" />
+          <div className="absolute left-7 top-0 bottom-0 w-0.5 bg-linear-to-b from-gold/30 via-gold/20 to-transparency" />
 
           <div className="space-y-3">
             {steps.map((step, i) => (

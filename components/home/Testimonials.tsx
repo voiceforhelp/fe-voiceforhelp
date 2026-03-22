@@ -11,7 +11,7 @@ const testimonials = [
     initials: "RS",
     color: "bg-blue-500",
     stars: 5,
-    text: "I donated ₹1,000 for food distribution and received a video the very next day showing meals being served to nearly 50 people. This is the most transparent NGO I have ever donated to. Completely trustworthy.",
+    text: "I donated ₹1,000 for food distribution and received a video the very next day showing meals being served to nearly 50 people. This is the most transparency NGO I have ever donated to. Completely trustworthy.",
   },
   {
     name: "Priya Mehta",
@@ -29,7 +29,7 @@ const testimonials = [
     initials: "AP",
     color: "bg-green-600",
     stars: 5,
-    text: "I have been a monthly donor for 6 months now. Every single month I receive a video proof. The team is dedicated, the founder is passionate, and every rupee genuinely reaches those who need it.",
+    text: "I have been a monthly donor for 6 months now. Every single month I receive a video proof. The team is dedicated, the founder is passionate and every rupee genuinely reaches those who need it.",
   },
 ];
 

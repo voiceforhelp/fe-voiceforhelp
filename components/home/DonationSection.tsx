@@ -23,12 +23,12 @@ export default function DonationSection() {
         >
           {/* Ornamental heading */}
           <div className="flex items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-10">
-            <div className="h-px flex-1 max-w-15 sm:max-w-25 bg-linear-to-r from-transparent to-gold/50" />
+            <div className="h-px flex-1 max-w-15 sm:max-w-25 bg-linear-to-r from-transparency to-gold/50" />
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 px-2">
               Make a Donation,{" "}
               <span className="italic text-gold-gradient">Change a Life</span>
             </h2>
-            <div className="h-px flex-1 max-w-15 sm:max-w-25 bg-linear-to-l from-transparent to-gold/50" />
+            <div className="h-px flex-1 max-w-15 sm:max-w-25 bg-linear-to-l from-transparency to-gold/50" />
           </div>
 
           {/* Amount cards - grid layout for clean alignment */}

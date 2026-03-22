@@ -54,14 +54,14 @@ a,
 .bg-texture {
   background-color: #ffffff;
   background-image:
-    radial-gradient(ellipse at 15% 40%, rgba(212,168,67,0.08) 0%, transparent 55%),
-    radial-gradient(ellipse at 85% 20%, rgba(212,168,67,0.05) 0%, transparent 50%);
+    radial-gradient(ellipse at 15% 40%, rgba(212,168,67,0.08) 0%, transparency 55%),
+    radial-gradient(ellipse at 85% 20%, rgba(212,168,67,0.05) 0%, transparency 50%);
 }
 
 .bg-texture-light {
   background-color: #f9fafb;
   background-image:
-    radial-gradient(ellipse at 70% 60%, rgba(212,168,67,0.05) 0%, transparent 55%);
+    radial-gradient(ellipse at 70% 60%, rgba(212,168,67,0.05) 0%, transparency 55%);
 }
 
 .bg-cream {
@@ -79,14 +79,14 @@ a,
   content: '';
   flex: 1;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(212,168,67,0.4), transparent);
+  background: linear-gradient(90deg, transparency, rgba(212,168,67,0.4), transparency);
 }
 
 /* ─── Golden text gradient ────────────────────────── */
 .text-gold-gradient {
   background: linear-gradient(135deg, #e8c860, #d4a843, #b8922e);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparency;
   background-clip: text;
 }
 

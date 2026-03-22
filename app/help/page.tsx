@@ -20,7 +20,7 @@ const ways = [
   {
     icon: HandHeart,
     title: "Volunteer",
-    desc: "Join our field team. Help distribute food, care for animals, and plant trees.",
+    desc: "Join our field team. Help distribute food, care for animals and plant trees.",
     color: "bg-red-500/15 text-red-400",
     borderHover: "hover:border-red-500/30",
     link: "/volunteer",
@@ -50,7 +50,7 @@ const ways = [
 ];
 
 const faqs = [
-  { q: "How is my donation used?", a: "100% of your donation goes to the chosen category. Our team uses it in the field the next day, and you receive a video proof of the impact." },
+  { q: "How is my donation used?", a: "100% of your donation goes to the chosen category. Our team uses it in the field the next day and you receive a video proof of the impact." },
   { q: "How do I get the impact video?", a: "After your donation, the next day's field work is recorded. The video is uploaded and linked to your profile automatically." },
   { q: "Can I donate anonymously?", a: "Yes! Use our Fast Donate feature to make anonymous donations with just your phone number." },
   { q: "Is my donation tax deductible?", a: "We are in the process of obtaining 80G certification. Stay tuned for updates." },

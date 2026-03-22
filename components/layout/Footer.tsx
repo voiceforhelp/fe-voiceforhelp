@@ -54,7 +54,7 @@ export default function Footer() {
                 <Logo variant="light" size="sm" />
               </div>
               <p className="text-sm leading-relaxed mb-5 max-w-xs">
-                Transparent donation platform where every rupee is accounted for through daily video proof of impact.
+                Transparency donation platform where every rupee is accounted for through daily video proof of impact.
               </p>
               <div className="flex gap-2.5">
                 {[

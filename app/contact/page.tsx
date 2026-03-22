@@ -39,7 +39,7 @@ export default function ContactPage() {
             Contact Us
           </h1>
           <p className="text-gray-500 text-base sm:text-lg max-w-xl mx-auto">
-            We&apos;d love to hear from you — questions, partnerships, or just to say hello.
+            We&apos;d love to hear from you — questions, partnerships or just to say hello.
           </p>
         </div>
       </section>

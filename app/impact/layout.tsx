@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Our Impact",
-  description: "See the real impact of Voice For Help Trust — lives changed, animals saved, meals served. Transparent impact data with video-verified proof from Rajasthan, India.",
-  keywords: ["NGO impact India", "Voice For Help impact", "charity impact Rajasthan", "donation impact proof", "transparent NGO India"],
+  description: "See the real impact of Voice For Help Trust — lives changed, animals saved, meals served. Transparency impact data with video-verified proof from Rajasthan, India.",
+  keywords: ["NGO impact India", "Voice For Help impact", "charity impact Rajasthan", "donation impact proof", "transparency NGO India"],
   alternates: { canonical: "https://www.voiceforhelp.com/impact" },
   openGraph: {
     title: "Our Impact | Voice For Help Trust",

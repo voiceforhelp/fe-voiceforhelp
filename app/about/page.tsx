@@ -10,13 +10,13 @@ const values = [
   { icon: Heart,       title: "Compassion First",  desc: "Every living being deserves dignity and care. Compassion drives every action we take in the field." },
   { icon: ShieldCheck, title: "Full Transparency", desc: "Every rupee is documented. We share video proof of all field work — no hidden fees, no false promises." },
   { icon: Video,       title: "Video-Verified",    desc: "We were among the first NGOs in Rajasthan to implement daily video documentation of donation impacts." },
-  { icon: Handshake,   title: "Community-Driven",  desc: "We work alongside local communities, volunteers, and field teams — not for them, but with them." },
+  { icon: Handshake,   title: "Community-Driven",  desc: "We work alongside local communities, volunteers and field teams — not for them, but with them." },
 ];
 
 const milestones = [
-  { year: "2023", title: "Founded in Rajasthan",   desc: "Voice For Help Trust was established with one mission — create a 100% transparent donation platform where every rupee is accounted for." },
+  { year: "2023", title: "Founded in Rajasthan",   desc: "Voice For Help Trust was established with one mission — create a 100% transparency donation platform where every rupee is accounted for." },
   { year: "2023", title: "First 100 Donations",    desc: "Within months of launch, we crossed 100 donations and began documenting daily impact through video proof — a practice that continues today." },
-  { year: "2024", title: "Expanded to 7 Causes",   desc: "Grew from food distribution to 7 active causes: food, animal welfare, cow protection, child welfare, medical assistance, emergency help, and plantation." },
+  { year: "2024", title: "Expanded to 7 Causes",   desc: "Grew from food distribution to 7 active causes: food, animal welfare, cow protection, child welfare, medical assistance, emergency help and plantation." },
   { year: "2024", title: "500+ Donors Milestone",  desc: "Reached 500+ active donors across Rajasthan. Our video proof model gained recognition as a gold standard for NGO transparency." },
   { year: "2025", title: "1,000+ Lives Impacted",  desc: "Documented over 1,000 direct beneficiaries. Every single impact has a video to prove it." },
 ];
@@ -46,7 +46,7 @@ export default function AboutPage() {
               <CheckCircle2 className="h-3.5 w-3.5" /> Registered NGO
             </span>
             <span className="inline-flex items-center gap-1.5 bg-gold/10 border border-gold/25 text-amber-700 text-xs font-semibold px-3 py-1.5 rounded-full">
-              <ShieldCheck className="h-3.5 w-3.5" /> 100% Transparent
+              <ShieldCheck className="h-3.5 w-3.5" /> 100% Transparency
             </span>
             <span className="inline-flex items-center gap-1.5 bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold px-3 py-1.5 rounded-full">
               <MapPin className="h-3.5 w-3.5" /> Rajasthan, India
@@ -71,7 +71,7 @@ export default function AboutPage() {
               </div>
               <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3">Our Mission</h2>
               <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
-                To provide immediate and sustainable support to the underprivileged, abandoned animals, and cows of India — while maintaining complete financial transparency through daily video documentation of every donation's impact.
+                To provide immediate and sustainable support to the underprivileged, abandoned animals and cows of India — while maintaining complete financial transparency through daily video documentation of every donation's impact.
               </p>
             </motion.div>
 
@@ -87,7 +87,7 @@ export default function AboutPage() {
               </div>
               <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3">Our Vision</h2>
               <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
-                A future where no child goes to bed hungry, every injured animal receives care, and every donor trusts their money is creating real change — because they can see it themselves.
+                A future where no child goes to bed hungry, every injured animal receives care and every donor trusts their money is creating real change — because they can see it themselves.
               </p>
             </motion.div>
           </div>
@@ -147,7 +147,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 sm:px-6 text-center">
           <span className="inline-block text-gold text-xs sm:text-sm font-semibold uppercase tracking-widest mb-3">Our Work</span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-3">7 Causes, One Mission</h2>
-          <p className="text-gray-500 text-sm max-w-lg mx-auto mb-8">Every cause is supported with field teams, documented daily, and proven through video.</p>
+          <p className="text-gray-500 text-sm max-w-lg mx-auto mb-8">Every cause is supported with field teams, documented daily and proven through video.</p>
           <div className="flex flex-wrap items-center justify-center gap-3 max-w-2xl mx-auto">
             {causes.map((c, i) => (
               <span key={i} className="inline-flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-full px-4 py-2 text-sm font-medium text-gray-700 hover:border-gold/40 hover:bg-amber-50 transition-colors">
@@ -197,7 +197,7 @@ export default function AboutPage() {
           <Award className="h-10 w-10 text-gold mx-auto mb-4" />
           <h2 className="text-xl sm:text-2xl font-extrabold text-gray-900 mb-2">Want to Know More?</h2>
           <p className="text-gray-500 text-sm mb-6">
-            Reach out to us directly — we are happy to share registration documents, bank statements, and field reports.
+            Reach out to us directly — we are happy to share registration documents, bank statements and field reports.
           </p>
           <div className="flex flex-col xs:flex-row items-center justify-center gap-3">
             <a href="tel:+917737872585">

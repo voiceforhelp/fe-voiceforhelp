@@ -85,7 +85,7 @@ export default function AdminSettings() {
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Site Settings</h1>
-          <p className="text-sm text-gray-500 mt-1">Manage hero banner, mission section, and other site content</p>
+          <p className="text-sm text-gray-500 mt-1">Manage hero banner, mission section and other site content</p>
         </div>
         <Button onClick={handleSave} disabled={saving} className="flex items-center gap-2">
           {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : saved ? <Check className="h-4 w-4" /> : <Save className="h-4 w-4" />}

@@ -1,6 +1,6 @@
 # VoiceForHelp - Frontend
 
-Modern, SEO-optimized Next.js donation platform with transparent impact tracking.
+Modern, SEO-optimized Next.js donation platform with transparency impact tracking.
 
 ## Tech Stack
 

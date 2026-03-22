@@ -45,7 +45,7 @@ export default function VideoGrid({ videos }: VideoGridProps) {
                   <Badge variant="default" className="text-[10px] bg-gold/80 backdrop-blur-sm">{video.category.name}</Badge>
                 </div>
               )}
-              <div className="absolute bottom-0 inset-x-0 bg-linear-to-t from-black/70 to-transparent p-3 opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="absolute bottom-0 inset-x-0 bg-linear-to-t from-black/70 to-transparency p-3 opacity-0 group-hover:opacity-100 transition-opacity">
                 <p className="text-white text-xs font-medium line-clamp-2">{video.title}</p>
                 <div className="flex items-center gap-3 mt-1 text-white/70 text-[10px]">
                   <span className="flex items-center gap-1"><Calendar className="h-3 w-3" />{formatDate(video.createdAt)}</span>

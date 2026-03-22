@@ -72,7 +72,7 @@ function StatusContent() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
         <div className="text-center">
-          <div className="w-12 h-12 border-3 border-gold border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <div className="w-12 h-12 border-3 border-gold border-t-transparency rounded-full animate-spin mx-auto mb-4" />
           <h2 className="text-lg font-semibold text-gray-900 mb-1">Verifying Payment</h2>
           <p className="text-sm text-gray-500">Please wait while we confirm your payment...</p>
         </div>
@@ -178,7 +178,7 @@ function StatusContent() {
               <div className="bg-gold/10 rounded-xl p-4 border border-gold/20">
                 <p className="text-sm font-semibold text-gray-900 mb-1">Create an account to track your donations</p>
                 <p className="text-xs text-gray-500">
-                  Register with <strong>{donation.email || "your email"}</strong> to see all your donations, get video proof updates, and track your impact.
+                  Register with <strong>{donation.email || "your email"}</strong> to see all your donations, get video proof updates and track your impact.
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-3">
@@ -307,7 +307,7 @@ export default function DonationStatusPage() {
       fallback={
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="text-center">
-            <div className="w-10 h-10 border-2 border-gold border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+            <div className="w-10 h-10 border-2 border-gold border-t-transparency rounded-full animate-spin mx-auto mb-3" />
             <p className="text-gray-500 text-sm">Checking payment status...</p>
           </div>
         </div>

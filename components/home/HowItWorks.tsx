@@ -10,7 +10,7 @@ const steps = [
     num: "01",
     icon: HandCoins,
     title: "You Donate",
-    desc: "Choose a cause — food, animals, education, or emergency. Donate any amount. Every rupee matters.",
+    desc: "Choose a cause — Food, Animals, Education for Child or Emergency. Donate any amount. Every rupee matters.",
     color: "bg-amber-50 border-amber-100",
     iconColor: "text-amber-600",
     iconBg: "bg-amber-100",
@@ -19,7 +19,7 @@ const steps = [
     num: "02",
     icon: Clapperboard,
     title: "We Take Action",
-    desc: "Our ground team distributes food, provides care, or plants trees the very next day — recorded on video.",
+    desc: "Our ground team distributes food, provides care or plants trees the very next day — recorded on video.",
     color: "bg-blue-50 border-blue-100",
     iconColor: "text-blue-600",
     iconBg: "bg-blue-100",
@@ -48,7 +48,7 @@ export default function HowItWorks() {
             How Your Donation Works
           </h2>
           <p className="text-gray-500 text-sm sm:text-base max-w-xl mx-auto">
-            We've built the most transparent donation process in India — you see every rupee in action.
+            We've built the most transparency donation process in India — you will see every single rupee in action.
           </p>
         </div>
 

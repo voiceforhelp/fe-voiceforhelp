@@ -16,7 +16,7 @@ export default function CTABanner() {
         <div className="inline-flex items-center gap-2 bg-gold/15 border border-gold/25 rounded-full px-4 py-1.5 mb-6">
           <ShieldCheck className="h-4 w-4 text-gold" />
           <span className="text-gold text-xs font-semibold uppercase tracking-wider">
-            Video-Verified · 100% Transparent
+            Video-Verified · 100% Transparency
           </span>
         </div>
 

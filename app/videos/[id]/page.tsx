@@ -3,10 +3,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import { Calendar, Eye, ArrowLeft, Play } from "lucide-react";
+import { Calendar, Eye, ArrowLeft, Play, Tag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import ShareButtons from "@/components/common/ShareButtons";
+import DonorShowcase from "@/components/videos/DonorShowcase";
+import SocialCollection from "@/components/videos/SocialCollection";
 import { videoService } from "@/services/videoService";
 import { formatDate } from "@/lib/utils";
 import type { VideoImpact } from "@/types";
@@ -25,8 +27,31 @@ export default function VideoDetailPage() {
     }
   }, [params.id]);
 
-  if (loading) return <div className="py-20 text-center text-gray-400">Loading video...</div>;
-  if (!video) return <div className="py-20 text-center text-gray-400">Video not found</div>;
+  if (loading) {
+    return (
+      <section className="py-8 md:py-12 bg-texture">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="animate-pulse space-y-4">
+            <div className="h-6 bg-gray-700 rounded w-32" />
+            <div className="aspect-video bg-gray-800 rounded-2xl" />
+            <div className="h-8 bg-gray-700 rounded w-2/3" />
+            <div className="h-4 bg-gray-800 rounded w-full" />
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (!video) {
+    return (
+      <section className="py-20 bg-texture">
+        <div className="text-center">
+          <p className="text-gray-400 text-lg mb-4">Video not found</p>
+          <Link href="/videos" className="text-gold hover:underline">Back to Videos</Link>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-8 md:py-12 bg-texture">
@@ -35,13 +60,13 @@ export default function VideoDetailPage() {
           <ArrowLeft className="mr-1 h-4 w-4" /> Back to Videos
         </Link>
 
-        {/* Video Player */}
-        <div className="aspect-video bg-black rounded-2xl overflow-hidden mb-6">
+        {/* Video Player — Lazy loaded */}
+        <div className="aspect-video bg-black rounded-2xl overflow-hidden mb-6 shadow-2xl">
           {video.videoUrl ? (
             <video
               src={video.videoUrl}
               controls
-              autoPlay
+              preload="metadata"
               className="w-full h-full"
               poster={video.thumbnailUrl}
             />
@@ -52,7 +77,7 @@ export default function VideoDetailPage() {
           )}
         </div>
 
-        {/* Info */}
+        {/* Video Info */}
         <div className="bg-dark-light rounded-2xl p-6 border border-gray-700/50">
           <div className="flex flex-wrap items-center gap-2 mb-3">
             {video.category && <Badge>{video.category.name}</Badge>}
@@ -65,7 +90,21 @@ export default function VideoDetailPage() {
           </div>
 
           <h1 className="text-2xl md:text-3xl font-bold text-white mb-3">{video.title}</h1>
-          {video.description && <p className="text-gray-400 mb-4">{video.description}</p>}
+
+          {video.description && (
+            <p className="text-gray-400 mb-4 whitespace-pre-line leading-relaxed">{video.description}</p>
+          )}
+
+          {/* Tags */}
+          {video.tags && video.tags.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-4">
+              {video.tags.map((tag, i) => (
+                <span key={i} className="inline-flex items-center gap-1 text-xs bg-gray-800 text-gray-300 px-2.5 py-1 rounded-full">
+                  <Tag className="h-3 w-3" /> {tag}
+                </span>
+              ))}
+            </div>
+          )}
 
           <div className="flex items-center justify-between pt-4 border-t border-gray-700/50">
             <ShareButtons
@@ -84,6 +123,16 @@ export default function VideoDetailPage() {
             <strong>Donation Group Date:</strong> {video.donorGroupDate} — This video shows the impact of all donations received on {formatDate(video.donorGroupDate)}.
           </p>
         </div>
+
+        {/* ═══ DONOR SHOWCASE ═══ */}
+        {video.linkedDonors && video.linkedDonors.length > 0 && (
+          <DonorShowcase donors={video.linkedDonors} />
+        )}
+
+        {/* ═══ SOCIAL MEDIA COLLECTIONS ═══ */}
+        {video.socialLinks && (
+          <SocialCollection socialLinks={video.socialLinks} />
+        )}
       </div>
     </section>
   );
