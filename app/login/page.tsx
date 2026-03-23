@@ -7,12 +7,12 @@ import Logo from "@/components/common/Logo";
 import { useAuth } from "@/context/AuthContext";
 
 export default function LoginPage() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, loading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (isAuthenticated) router.push("/profile");
-  }, [isAuthenticated, router]);
+    if (!loading && isAuthenticated) router.push("/profile");
+  }, [loading, isAuthenticated, router]);
 
   return (
     <section className="py-12 md:py-20 bg-gray-50">

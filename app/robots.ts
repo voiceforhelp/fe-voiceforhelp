@@ -6,7 +6,12 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/admin", "/profile"],
+        disallow: ["/admin", "/admin/", "/profile", "/profile/", "/login", "/register", "/verify-email", "/forgot-password"],
+      },
+      {
+        userAgent: "Googlebot",
+        allow: "/",
+        disallow: ["/admin", "/admin/", "/profile", "/profile/"],
       },
     ],
     sitemap: "https://www.voiceforhelp.com/sitemap.xml",

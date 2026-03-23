@@ -17,13 +17,9 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
-      Cookies.remove("token");
-      Cookies.remove("user");
-      if (typeof window !== "undefined" && !window.location.pathname.includes("/login")) {
-        window.location.href = "/login";
-      }
-    }
+    // Don't auto-clear cookies or redirect on 401.
+    // Let AuthContext handle session management.
+    // Individual components handle their own 401s via .catch()
     return Promise.reject(error);
   }
 );

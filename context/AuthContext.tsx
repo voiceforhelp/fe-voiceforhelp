@@ -20,6 +20,15 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+// Read cached user from cookie (fallback if getMe fails)
+function getCachedUser(): User | null {
+  try {
+    const cached = Cookies.get("user");
+    if (cached) return JSON.parse(cached);
+  } catch {}
+  return null;
+}
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -29,10 +38,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (token) {
       authService
         .getMe()
-        .then((res) => setUser(res.user))
+        .then((res) => {
+          setUser(res.user);
+          // Keep cookie user in sync
+          Cookies.set("user", JSON.stringify(res.user), { expires: 30, path: "/" });
+        })
         .catch(() => {
-          Cookies.remove("token");
-          Cookies.remove("user");
+          // getMe failed — use cached user from cookie as fallback
+          // This prevents logout on temporary network/server errors
+          const cached = getCachedUser();
+          if (cached) {
+            setUser(cached);
+          } else {
+            // No cached user either — truly invalid session
+            Cookies.remove("token", { path: "/" });
+            Cookies.remove("user", { path: "/" });
+          }
         })
         .finally(() => setLoading(false));
     } else {
@@ -44,13 +65,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       const res = await authService.login(data);
       if (res.token && res.user) {
-        Cookies.set("token", res.token, { expires: 30 });
-        Cookies.set("user", JSON.stringify(res.user), { expires: 30 });
+        Cookies.set("token", res.token, { expires: 30, path: "/" });
+        Cookies.set("user", JSON.stringify(res.user), { expires: 30, path: "/" });
         setUser(res.user);
       }
       return { requiresOTP: false };
     } catch (err: any) {
-      // If 403 with requiresOTP, the user needs to verify email first
       if (err.response?.status === 403 && err.response?.data?.requiresOTP) {
         return { requiresOTP: true, email: err.response.data.email };
       }
@@ -65,14 +85,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const verifyRegisterOTP = async (email: string, otp: string) => {
     const res = await authService.verifyRegister({ email, otp });
-    Cookies.set("token", res.token, { expires: 30 });
-    Cookies.set("user", JSON.stringify(res.user), { expires: 30 });
+    Cookies.set("token", res.token, { expires: 30, path: "/" });
+    Cookies.set("user", JSON.stringify(res.user), { expires: 30, path: "/" });
     setUser(res.user);
   };
 
   const logout = () => {
-    Cookies.remove("token");
-    Cookies.remove("user");
+    Cookies.remove("token", { path: "/" });
+    Cookies.remove("user", { path: "/" });
     setUser(null);
     window.location.href = "/";
   };
@@ -80,12 +100,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const updateUser = async (data: Partial<User>) => {
     const res = await authService.updateProfile(data);
     setUser(res.user);
-    Cookies.set("user", JSON.stringify(res.user), { expires: 30 });
+    Cookies.set("user", JSON.stringify(res.user), { expires: 30, path: "/" });
   };
 
   const setAuthFromToken = (token: string, user: User) => {
-    Cookies.set("token", token, { expires: 30 });
-    Cookies.set("user", JSON.stringify(user), { expires: 30 });
+    Cookies.set("token", token, { expires: 30, path: "/" });
+    Cookies.set("user", JSON.stringify(user), { expires: 30, path: "/" });
     setUser(user);
   };
 
