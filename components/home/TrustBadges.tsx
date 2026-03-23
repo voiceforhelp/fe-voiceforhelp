@@ -7,7 +7,7 @@ const badges = [
   { icon: ShieldCheck, text: "100% Transparency", sub: "Every Rupee Tracked" },
   { icon: Video,       text: "Video Proof Daily", sub: "Impact Documented" },
   { icon: Users,       text: "1,000+ Donors",    sub: "Trusted by Many" },
-  { icon: MapPin,      text: "Rajasthan, India",  sub: "Serving Across India" },
+  { icon: MapPin,      text: "Jaipur, Rajasthan, India",  sub: "Serving Across India" },
 ];
 
 const scrollBadges = [...badges, ...badges, ...badges];
