@@ -28,7 +28,7 @@ export default function ShareButtons({ url, title }: ShareButtonsProps) {
       <Button variant="ghost" size="icon" onClick={shareFacebook} className="h-8 w-8 text-blue-400 hover:bg-blue-400/10">
         <Facebook className="h-4 w-4" />
       </Button>
-      <a href="https://instagram.com/voiceforhelp" target="_blank" rel="noopener noreferrer">
+      <a href="https://www.instagram.com/voiceforhelptrust?utm_source=qr&igsh=NGY5bDJ1eXlpMmFt" target="_blank" rel="noopener noreferrer">
         <Button variant="ghost" size="icon" className="h-8 w-8 text-pink-400 hover:bg-pink-400/10">
           <Instagram className="h-4 w-4" />
         </Button>

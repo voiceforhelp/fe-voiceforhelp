@@ -59,8 +59,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 url: "https://www.voiceforhelp.com/VoiceForHelpLogo.jpeg",
               },
               sameAs: [
-                "https://instagram.com/voiceforhelp",
-                "https://facebook.com/voiceforhelp",
+                "https://www.instagram.com/voiceforhelptrust?utm_source=qr&igsh=NGY5bDJ1eXlpMmFt",
+                "https://www.facebook.com/profile.php?id=61580807177188&mibextid=ZbWKwL",
                 "https://youtube.com/@voiceforhelp",
               ],
               contactPoint: {

@@ -38,8 +38,8 @@ export const AVAILABILITY_TYPES = [
 ];
 
 export const SOCIAL_LINKS = {
-  instagram: "https://instagram.com/voiceforhelp",
-  facebook: "https://facebook.com/voiceforhelp",
+  instagram: "https://www.instagram.com/voiceforhelptrust?utm_source=qr&igsh=NGY5bDJ1eXlpMmFt",
+  facebook: "https://www.facebook.com/profile.php?id=61580807177188&mibextid=ZbWKwL",
   youtube: "https://youtube.com/@voiceforhelp",
   whatsapp: "https://wa.me/917737872585",
 };
