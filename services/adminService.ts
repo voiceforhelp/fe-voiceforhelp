@@ -1,5 +1,5 @@
 import api from "@/lib/api";
-import type { DashboardStats, Donation, VideoImpact, Category, Volunteer, User, Blog, AIGeneratedContent, AIVideoContent, DonorListItem } from "@/types";
+import type { DashboardStats, Donation, VideoImpact, Category, Volunteer, User, Blog, AIGeneratedContent, AIVideoContent, DonorListItem, AdminCommentResponse, VideoComment, VideoLikeItem } from "@/types";
 
 export const adminService = {
   getDashboardStats: async () => {
@@ -188,9 +188,48 @@ export const adminService = {
   uploadVideoFile: async (file: File) => {
     const formData = new FormData();
     formData.append("video", file);
-    const res = await api.post<{ success: boolean; url: string }>("/upload/video", formData, {
+    const res = await api.post<{ success: boolean; url: string; thumbnailUrl: string }>("/upload/video", formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
+    return res.data;
+  },
+
+  // ═══ Video Comments Management ═══
+  getAdminComments: async (page = 1, status = "", videoId = "") => {
+    const params = new URLSearchParams({ page: String(page) });
+    if (status) params.append("status", status);
+    if (videoId) params.append("videoId", videoId);
+    const res = await api.get<AdminCommentResponse>(`/videos/admin/comments?${params.toString()}`);
+    return res.data;
+  },
+
+  updateCommentStatus: async (commentId: string, status: "approved" | "rejected") => {
+    const res = await api.put<{ success: boolean; comment: VideoComment }>(`/videos/admin/comments/${commentId}`, { status });
+    return res.data;
+  },
+
+  deleteAdminComment: async (commentId: string) => {
+    const res = await api.delete<{ success: boolean }>(`/videos/admin/comments/${commentId}`);
+    return res.data;
+  },
+
+  bulkCommentAction: async (commentIds: string[], action: "approve" | "reject" | "delete") => {
+    const res = await api.put<{ success: boolean; message: string }>("/videos/admin/comments/bulk-action", { commentIds, action });
+    return res.data;
+  },
+
+  // ═══ Video Likes Management ═══
+  getAdminLikes: async (page = 1, videoId = "") => {
+    const params = new URLSearchParams({ page: String(page) });
+    if (videoId) params.append("videoId", videoId);
+    const res = await api.get<{ success: boolean; likes: VideoLikeItem[]; total: number; page: number; pages: number }>(
+      `/videos/admin/likes?${params.toString()}`
+    );
+    return res.data;
+  },
+
+  deleteAdminLike: async (likeId: string) => {
+    const res = await api.delete<{ success: boolean }>(`/videos/admin/likes/${likeId}`);
     return res.data;
   },
 };

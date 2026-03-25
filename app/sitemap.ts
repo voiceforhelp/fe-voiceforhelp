@@ -17,7 +17,26 @@ async function fetchPublishedBlogSlugs(): Promise<{ slug: string; updatedAt: str
   return [];
 }
 
+async function fetchPublishedVideos(): Promise<{ _id: string; updatedAt: string }[]> {
+  try {
+    const res = await fetch(`${API_URL}/videos?limit=1000`, { next: { revalidate: 3600 } });
+    const data = await res.json();
+    if (data.success && data.videos) {
+      return data.videos.map((v: { _id: string; updatedAt?: string; createdAt: string }) => ({
+        _id: v._id,
+        updatedAt: v.updatedAt || v.createdAt,
+      }));
+    }
+  } catch {}
+  return [];
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const [blogSlugs, videos] = await Promise.all([
+    fetchPublishedBlogSlugs(),
+    fetchPublishedVideos(),
+  ]);
+
   // Static pages
   const staticPages: MetadataRoute.Sitemap = [
     { url: BASE_URL, lastModified: new Date(), changeFrequency: "daily", priority: 1.0 },
@@ -33,7 +52,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   // Dynamic blog pages
-  const blogSlugs = await fetchPublishedBlogSlugs();
   const blogPages: MetadataRoute.Sitemap = blogSlugs.map((blog) => ({
     url: `${BASE_URL}/blogs/${blog.slug}`,
     lastModified: new Date(blog.updatedAt),
@@ -41,5 +59,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...blogPages];
+  // Dynamic video pages
+  const videoPages: MetadataRoute.Sitemap = videos.map((video) => ({
+    url: `${BASE_URL}/videos/${video._id}`,
+    lastModified: new Date(video.updatedAt),
+    changeFrequency: "weekly",
+    priority: 0.6,
+  }));
+
+  return [...staticPages, ...blogPages, ...videoPages];
 }

@@ -52,6 +52,58 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default function BlogSlugLayout({ children }: { children: React.ReactNode }) {
-  return children;
+export default async function BlogSlugLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const blog = await fetchBlog(slug);
+
+  if (!blog) return children;
+
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: blog.title,
+    description: blog.shortDescription || blog.title,
+    image: blog.image || `${BASE_URL}/VoiceForHelpLogo.jpeg`,
+    datePublished: blog.createdAt,
+    dateModified: blog.updatedAt || blog.createdAt,
+    author: {
+      "@type": "Organization",
+      name: blog.author?.name || "Voice For Help Trust",
+      url: BASE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Voice For Help Trust",
+      logo: { "@type": "ImageObject", url: `${BASE_URL}/VoiceForHelpLogo.jpeg` },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${BASE_URL}/blogs/${blog.slug}`,
+    },
+    wordCount: blog.content ? blog.content.replace(/<[^>]+>/g, "").split(/\s+/).length : undefined,
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE_URL}/blogs` },
+      { "@type": "ListItem", position: 3, name: blog.title, item: `${BASE_URL}/blogs/${blog.slug}` },
+    ],
+  };
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      {children}
+    </>
+  );
 }

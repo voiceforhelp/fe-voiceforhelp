@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LayoutDashboard, Users, UserCog, Video, FolderOpen, HandHeart, Settings, LogOut, Menu, X, ChevronLeft, FileText } from "lucide-react";
+import { LayoutDashboard, Users, UserCog, Video, FolderOpen, HandHeart, Settings, LogOut, Menu, X, ChevronLeft, FileText, MessageSquare } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import Logo from "@/components/common/Logo";
 import { cn } from "@/lib/utils";
@@ -14,6 +14,7 @@ const sidebarLinks = [
   { label: "Donors", href: "/admin/donors", icon: Users },
   { label: "Blogs", href: "/admin/blogs", icon: FileText },
   { label: "Videos", href: "/admin/videos", icon: Video },
+  { label: "Comments", href: "/admin/comments", icon: MessageSquare },
   { label: "Categories", href: "/admin/categories", icon: FolderOpen },
   { label: "Volunteers", href: "/admin/volunteers", icon: HandHeart },
   { label: "Settings", href: "/admin/settings", icon: Settings },
@@ -39,7 +40,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <Logo size="sm" />
           <p className="text-xs text-gray-400 mt-1">Admin Panel</p>
         </div>
-        <nav className="flex-1 p-4 space-y-1">
+        <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
           {sidebarLinks.map((link) => (
             <Link
               key={link.href}
@@ -105,7 +106,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       )}
 
       {/* Main content */}
-      <main className="flex-1 lg:ml-64 pt-14 lg:pt-0">
+      <main className="flex-1 lg:ml-64 pt-14 lg:pt-0 h-screen overflow-y-auto">
         <div className="p-4 md:p-6 lg:p-8">{children}</div>
       </main>
     </div>

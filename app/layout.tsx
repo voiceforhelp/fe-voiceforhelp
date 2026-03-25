@@ -44,12 +44,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <head>
+        {/* Organization Schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "NGO",
+              "@id": "https://www.voiceforhelp.com/#organization",
               name: "Voice For Help Trust",
               alternateName: "VoiceForHelp",
               description: "A registered NGO from Rajasthan, India providing food distribution, animal welfare, cow protection, child welfare and medical assistance. 100% transparency with video-verified impact.",
@@ -57,10 +59,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               logo: {
                 "@type": "ImageObject",
                 url: "https://www.voiceforhelp.com/VoiceForHelpLogo.jpeg",
+                width: 1200,
+                height: 630,
               },
+              image: "https://www.voiceforhelp.com/VoiceForHelpLogo.jpeg",
               sameAs: [
-                "https://www.instagram.com/voiceforhelptrust?utm_source=qr&igsh=NGY5bDJ1eXlpMmFt",
-                "https://www.facebook.com/profile.php?id=61580807177188&mibextid=ZbWKwL",
+                "https://www.instagram.com/voiceforhelptrust",
+                "https://www.facebook.com/profile.php?id=61580807177188",
                 "https://youtube.com/@voiceforhelp",
               ],
               contactPoint: {
@@ -74,6 +79,30 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 "@type": "PostalAddress",
                 addressRegion: "Rajasthan",
                 addressCountry: "IN",
+              },
+              foundingDate: "2024",
+              knowsAbout: ["Animal Welfare", "Cow Protection", "Food Distribution", "Child Welfare", "Medical Assistance"],
+            }),
+          }}
+        />
+        {/* WebSite Schema with SearchAction for Google Sitelinks Search Box */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "@id": "https://www.voiceforhelp.com/#website",
+              name: "Voice For Help Trust",
+              url: "https://www.voiceforhelp.com",
+              publisher: { "@id": "https://www.voiceforhelp.com/#organization" },
+              potentialAction: {
+                "@type": "SearchAction",
+                target: {
+                  "@type": "EntryPoint",
+                  urlTemplate: "https://www.voiceforhelp.com/blogs?search={search_term_string}",
+                },
+                "query-input": "required name=search_term_string",
               },
             }),
           }}

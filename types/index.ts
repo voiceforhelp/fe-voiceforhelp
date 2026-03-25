@@ -51,6 +51,33 @@ export interface VideoImpact {
   };
   status: "processing" | "published" | "failed";
   views: number;
+  likesCount: number;
+  commentsCount: number;
+  createdAt: string;
+}
+
+export interface VideoComment {
+  _id: string;
+  video: string;
+  user: { _id: string; name: string; email?: string; avatar?: string };
+  text: string;
+  status: "pending" | "approved" | "rejected";
+  createdAt: string;
+}
+
+export interface AdminCommentResponse {
+  success: boolean;
+  comments: (VideoComment & { video: { _id: string; title: string; thumbnailUrl?: string } })[];
+  total: number;
+  page: number;
+  pages: number;
+  counts: { pending: number; approved: number; rejected: number };
+}
+
+export interface VideoLikeItem {
+  _id: string;
+  user: { _id: string; name: string; email?: string; avatar?: string };
+  video: { _id: string; title: string; thumbnailUrl?: string };
   createdAt: string;
 }
 

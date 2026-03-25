@@ -19,11 +19,25 @@ export default function Header() {
 
   useEffect(() => { setMobileOpen(false); }, [pathname]);
 
+  // Hide header on mobile when viewing video detail (reels mode)
+  const isVideoDetail = /^\/videos\/[a-f0-9]{24}$/.test(pathname);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check, { passive: true });
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 8);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Hide header completely on mobile video detail pages (reels experience)
+  if (isVideoDetail && isMobile) return null;
 
   return (
     <>

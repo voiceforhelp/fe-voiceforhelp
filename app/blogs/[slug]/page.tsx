@@ -76,35 +76,8 @@ export default function BlogDetailPage() {
     );
   }
 
-  // JSON-LD Article structured data
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: blog.title,
-    description: blog.shortDescription || blog.title,
-    image: blog.image || "https://www.voiceforhelp.com/VoiceForHelpLogo.jpeg",
-    datePublished: blog.createdAt,
-    dateModified: blog.updatedAt || blog.createdAt,
-    author: {
-      "@type": "Organization",
-      name: blog.author?.name || "Voice For Help Trust",
-      url: "https://www.voiceforhelp.com",
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "Voice For Help Trust",
-      logo: { "@type": "ImageObject", url: "https://www.voiceforhelp.com/VoiceForHelpLogo.jpeg" },
-    },
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": `https://www.voiceforhelp.com/blogs/${blog.slug}`,
-    },
-  };
-
   return (
     <div className="bg-gray-50 min-h-screen">
-      {/* JSON-LD Structured Data */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       {/* Hero */}
       <section className="bg-gradient-to-r from-green-800 to-green-900 py-12">

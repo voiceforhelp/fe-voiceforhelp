@@ -3,8 +3,9 @@
 import { useEffect, useState, useRef } from "react";
 import {
   Upload, Video, Trash2, Sparkles, Search, X, Check, ChevronDown,
-  Plus, Instagram, Youtube, Facebook, Users, Link as LinkIcon,
+  Plus, Instagram, Youtube, Facebook, Users, Link as LinkIcon, Pencil, Eye, Play,
 } from "lucide-react";
+import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -42,15 +43,25 @@ export default function AdminVideosPage() {
   // Social links state
   const [socialLinks, setSocialLinks] = useState(emptySocialLinks);
 
+  const fetchCategories = async () => {
+    try {
+      const res = await adminService.getAllCategories();
+      setCategories(res.categories);
+    } catch {
+      toast.error("Failed to load categories");
+    }
+  };
+
   useEffect(() => {
     videoService.getAllVideos(1, 50).then((res) => setVideos(res.videos)).catch(() => {}).finally(() => setLoading(false));
-    adminService.getAllCategories().then((res) => setCategories(res.categories)).catch(() => {});
+    fetchCategories();
   }, []);
 
-  // Fetch donors list when upload form opens
+  // Fetch donors list and categories when upload form opens
   useEffect(() => {
     if (showUpload) {
       fetchDonors();
+      if (categories.length === 0) fetchCategories();
     }
   }, [showUpload]);
 
@@ -135,9 +146,11 @@ export default function AdminVideosPage() {
     setUploading(true);
     try {
       let videoUrl = form.videoUrl;
+      let thumbnailUrl = "";
       if (videoFile) {
         const uploadRes = await adminService.uploadVideoFile(videoFile);
         videoUrl = uploadRes.url;
+        thumbnailUrl = uploadRes.thumbnailUrl || "";
       }
       if (!videoUrl) { toast.error("Please provide a video file or URL"); setUploading(false); return; }
 
@@ -154,6 +167,7 @@ export default function AdminVideosPage() {
         category: form.category || undefined,
         donorGroupDate: form.donorGroupDate,
         videoUrl,
+        thumbnailUrl,
         linkedDonors: selectedDonors.map((d) => d._id),
         tags: form.tags.split(",").map((t) => t.trim()).filter(Boolean),
         socialLinks: cleanSocial,
@@ -231,9 +245,12 @@ export default function AdminVideosPage() {
                     <div>
                       <Label className="mb-1.5 block">Category</Label>
                       <select value={form.category} onChange={(e) => setForm((f) => ({ ...f, category: e.target.value }))} className="flex h-11 w-full rounded-lg border border-gray-300 px-4 py-2 text-sm focus:border-green-500 focus:outline-none">
-                        <option value="">Select category</option>
+                        <option value="">{categories.length === 0 ? "Loading categories..." : "Select category"}</option>
                         {categories.map((c) => (<option key={c._id} value={c._id}>{c.name}</option>))}
                       </select>
+                      {categories.length === 0 && (
+                        <button type="button" onClick={fetchCategories} className="mt-1 text-xs text-green-600 hover:underline">Retry loading categories</button>
+                      )}
                     </div>
                     <Input label="Donor Group Date *" type="date" value={form.donorGroupDate} onChange={(e) => setForm((f) => ({ ...f, donorGroupDate: e.target.value }))} />
                   </div>
@@ -241,7 +258,23 @@ export default function AdminVideosPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <Label className="mb-1.5 block">Video File</Label>
-                      <input type="file" accept="video/*" onChange={(e) => setVideoFile(e.target.files?.[0] || null)} className="text-sm" />
+                      <label className="flex flex-col items-center justify-center w-full h-28 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 hover:border-green-400 transition-colors">
+                        <div className="flex flex-col items-center justify-center pt-2 pb-2">
+                          <Upload className="h-6 w-6 text-gray-400 mb-1" />
+                          {videoFile ? (
+                            <p className="text-sm text-green-600 font-medium truncate max-w-[200px] px-2">{videoFile.name}</p>
+                          ) : (
+                            <>
+                              <p className="text-sm font-medium text-gray-600">Click to upload video</p>
+                              <p className="text-xs text-gray-400">MP4, WebM, MOV (max 100MB)</p>
+                            </>
+                          )}
+                        </div>
+                        <input type="file" accept="video/*" onChange={(e) => setVideoFile(e.target.files?.[0] || null)} className="hidden" />
+                      </label>
+                      {videoFile && (
+                        <button type="button" onClick={() => setVideoFile(null)} className="mt-1 text-xs text-red-500 hover:underline">Remove file</button>
+                      )}
                     </div>
                     <Input label="Or Video URL" placeholder="https://..." value={form.videoUrl} onChange={(e) => setForm((f) => ({ ...f, videoUrl: e.target.value }))} />
                   </div>
@@ -394,28 +427,52 @@ export default function AdminVideosPage() {
       {loading ? (
         <div className="text-center py-12 text-gray-500">Loading...</div>
       ) : (
-        <div className="grid gap-4">
+        <div className="grid gap-3">
           {videos.map((v) => (
-            <Card key={v._id}>
+            <Card key={v._id} className="hover:border-green-200 transition-colors">
               <CardContent className="p-4 flex items-center gap-4">
-                <div className="w-20 h-14 rounded-lg bg-gradient-to-br from-green-700 to-green-800 flex items-center justify-center flex-shrink-0">
-                  <Video className="h-6 w-6 text-white/60" />
+                {/* Thumbnail */}
+                <div className="w-24 h-16 rounded-lg overflow-hidden bg-gray-900 flex-shrink-0 relative group">
+                  {v.thumbnailUrl ? (
+                    <img src={v.thumbnailUrl} alt={v.title} className="w-full h-full object-cover" loading="lazy" />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-green-700 to-green-800">
+                      <Video className="h-6 w-6 text-white/60" />
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <Play className="h-5 w-5 text-white" />
+                  </div>
                 </div>
+
+                {/* Info */}
                 <div className="flex-1 min-w-0">
                   <p className="font-semibold text-gray-900 truncate">{v.title}</p>
                   <div className="flex items-center gap-2 mt-1 flex-wrap">
                     {v.category && <Badge variant="default" className="text-[10px]">{v.category.name}</Badge>}
                     <span className="text-xs text-gray-400">Group: {v.donorGroupDate}</span>
                     <Badge variant={v.status === "published" ? "success" : "warning"} className="text-[10px]">{v.status}</Badge>
+                    <span className="text-xs text-gray-400 flex items-center gap-1">
+                      <Eye className="h-3 w-3" /> {v.views}
+                    </span>
                     {v.linkedDonors && v.linkedDonors.length > 0 && (
                       <span className="text-xs text-green-600 flex items-center gap-1">
-                        <Users className="h-3 w-3" /> {v.linkedDonors.length} donors
+                        <Users className="h-3 w-3" /> {v.linkedDonors.length}
                       </span>
                     )}
                   </div>
                 </div>
-                <div className="flex gap-1">
-                  <button onClick={() => deleteVideo(v._id)} className="p-2 text-red-500 hover:bg-red-50 rounded-lg"><Trash2 className="h-4 w-4" /></button>
+
+                {/* Actions */}
+                <div className="flex gap-1 shrink-0">
+                  <Link href={`/admin/videos/${v._id}`}>
+                    <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg" title="Edit">
+                      <Pencil className="h-4 w-4" />
+                    </button>
+                  </Link>
+                  <button onClick={() => deleteVideo(v._id)} className="p-2 text-red-500 hover:bg-red-50 rounded-lg" title="Delete">
+                    <Trash2 className="h-4 w-4" />
+                  </button>
                 </div>
               </CardContent>
             </Card>

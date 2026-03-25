@@ -5,15 +5,14 @@ import { Play, Calendar } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import ShareButtons from "@/components/common/ShareButtons";
-import VideoPlayerModal from "@/components/videos/VideoPlayerModal";
 import { videoService } from "@/services/videoService";
 import { formatDate } from "@/lib/utils";
+import Link from "next/link";
 import type { VideoImpact } from "@/types";
 
 export default function MyVideos() {
   const [videos, setVideos] = useState<VideoImpact[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selected, setSelected] = useState<VideoImpact | null>(null);
 
   useEffect(() => {
     videoService.getMyVideos()
@@ -35,10 +34,10 @@ export default function MyVideos() {
   }
 
   return (
-    <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {videos.map((v) => (
-          <div key={v._id} className="bg-white rounded-xl border border-gray-100 overflow-hidden group cursor-pointer hover:border-gold/30 transition-all" onClick={() => setSelected(v)}>
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {videos.map((v) => (
+        <Link key={v._id} href={`/videos/${v._id}`}>
+          <div className="bg-white rounded-xl border border-gray-100 overflow-hidden group cursor-pointer hover:border-gold/30 transition-all">
             <div className="relative aspect-video bg-[#1a1a1a] flex items-center justify-center">
               {v.thumbnailUrl ? (
                 <img src={v.thumbnailUrl} alt={v.title} className="w-full h-full object-cover" />
@@ -55,14 +54,13 @@ export default function MyVideos() {
                 <span className="text-[10px] text-gray-500 flex items-center"><Calendar className="h-3 w-3 mr-0.5" />{formatDate(v.createdAt)}</span>
               </div>
               <p className="text-sm font-semibold text-white line-clamp-1">{v.title}</p>
-              <div className="mt-2">
+              <div className="mt-2" onClick={(e) => e.preventDefault()}>
                 <ShareButtons url={`/videos/${v._id}`} title={v.title} />
               </div>
             </div>
           </div>
-        ))}
-      </div>
-      {selected && <VideoPlayerModal video={selected} open={!!selected} onClose={() => setSelected(null)} />}
-    </>
+        </Link>
+      ))}
+    </div>
   );
 }

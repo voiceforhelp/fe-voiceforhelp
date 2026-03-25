@@ -1,11 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { Play, Calendar, Eye } from "lucide-react";
+import { Play, Calendar, Eye, ThumbsUp } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { formatDate } from "@/lib/utils";
-import VideoPlayerModal from "./VideoPlayerModal";
+import Link from "next/link";
 import type { VideoImpact } from "@/types";
 
 interface VideoGridProps {
@@ -13,57 +12,63 @@ interface VideoGridProps {
 }
 
 export default function VideoGrid({ videos }: VideoGridProps) {
-  const [selectedVideo, setSelectedVideo] = useState<VideoImpact | null>(null);
-
   return (
     <>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {videos.map((video, i) => (
+          <Link key={video._id} href={`/videos/${video._id}`}>
           <motion.div
-            key={video._id}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3, delay: i * 0.05 }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: i * 0.04 }}
             className="group cursor-pointer"
-            onClick={() => setSelectedVideo(video)}
           >
-            <div className="relative aspect-square rounded-xl overflow-hidden bg-gray-100 border border-gray-100 shadow-sm hover:shadow-md transition-all">
+            {/* Thumbnail - 16:9 ratio like YouTube */}
+            <div className="relative aspect-video rounded-xl overflow-hidden bg-gray-100 border border-gray-100 shadow-sm hover:shadow-md transition-all">
               {video.thumbnailUrl ? (
                 <img src={video.thumbnailUrl} alt={video.title} className="w-full h-full object-cover" />
               ) : (
-                <div className="w-full h-full flex items-center justify-center">
-                  <Play className="h-10 w-10 text-gray-400" />
+                <div className="w-full h-full flex items-center justify-center bg-gray-900">
+                  <Play className="h-10 w-10 text-gray-600" />
                 </div>
               )}
+              {/* Play overlay */}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all flex items-center justify-center">
-                <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all shadow-lg">
-                  <Play className="h-5 w-5 text-gold ml-0.5" />
+                <div className="w-12 h-12 rounded-full bg-black/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all">
+                  <Play className="h-5 w-5 text-white ml-0.5" />
                 </div>
               </div>
+              {/* Category badge */}
               {video.category && (
                 <div className="absolute top-2 left-2">
                   <Badge variant="default" className="text-[10px] bg-gold/80 backdrop-blur-sm">{video.category.name}</Badge>
                 </div>
               )}
-              <div className="absolute bottom-0 inset-x-0 bg-linear-to-t from-black/70 to-transparency p-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                <p className="text-white text-xs font-medium line-clamp-2">{video.title}</p>
-                <div className="flex items-center gap-3 mt-1 text-white/70 text-[10px]">
-                  <span className="flex items-center gap-1"><Calendar className="h-3 w-3" />{formatDate(video.createdAt)}</span>
-                  <span className="flex items-center gap-1"><Eye className="h-3 w-3" />{video.views}</span>
-                </div>
+            </div>
+
+            {/* Video info below thumbnail - YouTube style */}
+            <div className="pt-3 px-1">
+              <h3 className="text-sm font-medium text-gray-900 line-clamp-2 group-hover:text-gold transition-colors leading-snug">
+                {video.title}
+              </h3>
+              <div className="flex items-center gap-3 mt-1.5 text-gray-500 text-xs">
+                <span className="flex items-center gap-1">
+                  <Eye className="h-3 w-3" />{video.views}
+                </span>
+                {(video.likesCount > 0) && (
+                  <span className="flex items-center gap-1">
+                    <ThumbsUp className="h-3 w-3" />{video.likesCount}
+                  </span>
+                )}
+                <span className="flex items-center gap-1">
+                  <Calendar className="h-3 w-3" />{formatDate(video.createdAt)}
+                </span>
               </div>
             </div>
           </motion.div>
+          </Link>
         ))}
       </div>
-
-      {selectedVideo && (
-        <VideoPlayerModal
-          video={selectedVideo}
-          open={!!selectedVideo}
-          onClose={() => setSelectedVideo(null)}
-        />
-      )}
     </>
   );
 }

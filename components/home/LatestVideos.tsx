@@ -14,23 +14,36 @@ interface LatestVideosProps {
 
 export default function LatestVideos({ videos }: LatestVideosProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const rafRef = useRef<number>(0);
   const scrollPos = useRef(0);
+  const isScrolling = useRef(true);
+  const lastTime = useRef(0);
 
-  const startAutoScroll = useCallback(() => {
+  const autoScroll = useCallback((timestamp: number) => {
+    if (!isScrolling.current) return;
     const el = scrollRef.current;
-    if (!el) return;
-    timerRef.current = setInterval(() => {
-      scrollPos.current += 1;
+    if (el) {
+      // ~0.5px per 16ms frame = smooth 30px/s scroll
+      const delta = lastTime.current ? (timestamp - lastTime.current) * 0.03 : 0;
+      lastTime.current = timestamp;
+      scrollPos.current += delta;
       if (scrollPos.current >= el.scrollWidth - el.clientWidth) {
         scrollPos.current = 0;
       }
-      el.scrollTo({ left: scrollPos.current });
-    }, 30);
+      el.scrollLeft = scrollPos.current;
+    }
+    rafRef.current = requestAnimationFrame(autoScroll);
   }, []);
 
+  const startAutoScroll = useCallback(() => {
+    isScrolling.current = true;
+    lastTime.current = 0;
+    rafRef.current = requestAnimationFrame(autoScroll);
+  }, [autoScroll]);
+
   const stopAutoScroll = useCallback(() => {
-    if (timerRef.current) clearInterval(timerRef.current);
+    isScrolling.current = false;
+    cancelAnimationFrame(rafRef.current);
   }, []);
 
   useEffect(() => {
@@ -77,7 +90,8 @@ export default function LatestVideos({ videos }: LatestVideosProps) {
 
           {/* Featured video preview */}
           <div className="hidden md:block">
-            <div className="relative rounded-xl overflow-hidden border border-gray-200 shadow-md aspect-video bg-gray-100">
+            <Link href={displayVideos[0]?._id ? `/videos/${displayVideos[0]._id}` : "/videos"}>
+            <div className="relative rounded-xl overflow-hidden border border-gray-200 shadow-md aspect-video bg-gray-100 cursor-pointer hover:shadow-lg transition-shadow">
               {displayVideos[0]?.thumbnailUrl ? (
                 <img
                   src={displayVideos[0].thumbnailUrl}
@@ -98,6 +112,7 @@ export default function LatestVideos({ videos }: LatestVideosProps) {
                 </div>
               )}
             </div>
+            </Link>
           </div>
         </div>
 
@@ -119,7 +134,8 @@ export default function LatestVideos({ videos }: LatestVideosProps) {
               viewport={{ once: true }}
               className="shrink-0 snap-center w-64 sm:w-72 md:w-80"
             >
-              <div className="rounded-xl overflow-hidden border border-gray-100 hover:border-gold/50 transition-all duration-300 hover:-translate-y-1 group shadow-sm bg-white">
+              <Link href={`/videos/${video._id}`}>
+              <div className="rounded-xl overflow-hidden border border-gray-100 hover:border-gold/50 transition-all duration-300 hover:-translate-y-1 group shadow-sm bg-white cursor-pointer">
                 {/* Thumbnail */}
                 <div className="relative aspect-video bg-gray-100">
                   {video.thumbnailUrl ? (
@@ -158,6 +174,7 @@ export default function LatestVideos({ videos }: LatestVideosProps) {
                   </span>
                 </div>
               </div>
+              </Link>
             </motion.div>
           ))}
         </div>
