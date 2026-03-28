@@ -23,7 +23,7 @@ export default function TopCauses({ categories }: TopCausesProps) {
   const displayCategories = categories.length > 0 ? categories : [
     { _id: "1", name: "Education Support", description: "Provide food to the hungry and those in need", targetAmount: 200000, raisedAmount: 85000 },
     { _id: "2", name: "Medical Aid", description: "Donate clothes to help someone warm and covered", targetAmount: 200000, raisedAmount: 120000 },
-    { _id: "3", name: "Clean Water", description: "Help feed, shelter and care for animals", targetAmount: 200000, raisedAmount: 65000 },
+    { _id: "3", name: "Clean Water", description: "Our mission is to deliver clean water to every thirsty person, cow, and voiceless animal. Your small support can help save a life.", targetAmount: 200000, raisedAmount: 65000 },
     { _id: "4", name: "Plant a Tree", description: "Plant trees to help protect our environment", targetAmount: 200000, raisedAmount: 150000 },
   ] as any[];
 
