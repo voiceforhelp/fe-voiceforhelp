@@ -4,7 +4,7 @@ const BASE_URL = "https://www.voiceforhelp.com";
 
 export const metadata: Metadata = {
   title: "Contact Us",
-  description: "Get in touch with Voice For Help Trust. Contact us for donation queries, volunteering or partnership. We're based in Rajasthan, India.",
+  description: "Get in touch with Voice For Help Trust. Contact us for donation queries, volunteering or partnership. We're based in Jaipur , Rajasthan, India.",
   keywords: ["contact Voice For Help Trust", "NGO contact India", "volunteer Rajasthan", "charity contact"],
   alternates: { canonical: `${BASE_URL}/contact` },
   openGraph: {

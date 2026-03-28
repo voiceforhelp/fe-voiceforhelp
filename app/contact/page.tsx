@@ -24,7 +24,7 @@ export default function ContactPage() {
     { icon: Phone, label: "Call Us", value: "+91-7737872585", href: "tel:+917737872585", desc: "Mon–Sat, 9am–6pm" },
     { icon: Mail, label: "Email", value: "support@voiceforhelp.com", href: "mailto:support@voiceforhelp.com", desc: "We reply within 24 hrs" },
     { icon: MessageSquare, label: "WhatsApp", value: "+91-7737872585", href: "https://wa.me/917737872585", desc: "Quick response" },
-    { icon: MapPin, label: "Address", value: "Rajasthan, India", href: "#", desc: "Serving across India" },
+    { icon: MapPin, label: "Address", value: "Jaipur , Rajasthan, India", href: "#", desc: "Serving across India" },
   ];
 
   return (

@@ -4,7 +4,7 @@ const BASE_URL = "https://www.voiceforhelp.com";
 
 export const metadata: Metadata = {
   title: "Our Impact",
-  description: "See the real impact of Voice For Help Trust — lives changed, animals saved, meals served. Transparency impact data with video-verified proof from Rajasthan, India.",
+  description: "See the real impact of Voice For Help Trust — lives changed, animals saved, meals served. Transparency impact data with video-verified proof from Jaipur , Rajasthan, India.",
   keywords: ["NGO impact India", "Voice For Help impact", "charity impact Rajasthan", "donation impact proof", "transparency NGO India"],
   alternates: { canonical: `${BASE_URL}/impact` },
   openGraph: {

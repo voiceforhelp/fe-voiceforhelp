@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Voice For Help Trust",
     short_name: "VoiceForHelp",
-    description: "A registered NGO from Rajasthan, India. Donate for food distribution, animal welfare, cow protection & more with 100% video-verified transparency.",
+    description: "A registered NGO from Jaipur , Rajasthan, India. Donate for food distribution, animal welfare, cow protection & more with 100% video-verified transparency.",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",

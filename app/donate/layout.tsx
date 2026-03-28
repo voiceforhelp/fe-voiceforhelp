@@ -20,7 +20,7 @@ export default function DonateLayout({ children }: { children: React.ReactNode }
     "@context": "https://schema.org",
     "@type": "DonateAction",
     name: "Donate to Voice For Help Trust",
-    description: "Support food distribution, animal welfare, cow protection and community welfare in Rajasthan, India. 100% video-verified transparency.",
+    description: "Support food distribution, animal welfare, cow protection and community welfare in Jaipur , Rajasthan, India. 100% video-verified transparency.",
     recipient: {
       "@type": "NGO",
       "@id": `${BASE_URL}/#organization`,

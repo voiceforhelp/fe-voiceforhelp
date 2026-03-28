@@ -39,7 +39,7 @@ export default function AboutPage() {
             About Voice For Help
           </h1>
           <p className="text-gray-500 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-            A registered NGO from Rajasthan, India — built on one promise: every rupee you donate will be documented and proven through video.
+            A registered NGO from Jaipur , Rajasthan, India — built on one promise: every rupee you donate will be documented and proven through video.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3 mt-6">
             <span className="inline-flex items-center gap-1.5 bg-green-50 border border-green-200 text-green-700 text-xs font-semibold px-3 py-1.5 rounded-full">
@@ -49,7 +49,7 @@ export default function AboutPage() {
               <ShieldCheck className="h-3.5 w-3.5" /> 100% Transparency
             </span>
             <span className="inline-flex items-center gap-1.5 bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold px-3 py-1.5 rounded-full">
-              <MapPin className="h-3.5 w-3.5" /> Rajasthan, India
+              <MapPin className="h-3.5 w-3.5" /> Jaipur , Rajasthan, India
             </span>
           </div>
         </div>
