@@ -86,10 +86,10 @@ export default function MissionSection() {
                 </div>
               )}
               {/* Floating badge — inside image container, always visible */}
-              <div className="absolute bottom-3 left-3 bg-gold text-black rounded-lg px-3 py-2 shadow-lg z-10">
+              {/* <div className="absolute bottom-3 left-3 bg-gold text-black rounded-lg px-3 py-2 shadow-lg z-10">
                 <p className="text-xs sm:text-sm font-extrabold leading-none">100%</p>
                 <p className="text-[10px] sm:text-xs font-semibold">Transparency</p>
-              </div>
+              </div> */}
             </div>
           </motion.div>
         </div>
